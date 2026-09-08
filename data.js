@@ -1,2147 +1,3054 @@
-const WINE_DATA = {
-  "france": {
-    "name": "프랑스",
-    "en": "France",
+const ZONES = {
+  "beaujolais": {
+    "n": 1,
+    "name": "보졸레",
+    "en": "Beaujolais",
+    "country": "France",
     "flag": "🇫🇷",
-    "group": "유럽",
-    "lat": "약 42°–51°N",
-    "mapCore": "대서양·대륙·지중해의 영향이 지역별로 달라지는 대표적인 구세계 와인 국가.",
-    "climate": [
-      "해양성",
-      "대륙성",
-      "지중해성"
+    "group": "프랑스",
+    "lat": "약 46°N",
+    "core": "부르고뉴 남쪽, Saône 계곡 서쪽의 구릉지. 북부 Cru 지역이 더 높은 품질과 구조를 보이기 쉽다.",
+    "climate": "온화한 대륙성. 남쪽으로 갈수록 조금 더 따뜻해지고, 빈티지에 따라 우박·서리 위험이 있다.",
+    "influences": "화강암·편암질 구릉(특히 북부 Cru), 사면의 일조와 배수가 품질에 중요.",
+    "grapes": [
+      "Gamay"
     ],
-    "currents": "북대서양 해류의 간접적인 온화화 효과와 대서양의 영향이 서부 산지에 중요.",
-    "winds": "남부 론과 프로방스에서는 Mistral이 중요. 차고 건조한 바람이 병해 압력을 줄일 수 있음.",
-    "topography": "강, 구릉, 사면 방향, 배수성 좋은 토양이 중요. 알자스는 보주산맥 Rain Shadow 영향.",
+    "reason": "Gamay + 비교적 따뜻한 구릉 → 밝은 붉은 과실·높은 산도·낮은~중간 탄닌. 반탄산/탄산침용을 쓰면 바나나·캔디·선명한 과실 향이 두드러질 수 있다.",
+    "labels": [
+      "Beaujolais",
+      "Beaujolais-Villages",
+      "Brouilly",
+      "Fleurie",
+      "Morgon",
+      "Moulin-à-Vent",
+      "Nouveau"
+    ],
+    "regions": [
+      {
+        "name": "Beaujolais / Beaujolais-Villages",
+        "grapes": "Gamay",
+        "style": "가볍고 과실 중심, 높은 산도, 낮은 탄닌.",
+        "why": "평지/완만한 지역 비중이 높고 빠른 소비 스타일이 많음."
+      },
+      {
+        "name": "Brouilly",
+        "grapes": "Gamay",
+        "style": "신선한 붉은 과실, 비교적 부드러운 Cru.",
+        "why": "Cru Beaujolais 중 접근성 좋은 스타일."
+      },
+      {
+        "name": "Fleurie",
+        "grapes": "Gamay",
+        "style": "꽃향, 딸기·라즈베리, 섬세한 탄닌.",
+        "why": "화강암 구릉과 비교적 우아한 스타일로 연결."
+      },
+      {
+        "name": "Morgon",
+        "grapes": "Gamay",
+        "style": "더 구조적이고 숙성 가능, 붉은·검은 과실.",
+        "why": "농축도와 탄닌이 더 높아질 수 있음."
+      },
+      {
+        "name": "Moulin-à-Vent",
+        "grapes": "Gamay",
+        "style": "Cru 중 강한 구조와 숙성 잠재력.",
+        "why": "낮은 수확량과 구조적인 스타일로 기억."
+      }
+    ],
+    "quiz": "라벨에 'Morgon'이 보일 때 품종과 예상 스타일을 설명해보세요.",
+    "answer": "Morgon은 Beaujolais의 Cru이며 Gamay가 핵심입니다. 일반 Beaujolais보다 더 농축되고 구조적이며, 높은 산도와 비교적 뚜렷한 탄닌, 붉고 검은 과실을 예상할 수 있습니다.",
+    "officialPlaces": [
+      "Beaujolais",
+      "Beaujolais Villages",
+      "Brouilly",
+      "Fleurie",
+      "Morgon",
+      "Moulin-à-Vent"
+    ],
+    "law": [
+      "AOC",
+      "Nouveau"
+    ],
+    "tasting": [
+      "Beaujolais / Beaujolais Villages / Cru Beaujolais"
+    ],
+    "labelTip": "Cru 이름(Brouilly, Fleurie, Morgon, Moulin-à-Vent)이 보이면 'Beaujolais' 단어가 없어도 Gamay와 더 높은 품질·구조를 추론할 수 있습니다.",
+    "syllabusCount": 6
+  },
+  "burgundy": {
+    "n": 2,
+    "name": "부르고뉴",
+    "en": "Burgundy",
+    "country": "France",
+    "flag": "🇫🇷",
+    "group": "프랑스",
+    "lat": "약 47°N",
+    "core": "프랑스 동부의 길고 좁은 산지. 포도밭의 사면·고도·토양 차이가 매우 짧은 거리에서도 품질과 스타일을 바꾼다.",
+    "climate": "대륙성. 봄 서리, 우박, 여름 강우와 빈티지 변동이 핵심 위험.",
+    "influences": "동·남동향 사면은 아침 햇빛을 받아 숙성을 돕고, 석회질+점토 토양의 비율과 배수가 중요.",
+    "grapes": [
+      "Pinot Noir",
+      "Chardonnay"
+    ],
+    "reason": "서늘한 대륙성 + Pinot Noir/Chardonnay → 높은 산도와 섬세한 향. 좋은 사면/낮은 수확량/정교한 양조가 농축도와 숙성 잠재력을 높인다.",
+    "labels": [
+      "Bourgogne",
+      "Chablis",
+      "Gevrey-Chambertin",
+      "Vosne-Romanée",
+      "Nuits-Saint-Georges",
+      "Pommard",
+      "Volnay",
+      "Meursault",
+      "Puligny-Montrachet",
+      "Chassagne-Montrachet",
+      "Pouilly-Fuissé",
+      "Premier Cru",
+      "Grand Cru"
+    ],
+    "regions": [
+      {
+        "name": "Chablis",
+        "grapes": "Chardonnay",
+        "style": "높은 산도, 레몬·청사과, 가벼움~중간 바디.",
+        "why": "부르고뉴 최북단의 서늘한 기후. Premier/Grand Cru는 더 농축되고 숙성 가능."
+      },
+      {
+        "name": "Côte de Nuits – Gevrey-Chambertin",
+        "grapes": "Pinot Noir",
+        "style": "구조적, 붉은·검은 과실, 흙·향신료, 탄닌 뚜렷.",
+        "why": "Côte de Nuits의 대표적인 힘 있는 Pinot Noir."
+      },
+      {
+        "name": "Côte de Nuits – Vosne-Romanée",
+        "grapes": "Pinot Noir",
+        "style": "꽃·향신료·붉은 과실, 정교한 탄닌.",
+        "why": "Grand Cru 밀집 지역으로 매우 높은 품질 잠재력."
+      },
+      {
+        "name": "Côte de Nuits – Nuits-Saint-Georges",
+        "grapes": "Pinot Noir",
+        "style": "탄닌과 구조가 비교적 뚜렷, 숙성 가능.",
+        "why": "마을 위치·사면에 따라 스타일 차이가 큼."
+      },
+      {
+        "name": "Côte de Beaune – Pommard",
+        "grapes": "Pinot Noir",
+        "style": "Côte de Beaune 레드 중 비교적 힘 있고 탄닌감 있음.",
+        "why": "Volnay보다 구조적인 대비로 기억."
+      },
+      {
+        "name": "Côte de Beaune – Volnay",
+        "grapes": "Pinot Noir",
+        "style": "우아하고 향기로운 붉은 과실, 더 부드러운 탄닌.",
+        "why": "Pommard와 대비."
+      },
+      {
+        "name": "Côte de Beaune – Meursault",
+        "grapes": "Chardonnay",
+        "style": "핵과류·견과·버터/오크, 풍부한 질감.",
+        "why": "농축된 드라이 Chardonnay의 대표 마을."
+      },
+      {
+        "name": "Côte de Beaune – Puligny-Montrachet",
+        "grapes": "Chardonnay",
+        "style": "높은 산도, 시트러스·미네랄, 정교한 오크.",
+        "why": "긴장감·정교함으로 기억."
+      },
+      {
+        "name": "Côte de Beaune – Chassagne-Montrachet",
+        "grapes": "Chardonnay + Pinot Noir",
+        "style": "화이트는 풍부함과 구조, 일부 레드도 생산.",
+        "why": "Montrachet 주변 핵심 마을."
+      },
+      {
+        "name": "Mâconnais – Pouilly-Fuissé",
+        "grapes": "Chardonnay",
+        "style": "더 익은 사과·복숭아, 중간~풍부한 바디.",
+        "why": "더 남쪽·따뜻한 위치."
+      }
+    ],
+    "vineyards": [
+      {
+        "name": "Chablis Grand Crus: Les Clos, Vaudésir, Valmur, Grenouilles, Blanchot, Bougros, Les Preuses",
+        "type": "DEEP DIVE",
+        "area": "Chablis",
+        "note": "개별 climat은 WSET Level 3 공식 지명 암기 범위를 넘는 심화. 라벨 이해용."
+      },
+      {
+        "name": "Chambertin / Chambertin-Clos de Bèze",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Gevrey-Chambertin",
+        "note": "Gevrey-Chambertin의 상징적 Grand Cru."
+      },
+      {
+        "name": "Clos Saint-Denis / Clos de la Roche",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Morey-Saint-Denis",
+        "note": "Côte de Nuits 대표 Grand Cru 예시."
+      },
+      {
+        "name": "Bonnes-Mares",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Chambolle-Musigny / Morey-Saint-Denis",
+        "note": "두 commune에 걸친 Grand Cru."
+      },
+      {
+        "name": "Clos de Vougeot",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Vougeot",
+        "note": "큰 단일 Clos. 내부 위치와 생산자에 따른 편차가 큼."
+      },
+      {
+        "name": "Échezeaux / Grands Échezeaux",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Flagey-Échezeaux / Vosne-Romanée 인근",
+        "note": "Vosne권 라벨에서 자주 접하는 Grand Cru."
+      },
+      {
+        "name": "Romanée-Conti",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Vosne-Romanée",
+        "note": "상징적 monopole Grand Cru."
+      },
+      {
+        "name": "La Tâche",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Vosne-Romanée",
+        "note": "DRC monopole. 시험 핵심보다는 라벨 심화."
+      },
+      {
+        "name": "Richebourg / Romanée-Saint-Vivant",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Vosne-Romanée",
+        "note": "Vosne-Romanée의 대표 Grand Cru."
+      },
+      {
+        "name": "Corton",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Aloxe-Corton 등",
+        "note": "Côte de Beaune의 대형 Grand Cru, 주로 Pinot Noir."
+      },
+      {
+        "name": "Corton-Charlemagne",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Aloxe-Corton / Pernand-Vergelesses / Ladoix",
+        "note": "Chardonnay Grand Cru."
+      },
+      {
+        "name": "Montrachet",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Puligny-Montrachet / Chassagne-Montrachet",
+        "note": "세계적 Chardonnay Grand Cru."
+      },
+      {
+        "name": "Chevalier-Montrachet",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Puligny-Montrachet",
+        "note": "Montrachet 상부의 Grand Cru."
+      },
+      {
+        "name": "Bâtard-Montrachet / Bienvenues-Bâtard-Montrachet",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Puligny / Chassagne",
+        "note": "풍부하고 강한 Chardonnay 스타일로 유명."
+      },
+      {
+        "name": "Criots-Bâtard-Montrachet",
+        "type": "Grand Cru · DEEP DIVE",
+        "area": "Chassagne-Montrachet",
+        "note": "작은 면적의 Montrachet 계열 Grand Cru."
+      }
+    ],
+    "quiz": "Gevrey-Chambertin과 Volnay의 Pinot Noir 스타일 차이를 어떻게 설명할까요?",
+    "answer": "둘 다 Pinot Noir와 대륙성 기후가 핵심이지만, Gevrey-Chambertin은 일반적으로 더 구조적이고 탄닌이 뚜렷한 반면 Volnay는 더 향기롭고 섬세한 스타일로 설명하기 좋습니다.",
+    "officialPlaces": [
+      "Bourgogne",
+      "Chablis",
+      "Bourgogne Côte d’Or",
+      "Bourgogne Hautes Côtes de Nuits",
+      "Côte de Nuits-Villages",
+      "Gevrey-Chambertin",
+      "Vougeot",
+      "Vosne-Romanée",
+      "Nuits-Saint-Georges",
+      "Bourgogne Hautes Côtes de Beaune",
+      "Côte de Beaune-Villages",
+      "Aloxe-Corton",
+      "Beaune",
+      "Pommard",
+      "Volnay",
+      "Meursault",
+      "Puligny-Montrachet",
+      "Chassagne-Montrachet",
+      "Bourgogne Côte Chalonnaise",
+      "Rully",
+      "Mercurey",
+      "Givry",
+      "Montagny",
+      "Mâcon",
+      "Mâcon Villages",
+      "Pouilly-Fuissé",
+      "Saint-Véran"
+    ],
+    "law": [
+      "AOC",
+      "Premier Cru",
+      "Grand Cru"
+    ],
+    "tasting": [
+      "Bourgogne Rouge",
+      "Côte d’Or Village/Premier Cru Pinot Noir",
+      "Village/Premier Cru Chablis",
+      "Côte d’Or Village/Premier Cru Chardonnay",
+      "Mâcon or Mâcon-Villages"
+    ],
+    "labelTip": "Burgundy는 생산자명보다 '지명 계층' 읽기가 핵심입니다. Bourgogne → Village → Premier Cru → Grand Cru 순으로 범위가 좁아집니다. Premier Cru는 보통 마을명 + climat, Grand Cru는 밭 이름 자체가 Appellation입니다.",
+    "extraCards": [
+      {
+        "name": "Bourgogne Côte d’Or / Hautes Côtes",
+        "grapes": "Pinot Noir, Chardonnay",
+        "style": "regional보다 특정 지역성이 강하지만 village보다 넓은 범위.",
+        "why": "Côte d’Or 및 고지대 포도밭을 묶는 지리 표시."
+      },
+      {
+        "name": "Côte de Nuits-Villages",
+        "grapes": "Pinot Noir",
+        "style": "중간~높은 산도·탄닌, 붉은/검은 과실.",
+        "why": "Côte de Nuits의 여러 마을 포도를 사용."
+      },
+      {
+        "name": "Vougeot",
+        "grapes": "Pinot Noir",
+        "style": "구조적 Pinot Noir, 위치/생산자 편차 큼.",
+        "why": "Clos de Vougeot로 유명한 작은 commune."
+      },
+      {
+        "name": "Aloxe-Corton / Beaune",
+        "grapes": "Pinot Noir, Chardonnay",
+        "style": "구조적 레드부터 일부 화이트까지.",
+        "why": "Côte de Beaune 중심부/북부의 핵심 지명."
+      },
+      {
+        "name": "Rully / Mercurey / Givry / Montagny",
+        "grapes": "Pinot Noir, Chardonnay",
+        "style": "Côte Chalonnaise의 비교적 접근성 좋은 고품질 와인.",
+        "why": "Mercurey/Givry는 레드, Montagny는 화이트 비중이 핵심."
+      },
+      {
+        "name": "Mâcon / Mâcon-Villages / Saint-Véran",
+        "grapes": "Chardonnay",
+        "style": "더 익은 사과·복숭아, 부드러운 산도와 중간 바디.",
+        "why": "남쪽의 따뜻한 기후."
+      }
+    ],
+    "sparkling": [
+      {
+        "name": "Champagne",
+        "grapes": "Chardonnay, Pinot Noir, Meunier",
+        "style": "높은 산도, 섬세한 기포, 효모·빵·시트러스. 전통 방식.",
+        "notes": "WSET 스파클링 핵심. 지도 23포인트는 유지하되 프랑스 스파클링 보충으로 이 패널에 수록."
+      },
+      {
+        "name": "Montagne de Reims",
+        "grapes": "Pinot Noir 중심",
+        "style": "구조와 바디 기여.",
+        "notes": "Champagne 주요 sub-region."
+      },
+      {
+        "name": "Côte des Blancs",
+        "grapes": "Chardonnay 중심",
+        "style": "높은 산도, 시트러스, 정교함.",
+        "notes": "Blanc de Blancs 핵심."
+      },
+      {
+        "name": "Vallée de la Marne",
+        "grapes": "Meunier 비중 높음",
+        "style": "과실감과 접근성.",
+        "notes": "서리 위험 지역에서 Meunier 장점."
+      },
+      {
+        "name": "Côte des Bar / Côte de Sézanne",
+        "grapes": "Pinot Noir / Chardonnay 중심",
+        "style": "남쪽 위치로 상대적으로 더 익은 과실.",
+        "notes": "Champagne 공식 학습 sub-region."
+      },
+      {
+        "name": "Crémant de Bourgogne",
+        "grapes": "지역 허용 품종",
+        "style": "전통 방식 프랑스 스파클링.",
+        "notes": "Champagne 외 Crémant 예시."
+      }
+    ],
+    "syllabusCount": 27
+  },
+  "bordeaux": {
+    "n": 3,
+    "name": "보르도",
+    "en": "Bordeaux",
+    "country": "France",
+    "flag": "🇫🇷",
+    "group": "프랑스",
+    "lat": "약 45°N",
+    "core": "프랑스 남서부. Gironde 하구와 Dordogne·Garonne 강을 중심으로 좌안/우안의 토양과 품종 구성이 달라진다.",
+    "climate": "해양성. 대서양의 완화 효과가 있지만 성장기 강우와 빈티지 변동, 곰팡이 위험이 중요.",
+    "influences": "좌안 자갈은 배수와 열 축적에 유리해 Cabernet Sauvignon 숙성을 도움. 우안의 점토·석회는 Merlot/Cabernet Franc과 잘 연결.",
+    "grapes": [
+      "Cabernet Sauvignon",
+      "Merlot",
+      "Cabernet Franc",
+      "Petit Verdot",
+      "Sauvignon Blanc",
+      "Sémillon"
+    ],
+    "reason": "좌안: 자갈+따뜻한 토양 → 늦게 익는 Cabernet Sauvignon. 우안: 점토+Merlot → 더 이른 숙성과 풍부한 자두 과실. Sauternes: 강 안개+건조한 오후 → noble rot.",
+    "labels": [
+      "Médoc",
+      "Haut-Médoc",
+      "Saint-Estèphe",
+      "Pauillac",
+      "Saint-Julien",
+      "Margaux",
+      "Pessac-Léognan",
+      "Saint-Émilion",
+      "Saint-Émilion Grand Cru",
+      "Pomerol",
+      "Sauternes",
+      "Barsac",
+      "Cru Classé",
+      "Cru Bourgeois"
+    ],
+    "regions": [
+      {
+        "name": "Médoc / Haut-Médoc",
+        "grapes": "Cabernet Sauvignon 중심 블렌드",
+        "style": "검은 과실, 높은 탄닌, 중~높은 산도, 오크·삼나무.",
+        "why": "좌안 자갈 + 배수 + 열 축적."
+      },
+      {
+        "name": "Pauillac",
+        "grapes": "Cabernet Sauvignon 중심",
+        "style": "카시스, 삼나무/연필심, 강한 구조와 숙성 잠재력.",
+        "why": "좌안 핵심 commune."
+      },
+      {
+        "name": "Margaux",
+        "grapes": "Cabernet Sauvignon 중심",
+        "style": "꽃·검은 과실, 향이 섬세하고 탄닌이 정교한 경향.",
+        "why": "Pauillac보다 향기롭고 우아한 대비."
+      },
+      {
+        "name": "Saint-Julien",
+        "grapes": "Cabernet Sauvignon 중심",
+        "style": "구조와 세련됨의 균형.",
+        "why": "작지만 Classed Growth가 밀집."
+      },
+      {
+        "name": "Saint-Estèphe",
+        "grapes": "Cabernet Sauvignon + Merlot",
+        "style": "견고한 탄닌과 구조, 비교적 서늘한 성격.",
+        "why": "점토 비중과 북쪽 위치."
+      },
+      {
+        "name": "Pessac-Léognan",
+        "grapes": "Cabernet blend / Sauvignon Blanc + Sémillon",
+        "style": "레드: 검은 과실·훈연·오크. 화이트: 시트러스·허브·오크.",
+        "why": "Graves의 자갈과 보르도 드라이 화이트 핵심."
+      },
+      {
+        "name": "Saint-Émilion",
+        "grapes": "Merlot, Cabernet Franc",
+        "style": "자두·블랙체리, 중~높은 탄닌, 석회/점토에 따른 차이.",
+        "why": "우안 핵심 산지."
+      },
+      {
+        "name": "Pomerol",
+        "grapes": "Merlot 중심",
+        "style": "풍부한 자두·블랙체리, 농축도 높고 부드러운 질감.",
+        "why": "점토와 Merlot."
+      },
+      {
+        "name": "Sauternes / Barsac",
+        "grapes": "Sémillon, Sauvignon Blanc",
+        "style": "꿀·살구·마멀레이드, 높은 단맛과 충분한 산도.",
+        "why": "Ciron 강의 차가운 물과 Garonne의 만남 → 아침 안개 → Botrytis."
+      }
+    ],
+    "quiz": "Pauillac과 Pomerol 라벨만 보고 품종 중심과 토양 논리를 설명해보세요.",
+    "answer": "Pauillac은 좌안 자갈 토양과 Cabernet Sauvignon 중심 블렌드가 핵심입니다. Pomerol은 우안의 점토 토양과 Merlot 중심 스타일로 연결하면 됩니다.",
+    "officialPlaces": [
+      "Bordeaux",
+      "Bordeaux Supérieur",
+      "Côtes de Bordeaux",
+      "Entre-Deux-Mers",
+      "Médoc",
+      "Haut-Médoc",
+      "Saint-Estèphe",
+      "Pauillac",
+      "Margaux",
+      "Saint-Julien",
+      "Graves",
+      "Pessac-Léognan",
+      "Saint-Émilion",
+      "Saint-Émilion Grand Cru",
+      "Pomerol",
+      "Sauternes",
+      "Barsac",
+      "Bergerac",
+      "Monbazillac",
+      "Cahors",
+      "Madiran",
+      "Jurançon",
+      "Côtes de Gascogne"
+    ],
+    "law": [
+      "AOC",
+      "IGP",
+      "Vin de France",
+      "Cru bourgeois",
+      "Cru classé"
+    ],
+    "tasting": [
+      "Generic Bordeaux red",
+      "Cru Bourgeois or Haut-Médoc Cru Classé",
+      "Saint-Émilion Grand Cru or Pomerol",
+      "Sauternes or Barsac",
+      "Oak-matured Graves/Pessac-Léognan white"
+    ],
+    "labelTip": "Bordeaux 라벨은 품종명보다 Appellation/Château가 앞에 오는 경우가 많습니다. 좌안 commune(Pauillac 등)인지 우안(Saint-Émilion/Pomerol)인지 먼저 읽고 품종 비중을 추론하세요.",
+    "extraCards": [
+      {
+        "name": "Bordeaux / Bordeaux Supérieur",
+        "grapes": "Merlot 중심 블렌드가 흔함",
+        "style": "중간 바디, 붉고 검은 과실, 비교적 접근성 좋은 스타일.",
+        "why": "넓은 지역에서 생산되며 commune급보다 규정과 테루아가 덜 엄격."
+      },
+      {
+        "name": "Côtes de Bordeaux",
+        "grapes": "Merlot 중심 Bordeaux blend",
+        "style": "중간 바디~구조적 레드.",
+        "why": "우안·주변 구릉지의 여러 Côtes appellation을 묶어 이해."
+      },
+      {
+        "name": "Entre-Deux-Mers",
+        "grapes": "Sauvignon Blanc, Sémillon",
+        "style": "드라이, 높은 산도, 시트러스·허브.",
+        "why": "Garonne와 Dordogne 사이의 드라이 화이트."
+      },
+      {
+        "name": "Bergerac / Monbazillac",
+        "grapes": "Bordeaux varieties",
+        "style": "Bergerac은 레드/화이트, Monbazillac은 귀부/스위트 화이트.",
+        "why": "Dordogne 동쪽의 South West France."
+      },
+      {
+        "name": "Cahors",
+        "grapes": "Malbec",
+        "style": "검은 과실, 높은 탄닌, 구조적 레드.",
+        "why": "Malbec의 대표 프랑스 산지."
+      },
+      {
+        "name": "Madiran",
+        "grapes": "Tannat",
+        "style": "매우 높은 탄닌, 검은 과실, 숙성 잠재력.",
+        "why": "Tannat의 두꺼운 껍질과 높은 페놀."
+      },
+      {
+        "name": "Jurançon",
+        "grapes": "Petit Manseng 중심",
+        "style": "드라이~스위트, 높은 산도, 열대/감귤 향.",
+        "why": "남서부 사면과 당 농축."
+      },
+      {
+        "name": "Côtes de Gascogne",
+        "grapes": "Ugni Blanc 등",
+        "style": "가볍고 향긋한 드라이 화이트.",
+        "why": "IGP 스타일의 신선한 화이트로 이해."
+      }
+    ],
+    "deepDive": [
+      {
+        "name": "Château vs Appellation",
+        "type": "Label reading",
+        "note": "Château 이름은 생산자/estate, Pauillac·Margaux·Saint-Émilion 등은 Appellation입니다. 둘을 구분해서 읽기."
+      },
+      {
+        "name": "1855 / Cru Classé",
+        "type": "Context",
+        "note": "WSET는 'Cru classé' 용어를 알아야 하지만 모든 château 명단 암기가 필수는 아닙니다."
+      }
+    ],
+    "syllabusCount": 23
+  },
+  "germany": {
+    "n": 4,
+    "name": "독일",
+    "en": "Germany",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "group": "중부유럽",
+    "lat": "약 49°–51°N 주요 산지",
+    "core": "높은 위도의 서늘한 기후. 강, 남향 사면, 사면 각도와 토양이 충분한 숙도를 확보하는 핵심 장치.",
+    "climate": "서늘한 대륙성/해양성 전이. 빈티지에 따라 숙도 편차가 큼.",
+    "influences": "Mosel·Rhine 강의 열 반사와 가파른 남향 사면, 높은 일조 확보가 중요.",
+    "grapes": [
+      "Riesling",
+      "Spätburgunder (Pinot Noir)",
+      "Silvaner",
+      "Müller-Thurgau",
+      "Dornfelder"
+    ],
+    "reason": "높은 위도 → 산도 유지·숙성 위험 ↑ → 좋은 사면과 강 주변이 일조를 극대화 → Riesling의 높은 산도와 긴 숙성 잠재력.",
+    "labels": [
+      "Mosel",
+      "Bernkastel",
+      "Wehlen",
+      "Piesport",
+      "Nahe",
+      "Schlossböckelheim",
+      "Rheingau",
+      "Rüdesheim",
+      "Johannisberg",
+      "Rheinhessen",
+      "Nierstein",
+      "Pfalz",
+      "Forst",
+      "Deidesheim",
+      "Kabinett",
+      "Spätlese",
+      "Auslese",
+      "Trocken",
+      "GG"
+    ],
+    "regions": [
+      {
+        "name": "Mosel – Bernkastel / Wehlen / Piesport",
+        "grapes": "Riesling",
+        "style": "가벼운 바디, 매우 높은 산도, 라임·사과·꽃, 잔당 가능.",
+        "why": "매우 가파른 강변 사면과 서늘한 기후."
+      },
+      {
+        "name": "Nahe – Schlossböckelheim",
+        "grapes": "Riesling",
+        "style": "높은 산도와 다양한 토양에서 오는 풍미 다양성.",
+        "why": "작지만 지질 다양성이 큼."
+      },
+      {
+        "name": "Rheingau – Rüdesheim / Johannisberg",
+        "grapes": "Riesling, Spätburgunder",
+        "style": "조금 더 구조적인 Riesling과 드라이 스타일.",
+        "why": "Rhine 강과 남향 사면."
+      },
+      {
+        "name": "Rheinhessen – Nierstein",
+        "grapes": "Riesling",
+        "style": "드라이 Riesling과 보다 풍부한 바디 가능.",
+        "why": "따뜻한 핵심 포도밭과 좋은 사면."
+      },
+      {
+        "name": "Pfalz – Forst / Deidesheim",
+        "grapes": "Riesling, Spätburgunder",
+        "style": "독일 내 비교적 익고 드라이한 스타일.",
+        "why": "Vosges/Haardt의 Rain Shadow로 더 건조하고 따뜻."
+      },
+      {
+        "name": "Baden / Franken",
+        "grapes": "Spätburgunder / Silvaner",
+        "style": "Baden은 독일 내 따뜻한 Pinot Noir, Franken은 드라이 Silvaner로 기억.",
+        "why": "지역별 기후와 품종 차이."
+      }
+    ],
+    "quiz": "Mosel Riesling이 높은 산도를 유지하면서도 익을 수 있는 이유를 설명해보세요.",
+    "answer": "높은 위도와 서늘한 기후 때문에 산도는 잘 유지되고, 가파른 남향 강변 사면과 강의 반사열이 일조와 열을 보충해 숙성을 돕습니다.",
+    "officialPlaces": [
+      "Mosel – Bernkastel, Wehlen, Piesport",
+      "Nahe – Schlossböckelheim",
+      "Rheingau – Rüdesheim, Johannisberg",
+      "Rheinhessen – Nierstein",
+      "Pfalz – Forst, Deidesheim",
+      "Baden",
+      "Franken"
+    ],
+    "law": [
+      "Prädikatswein",
+      "Kabinett",
+      "Spätlese",
+      "Auslese",
+      "Beerenauslese",
+      "Trockenbeerenauslese",
+      "Eiswein",
+      "Qualitätswein",
+      "VDP",
+      "VDP.Grosses Gewächs (GG)"
+    ],
+    "tasting": [
+      "Riesling with residual sugar e.g. Kabinett/Spätlese",
+      "VDP dry Riesling",
+      "Optional Auslese/Beerenauslese",
+      "Eiswein"
+    ],
+    "labelTip": "독일 라벨은 '마을+밭' 구조를 자주 봅니다. 예: Wehlener Sonnenuhr = Wehlen 마을 + Sonnenuhr 포도밭. Kabinett/Spätlese/Auslese는 포도 수확 시의 must weight 범주이며 완성 와인의 당도를 직접 보장하지 않습니다. Trocken이면 드라이.",
+    "deepDive": [
+      {
+        "name": "Wehlener Sonnenuhr",
+        "type": "Label deep dive",
+        "note": "Mosel의 유명 vineyard 예시. WSET 공식 시험 지명은 Wehlen까지가 핵심."
+      },
+      {
+        "name": "Bernkasteler Doctor",
+        "type": "Label deep dive",
+        "note": "Bernkastel의 상징적 vineyard 예시."
+      },
+      {
+        "name": "Piesporter Goldtröpfchen",
+        "type": "Label deep dive",
+        "note": "Piesport의 유명 vineyard 예시."
+      },
+      {
+        "name": "Rüdesheimer Berg Schlossberg",
+        "type": "Label deep dive",
+        "note": "Rheingau의 유명 steep vineyard 예시."
+      }
+    ],
+    "sparkling": [
+      {
+        "name": "Sekt / Deutscher Sekt",
+        "grapes": "Riesling 등",
+        "style": "독일 스파클링. Deutscher Sekt는 독일산 포도 사용.",
+        "notes": "Tank/traditional 등 다양한 방식 가능."
+      }
+    ],
+    "syllabusCount": 7
+  },
+  "rhone": {
+    "n": 5,
+    "name": "론",
+    "en": "Rhône Valley",
+    "country": "France",
+    "flag": "🇫🇷",
+    "group": "프랑스",
+    "lat": "약 44°–46°N",
+    "core": "북부와 남부를 나눠서 외우는 것이 핵심. 북부는 좁고 가파른 대륙성 계곡, 남부는 넓고 따뜻한 지중해성.",
+    "climate": "북부: 대륙성 / 남부: 지중해성.",
+    "influences": "Mistral은 남부에서 강하고 건조한 북풍으로 포도밭을 식히고 말린다. 북부는 Rhône 강을 따라 가파른 남향 사면이 중요.",
+    "grapes": [
+      "Syrah",
+      "Grenache",
+      "Mourvèdre",
+      "Viognier",
+      "Marsanne",
+      "Roussanne",
+      "Cinsault"
+    ],
+    "reason": "북부의 서늘한 사면 → Syrah의 후추·검은 과실·높은 산도. 남부의 더운 건조 기후 → Grenache의 익은 과실·높은 알코올, GSM 블렌드.",
+    "labels": [
+      "Côte-Rôtie",
+      "Condrieu",
+      "Saint-Joseph",
+      "Hermitage",
+      "Crozes-Hermitage",
+      "Cornas",
+      "Côtes du Rhône",
+      "Côtes du Rhône Villages",
+      "Châteauneuf-du-Pape",
+      "Gigondas",
+      "Vacqueyras",
+      "Lirac",
+      "Tavel"
+    ],
+    "regions": [
+      {
+        "name": "Côte-Rôtie",
+        "grapes": "Syrah (+ Viognier 가능)",
+        "style": "향기롭고 우아한 Syrah, 검은 과실·후추·훈연.",
+        "why": "가파른 남향 사면과 북부의 서늘함."
+      },
+      {
+        "name": "Condrieu",
+        "grapes": "Viognier",
+        "style": "살구·복숭아·꽃, 낮~중 산도, 풍부한 바디.",
+        "why": "향기로운 Viognier의 대표 산지."
+      },
+      {
+        "name": "Hermitage",
+        "grapes": "Syrah / Marsanne, Roussanne",
+        "style": "강한 구조·농축도·장기 숙성.",
+        "why": "남향 화강암 사면의 낮은 수확량."
+      },
+      {
+        "name": "Crozes-Hermitage / Saint-Joseph",
+        "grapes": "Syrah",
+        "style": "보다 접근성 있는 북부 Rhône Syrah.",
+        "why": "더 넓은 범위와 다양한 위치."
+      },
+      {
+        "name": "Cornas",
+        "grapes": "Syrah",
+        "style": "강한 탄닌과 농축도, 어둡고 강건한 스타일.",
+        "why": "따뜻한 남향 amphitheatre."
+      },
+      {
+        "name": "Châteauneuf-du-Pape",
+        "grapes": "Grenache 중심 GSM",
+        "style": "익은 붉은·검은 과실, 허브, 높은 알코올, 풍부한 바디.",
+        "why": "남부의 강한 일조·건조함·galets roulés."
+      },
+      {
+        "name": "Gigondas / Vacqueyras",
+        "grapes": "Grenache, Syrah, Mourvèdre",
+        "style": "구조적이고 농축된 남부 Rhône 레드.",
+        "why": "고도와 사면이 균형을 도움."
+      }
+    ],
+    "quiz": "Côte-Rôtie와 Châteauneuf-du-Pape의 품종과 기후를 대비해 설명해보세요.",
+    "answer": "Côte-Rôtie는 북부 Rhône의 대륙성·가파른 사면에서 Syrah가 중심이고, Châteauneuf-du-Pape는 더 따뜻한 지중해성 남부 Rhône에서 Grenache 중심 블렌드가 핵심입니다.",
+    "officialPlaces": [
+      "Côtes du Rhône",
+      "Côtes du Rhône Villages",
+      "Côte Rôtie",
+      "Condrieu",
+      "Saint-Joseph",
+      "Hermitage",
+      "Crozes-Hermitage",
+      "Cornas",
+      "Châteauneuf-du-Pape",
+      "Gigondas",
+      "Vacqueyras",
+      "Lirac",
+      "Tavel",
+      "Pays d’Oc",
+      "Languedoc",
+      "Minervois",
+      "Fitou",
+      "Corbières",
+      "Picpoul de Pinet",
+      "Côtes du Roussillon",
+      "Côtes du Roussillon Villages",
+      "Bandol",
+      "Côtes de Provence"
+    ],
+    "law": [
+      "AOC",
+      "IGP / Pays d’Oc"
+    ],
+    "tasting": [
+      "Premium Northern Rhône Syrah",
+      "Châteauneuf-du-Pape or Gigondas",
+      "Côtes du Rhône / Villages",
+      "Condrieu",
+      "Southern France Corbières/Fitou/Minervois",
+      "Côtes de Provence rosé"
+    ],
+    "labelTip": "Northern Rhône는 지명만 보고 Syrah/Viognier를, Southern Rhône는 Grenache 중심 블렌드를 떠올리세요. 이 패널에는 WSET의 Southern France도 함께 포함해 23개 지도 포인트를 유지했습니다.",
+    "extraCards": [
+      {
+        "name": "Côtes du Rhône / Côtes du Rhône Villages",
+        "grapes": "Grenache, Syrah, Mourvèdre 등",
+        "style": "중간~풍부한 바디, 붉은/검은 과실, 허브·향신료.",
+        "why": "Southern Rhône의 넓은 기본/상위 지리 계층."
+      },
+      {
+        "name": "Saint-Joseph",
+        "grapes": "Syrah / 일부 Marsanne, Roussanne",
+        "style": "검은 과실, 후추, 중간~높은 산도.",
+        "why": "북부 Rhône의 긴 서안 appellation."
+      },
+      {
+        "name": "Lirac",
+        "grapes": "Grenache 중심 블렌드",
+        "style": "레드·화이트·로제, 남부 Rhône의 풍부한 과실.",
+        "why": "Châteauneuf 맞은편 서안."
+      },
+      {
+        "name": "Tavel",
+        "grapes": "Grenache 등",
+        "style": "드라이, 색이 짙고 구조적인 로제.",
+        "why": "로제 전문 appellation."
+      },
+      {
+        "name": "Languedoc / Minervois / Fitou / Corbières",
+        "grapes": "Syrah, Grenache, Carignan, Mourvèdre",
+        "style": "따뜻한 지중해성의 익은 과실·허브·향신료.",
+        "why": "Southern France 핵심 레드 산지."
+      },
+      {
+        "name": "Picpoul de Pinet",
+        "grapes": "Piquepoul",
+        "style": "높은 산도, 레몬·그린 과실, 가벼운 바디.",
+        "why": "지중해 연안의 신선한 화이트."
+      },
+      {
+        "name": "Côtes du Roussillon / Villages",
+        "grapes": "Grenache, Carignan, Syrah 등",
+        "style": "더 따뜻하고 농축된 레드.",
+        "why": "스페인 국경 인접의 건조·고온."
+      },
+      {
+        "name": "Bandol",
+        "grapes": "Mourvèdre 중심",
+        "style": "높은 탄닌·바디, 검은 과실·허브, 숙성 잠재력.",
+        "why": "따뜻한 Provence와 늦게 익는 Mourvèdre."
+      },
+      {
+        "name": "Côtes de Provence",
+        "grapes": "Grenache, Cinsault, Syrah 등",
+        "style": "창백한 드라이 로제, 붉은 과실·허브.",
+        "why": "해양성 지중해 기후와 로제 중심 생산."
+      }
+    ],
+    "fortified": [
+      {
+        "name": "Muscat de Beaumes-de-Venise",
+        "grapes": "Muscat",
+        "style": "달콤하고 향기로운 fortified Muscat.",
+        "notes": "발효 중 주정 강화로 천연 당을 보존."
+      }
+    ],
+    "syllabusCount": 23
+  },
+  "alsace": {
+    "n": 6,
+    "name": "알자스",
+    "en": "Alsace",
+    "country": "France",
+    "flag": "🇫🇷",
+    "group": "프랑스",
+    "lat": "약 48°N",
+    "core": "프랑스 동북부, 보주산맥 동쪽. Rain Shadow 덕분에 프랑스에서 매우 건조한 편.",
+    "climate": "서늘~온화한 대륙성, 긴 건조한 가을.",
+    "influences": "Vosges가 서쪽의 습한 바람을 차단 → 낮은 강수. 동·남동향 사면과 긴 가을이 향기로운 품종의 숙성을 도움.",
+    "grapes": [
+      "Riesling",
+      "Gewürztraminer",
+      "Pinot Gris",
+      "Muscat",
+      "Pinot Blanc"
+    ],
+    "reason": "서늘한 대륙성 + 건조하고 긴 가을 → 높은 향 집중도와 산도 유지. 포도 품종명이 라벨에 자주 표시되는 프랑스의 예외적 지역.",
+    "labels": [
+      "Alsace",
+      "Alsace Grand Cru",
+      "Riesling",
+      "Gewürztraminer",
+      "Pinot Gris",
+      "Vendanges Tardives",
+      "Sélection de Grains Nobles"
+    ],
+    "regions": [
+      {
+        "name": "Alsace AOC",
+        "grapes": "Riesling, Gewürztraminer, Pinot Gris 등",
+        "style": "드라이~오프드라이, 향이 선명하고 산도가 높음.",
+        "why": "건조하고 긴 성장기."
+      },
+      {
+        "name": "Alsace Grand Cru",
+        "grapes": "주요 향기 품종",
+        "style": "더 농축되고 숙성 잠재력이 높은 스타일.",
+        "why": "특정 우수 포도밭의 사면·토양."
+      },
+      {
+        "name": "Vendanges Tardives / SGN",
+        "grapes": "향기 품종",
+        "style": "늦수확/귀부로 더 농축되고 단맛 가능.",
+        "why": "건조한 가을과 선택 수확."
+      }
+    ],
+    "vineyards": [
+      {
+        "name": "Schlossberg",
+        "type": "Grand Cru 예시",
+        "area": "Kaysersberg 인근",
+        "note": "Riesling로 자주 언급되는 유명 Grand Cru. WSET 보충."
+      },
+      {
+        "name": "Rangen",
+        "type": "Grand Cru 예시",
+        "area": "Thann",
+        "note": "가파른 화산성 사면으로 유명. WSET 보충."
+      }
+    ],
+    "quiz": "Alsace가 프랑스에서 비교적 건조한 이유와 그 결과를 설명해보세요.",
+    "answer": "Vosges 산맥의 Rain Shadow 때문에 강수량이 낮습니다. 건조하고 긴 가을은 포도의 향과 당 성숙을 돕고, Riesling·Gewürztraminer 같은 향기 품종의 선명한 스타일을 가능하게 합니다.",
+    "officialPlaces": [
+      "Alsace",
+      "Alsace Grand Cru"
+    ],
+    "law": [
+      "AOC",
+      "Vendanges Tardives",
+      "Sélection de Grains Nobles"
+    ],
+    "tasting": [
+      "Alsace Riesling",
+      "Gewürztraminer",
+      "Pinot Gris",
+      "Optional: Vendanges Tardives / Sélection de Grains Nobles"
+    ],
+    "labelTip": "Alsace는 프랑스에서 품종명이 라벨에 직접 나오는 경우가 매우 흔합니다. Grand Cru + 품종 + VT/SGN 여부를 순서대로 읽어 스타일을 추론하세요.",
+    "sparkling": [
+      {
+        "name": "Crémant d’Alsace",
+        "grapes": "여러 허용 품종",
+        "style": "전통 방식, 높은 산도와 과실 중심.",
+        "notes": "WSET 주요 Crémant."
+      }
+    ],
+    "deepDive": [
+      {
+        "name": "Schlossberg / Rangen",
+        "type": "Grand Cru examples · DEEP DIVE",
+        "note": "Alsace Grand Cru 예시. 개별 Grand Cru명은 WSET 공식 지명 암기 범위를 넘는 보충."
+      }
+    ],
+    "syllabusCount": 2
+  },
+  "portugal": {
+    "n": 7,
+    "name": "포르투갈",
+    "en": "Portugal",
+    "country": "Portugal",
+    "flag": "🇵🇹",
+    "group": "이베리아",
+    "lat": "약 37°–42°N",
+    "core": "서쪽 대서양 영향이 강하고 내륙으로 갈수록 더 덥고 건조해진다.",
+    "climate": "서부 해양성 → 내륙 대륙성/건조.",
+    "influences": "대서양, 산맥, Douro 계곡의 내륙성. 강수는 북서부에서 많고 내륙 남동쪽으로 갈수록 적어진다.",
+    "grapes": [
+      "Alvarinho",
+      "Loureiro",
+      "Arinto",
+      "Touriga Nacional",
+      "Touriga Franca",
+      "Tinta Roriz (Aragonês)",
+      "Baga",
+      "Trincadeira",
+      "Alicante Bouschet"
+    ],
+    "reason": "해안 Vinho Verde는 서늘·습윤 → 높은 산도. Douro/Alentejo는 내륙·고온 → 농축도와 알코올↑. 포트는 Douro의 높은 숙도와 주정강화.",
+    "labels": [
+      "Vinho Verde",
+      "Douro",
+      "Dão",
+      "Bairrada",
+      "Alentejo",
+      "Lisboa",
+      "Port",
+      "LBV",
+      "Vintage Port",
+      "Tawny"
+    ],
+    "regions": [
+      {
+        "name": "Vinho Verde",
+        "grapes": "Alvarinho, Loureiro",
+        "style": "가벼운 바디, 높은 산도, 시트러스·청사과.",
+        "why": "대서양에 가까운 서늘하고 습한 북서부."
+      },
+      {
+        "name": "Douro",
+        "grapes": "Touriga Nacional, Touriga Franca, Tinta Roriz",
+        "style": "농축된 레드와 Port, 검은 과실·높은 탄닌.",
+        "why": "산맥 뒤 덥고 건조한 계곡, 가파른 사면."
+      },
+      {
+        "name": "Dão",
+        "grapes": "Touriga Nacional 등",
+        "style": "산도와 향이 비교적 선명한 구조적 레드.",
+        "why": "고도와 산맥의 영향."
+      },
+      {
+        "name": "Bairrada",
+        "grapes": "Baga",
+        "style": "높은 산도·탄닌, 장기 숙성 가능.",
+        "why": "대서양 영향과 늦게 익는 Baga."
+      },
+      {
+        "name": "Alentejo",
+        "grapes": "Aragonês, Trincadeira, Alicante Bouschet",
+        "style": "익은 과실, 높은 알코올, 부드럽고 풍부.",
+        "why": "따뜻하고 건조한 남부 내륙."
+      }
+    ],
+    "quiz": "Vinho Verde와 Douro의 스타일 차이를 지리로 설명해보세요.",
+    "answer": "Vinho Verde는 대서양의 영향을 강하게 받아 서늘하고 습해 높은 산도와 가벼운 스타일을 보입니다. Douro는 내륙의 덥고 건조한 계곡이라 더 농축되고 숙도 높은 레드와 Port 생산에 적합합니다.",
+    "officialPlaces": [
+      "Vinho Verde",
+      "Douro",
+      "Dão",
+      "Bairrada",
+      "Alentejo",
+      "Lisboa",
+      "Alentejano"
+    ],
+    "law": [],
+    "tasting": [
+      "Optional Douro / Dão / Alentejo red",
+      "LBV or Vintage Port",
+      "Age-Indicated Tawny Port"
+    ],
+    "labelTip": "Portugal은 토착 품종명이 낯설기 때문에 지명부터 잡는 것이 효율적입니다. Port가 보이면 Douro 포도 + 발효 중 주정강화 + 숙성 방식(Ruby/Tawny/LBV/Vintage)을 연결하세요.",
+    "extraCards": [
+      {
+        "name": "Lisboa",
+        "grapes": "여러 토착·국제 품종",
+        "style": "해양 영향의 다양한 드라이 와인.",
+        "why": "대서양에 가까운 서부."
+      },
+      {
+        "name": "Alentejano",
+        "grapes": "Aragonês, Trincadeira, Alicante Bouschet 등",
+        "style": "Alentejo 지역의 유연한 IGP 스타일.",
+        "why": "지역 appellation보다 규정 유연."
+      }
+    ],
+    "fortified": [
+      {
+        "name": "Ruby / Reserve Ruby",
+        "grapes": "Touriga Franca, Tinta Roriz, Touriga Nacional, Tinto Cão, Tinta Barroca",
+        "style": "젊은 검은 과실, 진한 색, 과실 중심.",
+        "notes": "대형 용기에서 짧은 숙성."
+      },
+      {
+        "name": "Late Bottled Vintage (LBV)",
+        "grapes": "Port blend",
+        "style": "특정 빈티지, 농축된 검은 과실, Vintage보다 병입 전 더 오래 숙성.",
+        "notes": "접근성 높은 빈티지 스타일."
+      },
+      {
+        "name": "Vintage Port",
+        "grapes": "Port blend",
+        "style": "매우 농축, 높은 탄닌·단맛, 장기 병 숙성.",
+        "notes": "우수한 해에 선언."
+      },
+      {
+        "name": "Tawny / Age-Indicated Tawny",
+        "grapes": "Port blend",
+        "style": "견과·캐러멜·말린 과실, 갈색/황갈색.",
+        "notes": "산화적 목재 숙성."
+      }
+    ],
+    "syllabusCount": 7
+  },
+  "spain": {
+    "n": 8,
+    "name": "스페인",
+    "en": "Spain",
+    "country": "Spain",
+    "flag": "🇪🇸",
+    "group": "이베리아",
+    "lat": "약 36°–43°N",
+    "core": "대서양성 북서부, 높은 고원의 대륙성 중부, 따뜻한 지중해성 동남부를 구분하면 전체가 정리된다.",
+    "climate": "해양성 / 대륙성 / 지중해성.",
+    "influences": "Meseta 고원의 높은 고도와 큰 일교차, 대서양·지중해의 영향, 산맥에 의한 차단 효과.",
+    "grapes": [
+      "Tempranillo",
+      "Garnacha",
+      "Graciano",
+      "Cariñena",
+      "Albariño",
+      "Mencía",
+      "Verdejo",
+      "Monastrell",
+      "Airén"
+    ],
+    "reason": "고도 높은 내륙 → 강한 일조 + 차가운 밤 → 농축도와 산도 공존. 북서부 해양성 → 높은 산도 화이트. 동남부 → 높은 숙도와 알코올.",
+    "labels": [
+      "Rioja",
+      "Navarra",
+      "Priorat",
+      "Ribera del Duero",
+      "Toro",
+      "Rueda",
+      "Rías Baixas",
+      "Bierzo",
+      "Jumilla",
+      "Yecla",
+      "La Mancha",
+      "Crianza",
+      "Reserva",
+      "Gran Reserva",
+      "Cava",
+      "Sherry"
+    ],
+    "regions": [
+      {
+        "name": "Rioja",
+        "grapes": "Tempranillo, Garnacha, Graciano",
+        "style": "붉은 과실, 높은 산도, 오크 숙성 향.",
+        "why": "Upper Ebro의 대서양·대륙성·지중해 전이."
+      },
+      {
+        "name": "Priorat",
+        "grapes": "Garnacha, Cariñena",
+        "style": "농축된 검은 과실, 높은 알코올·탄닌.",
+        "why": "가파른 슬레이트(Llicorella) 사면과 따뜻한 기후."
+      },
+      {
+        "name": "Ribera del Duero",
+        "grapes": "Tempranillo",
+        "style": "검은 과실, 높은 탄닌·산도, 오크, 장기 숙성.",
+        "why": "높은 Meseta 고도와 큰 일교차."
+      },
+      {
+        "name": "Rueda",
+        "grapes": "Verdejo, Sauvignon Blanc",
+        "style": "시트러스·허브, 높은 산도, 드라이.",
+        "why": "높은 고도와 차가운 밤."
+      },
+      {
+        "name": "Rías Baixas",
+        "grapes": "Albariño",
+        "style": "높은 산도, 레몬·복숭아·꽃.",
+        "why": "서늘하고 습한 대서양 기후."
+      },
+      {
+        "name": "Bierzo",
+        "grapes": "Mencía",
+        "style": "붉은 과실·꽃·허브, 중간 바디.",
+        "why": "북서부 전이지대와 고도."
+      },
+      {
+        "name": "Jumilla / Yecla",
+        "grapes": "Monastrell",
+        "style": "익은 검은 과실, 높은 알코올, 강한 구조.",
+        "why": "덥고 건조한 Levante."
+      },
+      {
+        "name": "La Mancha / Valdepeñas",
+        "grapes": "Airén, Tempranillo",
+        "style": "대량 생산부터 숙도 높은 레드까지.",
+        "why": "넓고 건조한 중앙 고원."
+      }
+    ],
+    "quiz": "Rías Baixas와 Ribera del Duero를 기후·품종·스타일로 대비해보세요.",
+    "answer": "Rías Baixas는 대서양의 서늘하고 습한 영향 아래 Albariño 중심의 높은 산도 화이트가 핵심입니다. Ribera del Duero는 높은 내륙 고원의 대륙성 기후에서 Tempranillo가 중심이며, 농축된 검은 과실과 높은 탄닌의 레드를 생산합니다.",
+    "officialPlaces": [
+      "Rioja",
+      "Navarra",
+      "Calatayud",
+      "Cariñena",
+      "Priorat",
+      "Catalunya",
+      "Penedès",
+      "Ribera del Duero",
+      "Toro",
+      "Rueda",
+      "Rías Baixas",
+      "Bierzo",
+      "Valencia",
+      "Jumilla",
+      "Yecla",
+      "La Mancha",
+      "Valdepeñas",
+      "Castilla y León VdlT"
+    ],
+    "law": [
+      "DO",
+      "DOCa / DOQ",
+      "Vino de la Tierra (VdlT)",
+      "Vinos de Pago",
+      "Joven",
+      "Crianza",
+      "Reserva",
+      "Gran Reserva"
+    ],
+    "tasting": [
+      "Rioja Reserva / Gran Reserva",
+      "Ribera del Duero",
+      "Priorat",
+      "Rías Baixas or Rueda",
+      "Optional Monastrell e.g. Jumilla"
+    ],
+    "labelTip": "Spain은 지명 + 숙성 용어를 함께 읽습니다. Rioja/Ribera처럼 산지를 먼저 잡고 Joven/Crianza/Reserva/Gran Reserva가 있으면 숙성 수준을 추가로 해석하세요.",
+    "extraCards": [
+      {
+        "name": "Navarra",
+        "grapes": "Tempranillo, Garnacha 등",
+        "style": "레드·로제, 전통/국제 품종 혼합.",
+        "why": "Upper Ebro에서 Rioja와 인접."
+      },
+      {
+        "name": "Calatayud / Cariñena",
+        "grapes": "Garnacha 중심",
+        "style": "익은 붉은/검은 과실, 높은 알코올, 오래된 vines 가능.",
+        "why": "고도 높은 건조한 내륙 Aragón."
+      },
+      {
+        "name": "Catalunya / Penedès",
+        "grapes": "Garnacha, Cariñena, 국제 품종",
+        "style": "다양한 스틸 와인, Penedès는 Cava와도 연관.",
+        "why": "지중해 + 고도 차이."
+      },
+      {
+        "name": "Toro",
+        "grapes": "Tempranillo (Tinta de Toro)",
+        "style": "농축된 검은 과실, 높은 탄닌·알코올.",
+        "why": "Duero의 더 덥고 건조한 서쪽."
+      },
+      {
+        "name": "Valencia",
+        "grapes": "Monastrell 등",
+        "style": "익은 과실과 높은 숙도.",
+        "why": "Levante의 따뜻한 지중해성."
+      },
+      {
+        "name": "La Mancha / Valdepeñas / Castilla y León VdlT",
+        "grapes": "Airén, Tempranillo 등",
+        "style": "대량 생산부터 품질 지향 와인까지 폭넓음.",
+        "why": "넓은 고원과 규정 유연성."
+      }
+    ],
+    "sparkling": [
+      {
+        "name": "Cava",
+        "grapes": "Macabeo, Xarel·lo, Parellada",
+        "style": "높은 산도, 사과·시트러스, lees 숙성의 효모 향.",
+        "notes": "전통 방식."
+      }
+    ],
+    "fortified": [
+      {
+        "name": "Sherry – Fino / Manzanilla",
+        "grapes": "Palomino",
+        "style": "매우 드라이, 아몬드·빵·효모, 가벼운 바디.",
+        "notes": "Flor 아래 biological ageing."
+      },
+      {
+        "name": "Amontillado",
+        "grapes": "Palomino",
+        "style": "드라이, flor + oxidative ageing, 견과·캐러멜 복합성.",
+        "notes": "두 숙성 단계."
+      },
+      {
+        "name": "Oloroso",
+        "grapes": "Palomino",
+        "style": "드라이, 풀 바디, 견과·토피·산화 풍미.",
+        "notes": "17%+ fortification → flor 없음."
+      },
+      {
+        "name": "Palo Cortado",
+        "grapes": "Palomino",
+        "style": "Amontillado의 향 + Oloroso의 바디로 설명되는 희귀 스타일.",
+        "notes": "WSET 법적 스타일명."
+      },
+      {
+        "name": "Pedro Ximénez (PX)",
+        "grapes": "Pedro Ximénez",
+        "style": "매우 달고 건포도·무화과·당밀.",
+        "notes": "포도 건조 후 주정 강화."
+      },
+      {
+        "name": "Pale Cream / Medium / Cream",
+        "grapes": "Blended sweetened Sherry",
+        "style": "드라이 와인에 sweet component를 블렌딩.",
+        "notes": "당도 수준에 따라 명칭 차이."
+      }
+    ],
+    "syllabusCount": 18
+  },
+  "southafrica": {
+    "n": 9,
+    "name": "남아프리카공화국",
+    "en": "South Africa",
+    "country": "South Africa",
+    "flag": "🇿🇦",
+    "group": "신세계",
+    "lat": "약 32°–35°S",
+    "core": "Western Cape 중심. 차가운 Benguela Current가 서해안을 냉각하고 산맥·해풍이 다양한 미기후를 만든다.",
+    "climate": "지중해성 중심, 해안은 더 서늘.",
+    "influences": "Benguela Current, Cape Doctor(강한 남동풍), 산맥·해안 거리.",
+    "grapes": [
+      "Chenin Blanc",
+      "Chardonnay",
+      "Sauvignon Blanc",
+      "Pinotage",
+      "Cabernet Sauvignon",
+      "Syrah",
+      "Pinot Noir",
+      "Merlot"
+    ],
+    "reason": "따뜻한 위도지만 차가운 해류+해풍+고도 → 과열 억제·산도 유지. 내륙은 더 따뜻하고 농축된 스타일.",
+    "labels": [
+      "Western Cape",
+      "Stellenbosch",
+      "Paarl",
+      "Constantia",
+      "Durbanville",
+      "Swartland",
+      "Robertson",
+      "Walker Bay",
+      "Hemel-en-Aarde",
+      "Elgin"
+    ],
+    "regions": [
+      {
+        "name": "Stellenbosch",
+        "grapes": "Cabernet Sauvignon, Chenin Blanc, Syrah",
+        "style": "구조적 레드와 농축된 화이트.",
+        "why": "산악 지형과 해풍의 조합."
+      },
+      {
+        "name": "Paarl / Swartland",
+        "grapes": "Chenin Blanc, Syrah, Pinotage",
+        "style": "더 따뜻하고 농축된 과실, 오래된 Chenin도 중요.",
+        "why": "내륙성과 건조함 증가."
+      },
+      {
+        "name": "Constantia / Durbanville",
+        "grapes": "Sauvignon Blanc, Chardonnay",
+        "style": "더 서늘하고 산도 선명.",
+        "why": "Cape Town 및 해양 영향."
+      },
+      {
+        "name": "Robertson",
+        "grapes": "Chardonnay, Shiraz 등",
+        "style": "따뜻하고 건조하며 관개 중요.",
+        "why": "Breede River Valley."
+      },
+      {
+        "name": "Walker Bay / Hemel-en-Aarde",
+        "grapes": "Pinot Noir, Chardonnay",
+        "style": "서늘한 기후, 높은 산도, 섬세한 스타일.",
+        "why": "강한 해양 냉각."
+      },
+      {
+        "name": "Elgin",
+        "grapes": "Sauvignon Blanc, Chardonnay, Pinot Noir",
+        "style": "매우 서늘하고 향·산도가 선명.",
+        "why": "고도와 바다의 영향."
+      }
+    ],
+    "quiz": "Stellenbosch Cabernet이 따뜻한 위도에서도 균형을 유지하는 이유는?",
+    "answer": "차가운 Benguela Current와 해풍, 산악 지형이 포도밭을 냉각해 과도한 숙성을 억제하고 산도를 유지하기 때문입니다.",
+    "officialPlaces": [
+      "Western Cape",
+      "Coastal Region – Stellenbosch, Paarl, Constantia, Durbanville, Swartland",
+      "Breede River Valley – Worcester, Robertson",
+      "Cape South Coast – Walker Bay, Hemel-en-Aarde Wards, Elim, Elgin"
+    ],
+    "law": [
+      "Wine of Origin",
+      "region",
+      "district",
+      "ward",
+      "estate"
+    ],
+    "tasting": [
+      "Premium Pinotage e.g. Stellenbosch/Paarl/Swartland",
+      "Premium oaked Chenin Blanc e.g. Swartland",
+      "Optional Stellenbosch Cabernet Sauvignon"
+    ],
+    "labelTip": "South Africa는 Wine of Origin의 지리 계층을 읽습니다: region → district → ward. Ward가 가장 세밀한 지리 단위 중 하나.",
+    "extraCards": [
+      {
+        "name": "Worcester",
+        "grapes": "Chenin Blanc 등",
+        "style": "따뜻한 내륙, 대량 생산과 브랜디용 포도도 중요.",
+        "why": "Breede River Valley의 따뜻하고 건조한 조건."
+      },
+      {
+        "name": "Elim",
+        "grapes": "Sauvignon Blanc 등",
+        "style": "바람이 강하고 서늘해 높은 산도·허브 향.",
+        "why": "Cape Agulhas 인근 해양 영향."
+      }
+    ],
+    "sparkling": [
+      {
+        "name": "Cap Classique",
+        "grapes": "Chardonnay, Pinot Noir 등",
+        "style": "전통 방식, 높은 산도·효모 향.",
+        "notes": "South Africa의 전통 방식 스파클링 법적 용어."
+      }
+    ],
+    "syllabusCount": 4
+  },
+  "greece": {
+    "n": 10,
+    "name": "그리스",
+    "en": "Greece",
+    "country": "Greece",
+    "flag": "🇬🇷",
+    "group": "지중해",
+    "lat": "약 35°–41°N",
+    "core": "따뜻하고 건조한 지중해성 국가. 섬의 강풍, 고도와 토착 품종이 핵심.",
+    "climate": "지중해성.",
+    "influences": "에게해의 해풍과 강풍, 산악 고도. Santorini는 매우 건조하고 바람이 강함.",
+    "grapes": [
+      "Xinomavro",
+      "Agiorgitiko",
+      "Assyrtiko"
+    ],
+    "reason": "따뜻한 기후에서도 고도·해풍·품종 특성으로 산도를 유지. 각 대표 산지를 품종과 1:1로 연결하면 쉽다.",
+    "labels": [
+      "Naoussa",
+      "Nemea",
+      "Santorini"
+    ],
+    "regions": [
+      {
+        "name": "Naoussa",
+        "grapes": "Xinomavro",
+        "style": "높은 산도·탄닌, 붉은 과실·토마토·올리브, 숙성 가능.",
+        "why": "북부 고도와 대륙성 영향."
+      },
+      {
+        "name": "Nemea",
+        "grapes": "Agiorgitiko",
+        "style": "붉은·검은 과실, 중간 산도·탄닌부터 구조적 스타일.",
+        "why": "Peloponnese의 고도 차이."
+      },
+      {
+        "name": "Santorini",
+        "grapes": "Assyrtiko",
+        "style": "매우 높은 산도, 레몬·돌·염분감, 드라이.",
+        "why": "강풍·건조함·화산성 토양과 품종의 산도 유지 능력."
+      }
+    ],
+    "quiz": "Naoussa, Nemea, Santorini를 각각 어떤 품종과 연결하나요?",
+    "answer": "Naoussa=Xinomavro, Nemea=Agiorgitiko, Santorini=Assyrtiko로 연결하면 됩니다.",
+    "officialPlaces": [
+      "Naoussa",
+      "Nemea",
+      "Santorini"
+    ],
+    "law": [],
+    "tasting": [
+      "Optional Naoussa or Nemea"
+    ],
+    "labelTip": "그리스는 3개 지명-품종을 1:1로 외우면 효율적입니다: Naoussa=Xinomavro, Nemea=Agiorgitiko, Santorini=Assyrtiko.",
+    "syllabusCount": 3
+  },
+  "loire": {
+    "n": 11,
+    "name": "루아르",
+    "en": "Loire Valley",
+    "country": "France",
+    "flag": "🇫🇷",
+    "group": "프랑스",
+    "lat": "약 47°N",
+    "core": "대서양에서 프랑스 내륙으로 길게 이어지는 강 유역. 서쪽에서 동쪽으로 갈수록 해양성 영향이 약해진다.",
+    "climate": "서부 해양성 → 중부 전이 → 동부 대륙성.",
+    "influences": "Loire 강과 지류, 대서양과의 거리, 사면·석회질/부싯돌/화강암 토양.",
+    "grapes": [
+      "Melon",
+      "Chenin Blanc",
+      "Cabernet Franc",
+      "Sauvignon Blanc"
+    ],
+    "reason": "서쪽의 서늘·습윤 해양성 → 가볍고 높은 산도. 중부 Chenin은 높은 산도 덕분에 드라이~스위트/스파클링 모두 가능. 동부 Sauvignon은 서늘한 대륙성에서 향과 산도 유지.",
+    "labels": [
+      "Muscadet",
+      "Muscadet Sèvre et Maine",
+      "Sur Lie",
+      "Anjou",
+      "Coteaux du Layon",
+      "Savennières",
+      "Saumur",
+      "Saumur-Champigny",
+      "Vouvray",
+      "Touraine",
+      "Bourgueil",
+      "Chinon",
+      "Sancerre",
+      "Pouilly-Fumé",
+      "Menetou-Salon"
+    ],
+    "regions": [
+      {
+        "name": "Muscadet Sèvre et Maine",
+        "grapes": "Melon",
+        "style": "가벼운 바디, 높은 산도, 레몬·청사과, Sur Lie 질감.",
+        "why": "대서양과 가까운 서늘한 해양성."
+      },
+      {
+        "name": "Anjou / Coteaux du Layon",
+        "grapes": "Chenin Blanc",
+        "style": "드라이~스위트, 높은 산도, 사과·모과·꿀.",
+        "why": "Chenin의 산도와 귀부 가능성."
+      },
+      {
+        "name": "Savennières",
+        "grapes": "Chenin Blanc",
+        "style": "드라이, 높은 산도, 구조적이고 숙성 가능.",
+        "why": "좋은 사면과 낮은 수확량."
+      },
+      {
+        "name": "Saumur / Saumur-Champigny",
+        "grapes": "Chenin Blanc / Cabernet Franc",
+        "style": "스파클링·화이트 / 붉은 과실·허브 레드.",
+        "why": "석회질 tuffeau."
+      },
+      {
+        "name": "Vouvray",
+        "grapes": "Chenin Blanc",
+        "style": "드라이~스위트·스파클링, 높은 산도.",
+        "why": "빈티지와 수확 시점에 따라 폭넓은 스타일."
+      },
+      {
+        "name": "Chinon / Bourgueil",
+        "grapes": "Cabernet Franc",
+        "style": "붉은 과실·허브·피망, 중간 바디, 높은 산도.",
+        "why": "서늘한 기후에서 Cabernet Franc."
+      },
+      {
+        "name": "Sancerre",
+        "grapes": "Sauvignon Blanc",
+        "style": "높은 산도, 시트러스·풋사과·허브/플린티.",
+        "why": "동부의 서늘한 대륙성."
+      },
+      {
+        "name": "Pouilly-Fumé",
+        "grapes": "Sauvignon Blanc",
+        "style": "Sancerre와 유사, 훈연/플린티 이미지.",
+        "why": "Loire 동부의 석회·부싯돌 토양."
+      }
+    ],
+    "quiz": "Vouvray와 Sancerre 라벨만 보고 품종과 스타일을 각각 설명해보세요.",
+    "answer": "Vouvray는 Chenin Blanc으로 드라이부터 스위트·스파클링까지 가능하고 높은 산도가 핵심입니다. Sancerre는 Sauvignon Blanc 중심으로 높은 산도와 시트러스·허브 풍미가 대표적입니다.",
+    "officialPlaces": [
+      "Muscadet",
+      "Muscadet Sèvre et Maine",
+      "Anjou",
+      "Coteaux du Layon",
+      "Savennières",
+      "Saumur",
+      "Saumur-Champigny",
+      "Vouvray",
+      "Touraine",
+      "Bourgueil",
+      "Chinon",
+      "Sancerre",
+      "Pouilly-Fumé",
+      "Menetou-Salon",
+      "Rosé d’Anjou",
+      "Cabernet d’Anjou",
+      "Rosé de Loire"
+    ],
+    "law": [
+      "AOC",
+      "Sur lie"
+    ],
+    "tasting": [
+      "Premium dry Chenin Blanc",
+      "Sancerre or Pouilly-Fumé",
+      "Premium Cabernet Franc",
+      "Muscadet / Muscadet Sur Lie"
+    ],
+    "labelTip": "Loire는 강을 따라 서→동으로 품종이 바뀝니다. Muscadet=Melon, Vouvray/Savennières=C̄henin, Chinon/Bourgueil=Cabernet Franc, Sancerre/Pouilly-Fumé=Sauvignon Blanc.",
+    "extraCards": [
+      {
+        "name": "Touraine",
+        "grapes": "Sauvignon Blanc, Chenin Blanc, Cabernet Franc 등",
+        "style": "다양한 드라이 화이트·레드·로제.",
+        "why": "중부 Loire의 넓은 appellation."
+      },
+      {
+        "name": "Menetou-Salon",
+        "grapes": "Sauvignon Blanc, Pinot Noir",
+        "style": "Sancerre와 유사한 높은 산도와 시트러스/허브.",
+        "why": "Central Vineyards의 인접 산지."
+      },
+      {
+        "name": "Rosé d’Anjou / Cabernet d’Anjou / Rosé de Loire",
+        "grapes": "Grolleau / Cabernet Franc·Cabernet Sauvignon 등",
+        "style": "오프드라이~드라이 로제, 높은 산도와 붉은 과실.",
+        "why": "잔당과 품종 구성으로 스타일 차이."
+      }
+    ],
+    "sparkling": [
+      {
+        "name": "Crémant de Loire",
+        "grapes": "Chenin Blanc 중심 등",
+        "style": "전통 방식, 높은 산도.",
+        "notes": "WSET 주요 Crémant."
+      },
+      {
+        "name": "Saumur / Vouvray sparkling",
+        "grapes": "Chenin Blanc 중심",
+        "style": "전통 방식, 높은 산도와 사과·효모 향.",
+        "notes": "Loire 스파클링 핵심."
+      }
+    ],
+    "syllabusCount": 17
+  },
+  "chile": {
+    "n": 12,
+    "name": "칠레",
+    "en": "Chile",
+    "country": "Chile",
+    "flag": "🇨🇱",
+    "group": "신세계",
+    "lat": "주요 산지 약 30°–38°S",
+    "core": "태평양의 차가운 Humboldt Current와 Andes 사이의 길고 좁은 국가. 해안↔내륙↔Andes 방향으로 기후가 달라진다.",
+    "climate": "지중해성 중심, 해안은 서늘하고 내륙은 더 따뜻.",
+    "influences": "Humboldt Current, 해안 안개, Coast Range의 틈, Andes 고도.",
+    "grapes": [
+      "Cabernet Sauvignon",
+      "Merlot",
+      "Carmenère",
+      "Syrah",
+      "Pinot Noir",
+      "Chardonnay",
+      "Sauvignon Blanc"
+    ],
+    "reason": "Costa: 차가운 해류 → Sauvignon/Chardonnay/Pinot Noir. Entre Cordilleras: 더 따뜻 → Cabernet/Carmenère. Andes: 고도 → 큰 일교차.",
+    "labels": [
+      "Elqui Valley",
+      "Limarí Valley",
+      "Casablanca Valley",
+      "San Antonio Valley",
+      "Leyda Valley",
+      "Aconcagua Valley",
+      "Maipo Valley",
+      "Cachapoal Valley",
+      "Colchagua Valley",
+      "Curicó Valley",
+      "Maule Valley",
+      "Costa",
+      "Entre Cordilleras",
+      "Andes"
+    ],
+    "regions": [
+      {
+        "name": "Elqui / Limarí",
+        "grapes": "Syrah, Chardonnay, Sauvignon Blanc",
+        "style": "건조하고 밝은 일조, 해양/고도에 따라 신선함.",
+        "why": "Coquimbo의 북쪽 위치지만 해류와 고도 영향."
+      },
+      {
+        "name": "Casablanca / San Antonio / Leyda",
+        "grapes": "Sauvignon Blanc, Chardonnay, Pinot Noir",
+        "style": "높은 산도, 시트러스·허브·섬세한 붉은 과실.",
+        "why": "Humboldt Current와 해안 안개."
+      },
+      {
+        "name": "Maipo",
+        "grapes": "Cabernet Sauvignon",
+        "style": "익은 카시스, 중~높은 탄닌, 구조적.",
+        "why": "따뜻한 내륙 + Andes의 냉각."
+      },
+      {
+        "name": "Cachapoal / Colchagua",
+        "grapes": "Carmenère, Cabernet Sauvignon, Syrah",
+        "style": "익은 검은 과실, 향신료, Carmenère의 허브 뉘앙스.",
+        "why": "따뜻한 Central Valley."
+      },
+      {
+        "name": "Curicó / Maule",
+        "grapes": "다양한 국제·토착 품종",
+        "style": "따뜻한 기후, 대량 생산부터 오래된 포도나무까지.",
+        "why": "넓은 중앙/남부 계곡."
+      }
+    ],
+    "quiz": "Casablanca와 Maipo를 품종과 해류 영향으로 대비해보세요.",
+    "answer": "Casablanca는 Humboldt Current의 냉각 영향이 강해 Sauvignon Blanc, Chardonnay, Pinot Noir 같은 서늘한 기후 품종이 적합합니다. Maipo는 더 내륙이라 따뜻해 Cabernet Sauvignon이 잘 익습니다.",
+    "officialPlaces": [
+      "Coquimbo – Elqui Valley, Limarí Valley",
+      "Aconcagua – Casablanca Valley, San Antonio Valley, Leyda Valley, Aconcagua Valley",
+      "Central Valley – Cachapoal Valley, Colchagua Valley, Maipo Valley, Curicó Valley, Maule Valley",
+      "Southern Region"
+    ],
+    "law": [
+      "DO",
+      "Costa",
+      "Entre Cordilleras",
+      "Andes"
+    ],
+    "tasting": [
+      "Premium Carmenère e.g. Cachapoal/Colchagua",
+      "Premium Cabernet Sauvignon e.g. Maipo/Cachapoal/Colchagua",
+      "Chardonnay/Sauvignon Blanc e.g. Casablanca/San Antonio"
+    ],
+    "labelTip": "Chile 라벨의 Costa / Entre Cordilleras / Andes는 서→동 위치를 알려줍니다. Costa는 해류 냉각, Entre Cordilleras는 더 따뜻한 중앙 계곡, Andes는 고도 효과를 연결하세요.",
+    "extraCards": [
+      {
+        "name": "Aconcagua Valley",
+        "grapes": "Cabernet Sauvignon, Syrah 등",
+        "style": "내륙은 따뜻하고 구조적인 레드.",
+        "why": "해안보다 내륙 숙도 높음."
+      },
+      {
+        "name": "Southern Region",
+        "grapes": "Pinot Noir, Chardonnay, Sauvignon Blanc 등",
+        "style": "더 서늘하고 높은 산도.",
+        "why": "남쪽 위도와 강수 증가."
+      }
+    ],
+    "syllabusCount": 4
+  },
+  "northitaly": {
+    "n": 13,
+    "name": "이탈리아 북부",
+    "en": "Northern Italy",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "group": "이탈리아",
+    "lat": "약 44°–46°N",
+    "core": "알프스, 호수, Po 평원, 아드리아해의 영향이 복합적. Piemonte·Veneto·Alto Adige/Trentino·Friuli가 핵심.",
+    "climate": "대륙성 중심, 알프스 고도·호수·아드리아 완화.",
+    "influences": "Alps의 Rain Shadow/고도, Lake Garda의 완화, 산악 계곡의 큰 일교차.",
+    "grapes": [
+      "Nebbiolo",
+      "Barbera",
+      "Dolcetto",
+      "Cortese",
+      "Corvina",
+      "Garganega",
+      "Pinot Grigio",
+      "Merlot",
+      "Chardonnay"
+    ],
+    "reason": "Piemonte: 대륙성+구릉 → Nebbiolo의 높은 산도/탄닌. Veneto: 호수·평야 → 다양한 스타일. Alps: 고도 → 화이트의 향과 산도 유지.",
+    "labels": [
+      "Barolo",
+      "Barbaresco",
+      "Barbera d'Asti",
+      "Gavi",
+      "Valpolicella",
+      "Amarone della Valpolicella",
+      "Soave",
+      "Pinot Grigio",
+      "Alto Adige",
+      "Trentino",
+      "Friuli-Venezia Giulia",
+      "Prosecco"
+    ],
+    "regions": [
+      {
+        "name": "Barolo / Barbaresco",
+        "grapes": "Nebbiolo",
+        "style": "높은 산도·탄닌, 장미·체리·타르, 긴 숙성.",
+        "why": "Piemonte 구릉과 늦게 익는 Nebbiolo."
+      },
+      {
+        "name": "Barbera d'Asti / d'Alba",
+        "grapes": "Barbera",
+        "style": "높은 산도, 낮~중 탄닌, 붉은·검은 과실.",
+        "why": "Nebbiolo와 구조 대비."
+      },
+      {
+        "name": "Gavi",
+        "grapes": "Cortese",
+        "style": "높은 산도, 레몬·사과, 가벼움~중간 바디.",
+        "why": "Piemonte 동쪽의 서늘한 화이트 산지."
+      },
+      {
+        "name": "Valpolicella",
+        "grapes": "Corvina 중심",
+        "style": "체리, 중간 산도·탄닌, 가벼움~중간 바디.",
+        "why": "Veneto 서부."
+      },
+      {
+        "name": "Amarone della Valpolicella",
+        "grapes": "Corvina 중심, 건조 포도",
+        "style": "말린 체리·건포도, 높은 알코올·바디·농축도.",
+        "why": "Appassimento."
+      },
+      {
+        "name": "Soave",
+        "grapes": "Garganega",
+        "style": "레몬·배·아몬드, 중~높은 산도.",
+        "why": "구릉지 Classico가 더 높은 품질 가능."
+      },
+      {
+        "name": "Alto Adige / Trentino / Friuli",
+        "grapes": "Pinot Grigio, Chardonnay, Sauvignon Blanc 등",
+        "style": "드라이, 높은 산도, 향이 선명.",
+        "why": "알프스 고도와 큰 일교차."
+      }
+    ],
+    "quiz": "Barolo와 Amarone의 구조가 강한 이유를 각각 다른 방식으로 설명해보세요.",
+    "answer": "Barolo는 Nebbiolo 자체의 높은 산도·탄닌과 구릉지의 긴 숙성기 때문에 구조가 강합니다. Amarone는 포도를 말리는 Appassimento로 당·풍미·알코올이 농축되어 풍부하고 강한 구조가 생깁니다.",
+    "officialPlaces": [
+      "Trentino",
+      "Alto Adige",
+      "Collio",
+      "Colli Orientali",
+      "Friuli Grave",
+      "Pinot Grigio delle Venezie",
+      "Veneto",
+      "Valpolicella",
+      "Valpolicella Classico",
+      "Amarone della Valpolicella",
+      "Recioto della Valpolicella",
+      "Valpolicella Ripasso",
+      "Soave",
+      "Soave Classico",
+      "Barolo",
+      "Barbaresco",
+      "Barbera d’Asti",
+      "Dolcetto d’Alba",
+      "Gavi"
+    ],
+    "law": [
+      "DOC",
+      "DOCG",
+      "IGT",
+      "Classico",
+      "Riserva"
+    ],
+    "tasting": [
+      "Barolo or Barbaresco",
+      "Valpolicella / Classico",
+      "Amarone",
+      "Veneto Pinot Grigio",
+      "Optional Alto Adige/Trentino/Friuli Pinot Grigio",
+      "Soave / Classico"
+    ],
+    "labelTip": "Italy는 DOC/DOCG/IGT + 지역명 + Classico/Riserva를 읽습니다. Classico는 전통적 중심 구역, Riserva는 추가 숙성 규정과 연관.",
+    "extraCards": [
+      {
+        "name": "Trentino / Alto Adige",
+        "grapes": "Pinot Grigio",
+        "style": "드라이, 높은 산도, 시트러스·사과, 고도에서 향 선명.",
+        "why": "알프스 고도와 큰 일교차."
+      },
+      {
+        "name": "Collio / Colli Orientali / Friuli Grave",
+        "grapes": "Pinot Grigio 등",
+        "style": "향이 선명한 드라이 화이트, Collio/Colli Orientali은 더 농축 가능.",
+        "why": "Friuli의 고도·아드리아 완화."
+      },
+      {
+        "name": "Pinot Grigio delle Venezie / Veneto",
+        "grapes": "Pinot Grigio",
+        "style": "가벼움~중간 바디, 신선한 산도, 중성~은은한 과실.",
+        "why": "넓은 생산 지역과 높은 수확량 가능."
+      },
+      {
+        "name": "Valpolicella Classico / Ripasso / Recioto",
+        "grapes": "Corvina 중심",
+        "style": "Classico=중심구역, Ripasso=더 풍부한 바디, Recioto=스위트.",
+        "why": "Appassimento 및 재발효/접촉 방식 차이."
+      },
+      {
+        "name": "Dolcetto d’Alba",
+        "grapes": "Dolcetto",
+        "style": "낮~중 산도, 중간 탄닌, 검은 과실, 일찍 마시는 스타일.",
+        "why": "Nebbiolo보다 일찍 익는 품종."
+      }
+    ],
+    "sparkling": [
+      {
+        "name": "Asti",
+        "grapes": "Muscat Blanc à Petits Grains",
+        "style": "달콤하고 향기로운 복숭아·포도·꽃, 낮은 알코올.",
+        "notes": "Asti method."
+      },
+      {
+        "name": "Prosecco / Conegliano-Valdobbiadene",
+        "grapes": "Glera",
+        "style": "드라이~오프드라이, 배·사과·꽃, 가벼운 바디.",
+        "notes": "Tank method가 핵심."
+      }
+    ],
+    "syllabusCount": 19
+  },
+  "southitaly": {
+    "n": 14,
+    "name": "이탈리아 중·남부",
+    "en": "Central & Southern Italy",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "group": "이탈리아",
+    "lat": "약 37°–44°N",
+    "core": "Tuscany부터 남부와 섬까지. 따뜻한 지중해성 기후지만 구릉·고도·해풍이 산도 유지에 중요.",
+    "climate": "지중해성 중심, 내륙/고도에서 더 서늘.",
+    "influences": "Apennines, Tyrrhenian/Adriatic/Ionian 해풍, 높은 구릉, Etna 고도.",
+    "grapes": [
+      "Sangiovese",
+      "Cabernet Sauvignon",
+      "Montepulciano",
+      "Aglianico",
+      "Greco",
+      "Fiano",
+      "Primitivo",
+      "Negroamaro",
+      "Nero d'Avola"
+    ],
+    "reason": "강한 일조 → 충분한 숙도. 고도·해풍 → 산도 보존. 토착 품종의 산도/탄닌 특성이 지역 스타일을 결정.",
+    "labels": [
+      "Chianti",
+      "Chianti Classico",
+      "Brunello di Montalcino",
+      "Vino Nobile di Montepulciano",
+      "Montepulciano d'Abruzzo",
+      "Taurasi",
+      "Fiano di Avellino",
+      "Greco di Tufo",
+      "Salice Salentino",
+      "Aglianico del Vulture",
+      "Etna"
+    ],
+    "regions": [
+      {
+        "name": "Chianti / Chianti Classico",
+        "grapes": "Sangiovese 중심",
+        "style": "체리·붉은 자두·허브, 높은 산도, 중~높은 탄닌.",
+        "why": "Tuscany 구릉과 고도."
+      },
+      {
+        "name": "Brunello di Montalcino",
+        "grapes": "Sangiovese",
+        "style": "더 농축, 높은 산도·탄닌, 장기 숙성.",
+        "why": "따뜻하지만 고도가 있고 긴 숙성."
+      },
+      {
+        "name": "Montepulciano d'Abruzzo",
+        "grapes": "Montepulciano",
+        "style": "검은 체리·자두, 중~높은 탄닌.",
+        "why": "Adriatic 쪽 따뜻한 구릉."
+      },
+      {
+        "name": "Taurasi",
+        "grapes": "Aglianico",
+        "style": "높은 산도·탄닌, 검은 과실·가죽·향신료.",
+        "why": "Campania 고도 + 늦게 익는 Aglianico."
+      },
+      {
+        "name": "Fiano di Avellino / Greco di Tufo",
+        "grapes": "Fiano / Greco",
+        "style": "높은 산도, 핵과류·견과/시트러스·미네랄.",
+        "why": "Campania 내륙 고도."
+      },
+      {
+        "name": "Puglia / Salice Salentino",
+        "grapes": "Negroamaro, Primitivo",
+        "style": "익은 검은 과실, 높은 알코올, 풍부한 바디.",
+        "why": "더운 남부 지중해성."
+      },
+      {
+        "name": "Basilicata – Aglianico del Vulture",
+        "grapes": "Aglianico",
+        "style": "높은 산도·탄닌, 화산성 뉘앙스와 숙성 잠재력.",
+        "why": "Vulture 화산 고도."
+      },
+      {
+        "name": "Sicily / Etna",
+        "grapes": "Nero d'Avola / Nerello Mascalese",
+        "style": "저지대는 풍부하고 익은 스타일, Etna는 더 높은 산도와 섬세함.",
+        "why": "Etna의 높은 고도와 화산성 토양."
+      }
+    ],
+    "quiz": "Brunello와 Taurasi의 공통점과 차이를 설명해보세요.",
+    "answer": "둘 다 높은 산도와 탄닌, 숙성 잠재력이 큰 구조적 레드입니다. Brunello는 Tuscany의 Sangiovese, Taurasi는 Campania의 Aglianico가 핵심입니다.",
+    "officialPlaces": [
+      "Toscana",
+      "Chianti",
+      "Chianti Classico",
+      "Bolgheri",
+      "Brunello di Montalcino",
+      "Vino Nobile di Montepulciano",
+      "Verdicchio dei Castelli di Jesi",
+      "Orvieto",
+      "Frascati",
+      "Montepulciano d’Abruzzo",
+      "Taurasi",
+      "Fiano di Avellino",
+      "Greco di Tufo",
+      "Puglia",
+      "Salice Salentino",
+      "Aglianico del Vulture",
+      "Sicilia",
+      "Terre di Sicilia / Terre Siciliane",
+      "Etna"
+    ],
+    "law": [
+      "DOC",
+      "DOCG",
+      "IGT",
+      "Classico",
+      "Riserva"
+    ],
+    "tasting": [
+      "Chianti",
+      "Chianti Classico Riserva or Brunello di Montalcino",
+      "Southern Italian red e.g. Taurasi"
+    ],
+    "labelTip": "중·남부 Italy는 지역명과 토착 품종 연결이 핵심입니다. Tuscany=Sangiovese, Abruzzo=Montepulciano, Campania/Basilicata=Aglianico, Puglia=Negroamaro/Primitivo, Sicily=Nero d’Avola.",
+    "extraCards": [
+      {
+        "name": "Toscana / Bolgheri",
+        "grapes": "Sangiovese / Cabernet Sauvignon 등",
+        "style": "Toscana IGT는 규정 유연, Bolgheri는 국제 품종의 구조적 레드.",
+        "why": "IGT와 해안 Tuscany의 국제 품종."
+      },
+      {
+        "name": "Verdicchio dei Castelli di Jesi",
+        "grapes": "Verdicchio",
+        "style": "높은 산도, 레몬·사과·허브, 약간의 아몬드.",
+        "why": "Marche 대표 화이트."
+      },
+      {
+        "name": "Orvieto",
+        "grapes": "Grechetto, Trebbiano",
+        "style": "가벼움~중간 바디의 드라이 화이트.",
+        "why": "Umbria 대표 화이트."
+      },
+      {
+        "name": "Frascati",
+        "grapes": "Malvasia, Trebbiano",
+        "style": "가볍고 신선한 화이트.",
+        "why": "Lazio 대표 지명."
+      },
+      {
+        "name": "Puglia / Salice Salentino",
+        "grapes": "Primitivo / Negroamaro",
+        "style": "익은 검은 과실, 높은 알코올, 풍부한 바디.",
+        "why": "뜨겁고 건조한 남부."
+      },
+      {
+        "name": "Sicilia / Terre Siciliane",
+        "grapes": "Nero d’Avola, Syrah, Chardonnay",
+        "style": "넓은 IGT/DOC 범위, 풍부한 과실 중심.",
+        "why": "강한 일조와 건조한 기후."
+      }
+    ],
+    "syllabusCount": 19
+  },
+  "california": {
+    "n": 15,
+    "name": "캘리포니아",
+    "en": "California",
+    "country": "USA",
+    "flag": "🇺🇸",
+    "group": "미국",
+    "lat": "약 32°–42°N",
+    "core": "차가운 California Current, 해안 안개, Coast Ranges의 틈이 기후를 결정한다. 해안 가까이는 서늘하고 내륙은 훨씬 따뜻.",
+    "climate": "지중해성 중심, 강한 해양 냉각.",
+    "influences": "California Current, Pacific fog, San Pablo Bay, 산맥·동서 방향 계곡.",
     "grapes": [
       "Cabernet Sauvignon",
       "Merlot",
       "Pinot Noir",
+      "Zinfandel",
       "Chardonnay",
-      "Syrah",
-      "Grenache",
-      "Sauvignon Blanc",
-      "Chenin Blanc",
-      "Riesling"
+      "Sauvignon Blanc"
     ],
-    "style": "지역명 중심 라벨 체계. 같은 나라 안에서도 기후·품종·스타일 차이가 매우 큼.",
-    "label": [
-      "Bordeaux",
-      "Pauillac",
-      "Saint-Émilion",
-      "Bourgogne",
-      "Chablis",
-      "Meursault",
-      "Beaujolais",
-      "Côte-Rôtie",
-      "Châteauneuf-du-Pape",
-      "Sancerre",
-      "Alsace"
+    "reason": "해안/안개 → Pinot Noir·Chardonnay. 내륙/따뜻한 계곡 → Cabernet·Zinfandel. 고도와 밤 냉각이 산도 유지.",
+    "labels": [
+      "Napa Valley",
+      "Rutherford",
+      "Oakville",
+      "Stags Leap District",
+      "Howell Mountain",
+      "Mount Veeder",
+      "Los Carneros",
+      "Saint Helena",
+      "Calistoga",
+      "Sonoma County",
+      "Russian River Valley",
+      "Alexander Valley",
+      "Dry Creek Valley",
+      "Sonoma Coast",
+      "Mendocino",
+      "Santa Cruz Mountains",
+      "Monterey",
+      "Paso Robles",
+      "Santa Barbara",
+      "Lodi"
     ],
-    "chain": "지역명 확인 → 프랑스 내 위치 추정 → 해양성/대륙성/지중해성 판별 → 대표 품종 추론 → 산도·탄닌·알코올·향 스타일 예상",
-    "prompt": "라벨에 'Pauillac'이 보인다면, 위치·기후·주요 품종·예상 구조를 연결해서 설명해보세요.",
-    "answer": "Pauillac은 Bordeaux 좌안 Médoc에 있으며 해양성 기후의 영향을 받습니다. 배수가 좋은 자갈 토양이 Cabernet Sauvignon 숙성을 돕고, 일반적으로 Cabernet Sauvignon 중심 블렌드가 만들어집니다. 검은 과실, 높은 탄닌, 비교적 높은 산도와 긴 숙성 잠재력을 예상할 수 있습니다.",
     "regions": [
       {
-        "name": "Champagne",
-        "climate": "서늘한 대륙성 + 해양 영향",
-        "grapes": "Chardonnay, Pinot Noir, Meunier",
-        "key": "높은 산도와 낮은 잠재 알코올이 전통 방식 스파클링에 적합. 봄 서리와 빈티지 변동 위험.",
-        "subregions": [
-          {
-            "place": "Montagne de Reims / Reims",
-            "grapes": "Pinot Noir 중심",
-            "style": "구조와 바디를 더하는 Pinot Noir. 북향이 많지만 백악질 토양과 미기후가 중요.",
-            "label": "Champagne, Reims, Grand Cru village names"
-          },
-          {
-            "place": "Vallée de la Marne",
-            "grapes": "Meunier 중심",
-            "style": "서리 위험이 있는 계곡에서 비교적 안정적으로 익으며 과실감을 더함.",
-            "label": "Champagne / grower village"
-          },
-          {
-            "place": "Côte des Blancs / Épernay 남쪽",
-            "grapes": "Chardonnay",
-            "style": "높은 산도, 시트러스·꽃, 정교하고 긴 숙성 잠재력.",
-            "label": "Blanc de Blancs, Avize, Cramant, Le Mesnil-sur-Oger"
-          }
-        ]
+        "name": "Napa Valley – Oakville / Rutherford",
+        "grapes": "Cabernet Sauvignon",
+        "style": "익은 카시스·블랙체리, 구조적 탄닌, 오크.",
+        "why": "따뜻한 계곡 중심부와 밤 냉각."
       },
       {
-        "name": "Bordeaux",
-        "climate": "해양성",
-        "grapes": "Cabernet Sauvignon, Merlot, Cabernet Franc, Petit Verdot / Sauvignon Blanc, Sémillon",
-        "key": "대서양·Gironde 하구의 완화 효과. 빈티지 강우와 곰팡이 위험. 좌안=자갈+Cabernet, 우안=점토/석회+Merlot·Cabernet Franc.",
-        "subregions": [
-          {
-            "place": "Médoc / Haut-Médoc",
-            "grapes": "Cabernet Sauvignon 중심 블렌드",
-            "style": "검은 과실, 높은 탄닌, 중~높은 산도, 오크·삼나무, 장기 숙성.",
-            "label": "Médoc, Haut-Médoc"
-          },
-          {
-            "place": "Pauillac",
-            "grapes": "Cabernet Sauvignon 중심",
-            "style": "강한 구조, 카시스, 삼나무/연필심, 높은 탄닌과 숙성 잠재력.",
-            "label": "Pauillac"
-          },
-          {
-            "place": "Margaux",
-            "grapes": "Cabernet Sauvignon 중심",
-            "style": "향이 섬세하고 꽃·검은 과실이 두드러지며 탄닌이 비교적 정교.",
-            "label": "Margaux"
-          },
-          {
-            "place": "Saint-Julien",
-            "grapes": "Cabernet Sauvignon 중심",
-            "style": "Pauillac의 구조와 Margaux의 세련됨 사이로 자주 설명되는 균형형.",
-            "label": "Saint-Julien"
-          },
-          {
-            "place": "Saint-Estèphe",
-            "grapes": "Cabernet Sauvignon + Merlot",
-            "style": "점토 비중과 서늘한 위치의 영향으로 탄탄하고 견고한 스타일.",
-            "label": "Saint-Estèphe"
-          },
-          {
-            "place": "Pessac-Léognan / Graves",
-            "grapes": "Cabernet blend / Sauvignon Blanc + Sémillon",
-            "style": "레드는 검은 과실·오크·훈연, 화이트는 시트러스·허브·오크 숙성 가능.",
-            "label": "Pessac-Léognan, Graves"
-          },
-          {
-            "place": "Saint-Émilion",
-            "grapes": "Merlot, Cabernet Franc",
-            "style": "붉고 검은 자두, 중~높은 탄닌, 석회질/점토 사면에 따라 우아함과 구조 차이.",
-            "label": "Saint-Émilion, Saint-Émilion Grand Cru"
-          },
-          {
-            "place": "Pomerol",
-            "grapes": "Merlot 중심",
-            "style": "풍부한 자두·블랙체리, 부드럽지만 농축된 탄닌, 점토 토양과 연관.",
-            "label": "Pomerol"
-          },
-          {
-            "place": "Sauternes / Barsac",
-            "grapes": "Sémillon, Sauvignon Blanc",
-            "style": "귀부로 꿀·살구·마멀레이드, 높은 단맛과 충분한 산도.",
-            "label": "Sauternes, Barsac"
-          }
-        ]
+        "name": "Napa – Stags Leap District",
+        "grapes": "Cabernet Sauvignon",
+        "style": "익은 과실과 세련된 탄닌의 균형.",
+        "why": "지형·Bay 영향."
       },
       {
-        "name": "Burgundy",
-        "climate": "대륙성",
+        "name": "Napa – Howell Mountain / Mount Veeder",
+        "grapes": "Cabernet Sauvignon",
+        "style": "더 구조적이고 탄닌이 강한 산지 Cabernet.",
+        "why": "고도, 얇은 토양, 낮은 수확량."
+      },
+      {
+        "name": "Los Carneros",
         "grapes": "Pinot Noir, Chardonnay",
-        "key": "봄 서리·우박·빈티지 변동. 포도밭 위치, 사면, 배수, 석회질·점토 비율이 스타일 차이를 크게 만듦.",
-        "subregions": [
-          {
-            "place": "Chablis",
-            "grapes": "Chardonnay",
-            "style": "높은 산도, 레몬·청사과, 가벼움~중간 바디. Premier/Grand Cru는 더 농축되고 숙성 가능.",
-            "label": "Chablis, Chablis Premier Cru, Chablis Grand Cru"
-          },
-          {
-            "place": "Gevrey-Chambertin",
-            "grapes": "Pinot Noir",
-            "style": "구조적이고 탄닌이 뚜렷하며 붉은/검은 과실과 흙·향신료.",
-            "label": "Gevrey-Chambertin"
-          },
-          {
-            "place": "Vosne-Romanée",
-            "grapes": "Pinot Noir",
-            "style": "향신료·꽃·붉은 과실이 복합적이고 세련된 탄닌.",
-            "label": "Vosne-Romanée"
-          },
-          {
-            "place": "Nuits-Saint-Georges",
-            "grapes": "Pinot Noir",
-            "style": "탄닌과 구조가 비교적 뚜렷하고 숙성 잠재력 있음.",
-            "label": "Nuits-Saint-Georges"
-          },
-          {
-            "place": "Pommard",
-            "grapes": "Pinot Noir",
-            "style": "Côte de Beaune의 레드 중 비교적 힘 있고 탄닌감 있는 스타일.",
-            "label": "Pommard"
-          },
-          {
-            "place": "Volnay",
-            "grapes": "Pinot Noir",
-            "style": "향이 섬세하고 우아하며 탄닌이 더 부드러운 경향.",
-            "label": "Volnay"
-          },
-          {
-            "place": "Meursault",
-            "grapes": "Chardonnay",
-            "style": "농축된 핵과류·견과·버터/오크 뉘앙스, 중~높은 바디.",
-            "label": "Meursault"
-          },
-          {
-            "place": "Puligny-Montrachet",
-            "grapes": "Chardonnay",
-            "style": "높은 산도와 긴장감, 시트러스·미네랄·정교한 오크.",
-            "label": "Puligny-Montrachet"
-          },
-          {
-            "place": "Chassagne-Montrachet",
-            "grapes": "Chardonnay + Pinot Noir",
-            "style": "화이트는 풍부함과 구조, 레드는 일부 마을에서 생산.",
-            "label": "Chassagne-Montrachet"
-          },
-          {
-            "place": "Mâconnais / Pouilly-Fuissé",
-            "grapes": "Chardonnay",
-            "style": "더 따뜻한 남부 위치로 익은 사과·핵과류와 더 풍부한 바디.",
-            "label": "Mâcon, Pouilly-Fuissé"
-          }
-        ]
+        "style": "높은 산도, 서늘한 기후 스타일, 스파클링에도 적합.",
+        "why": "San Pablo Bay의 강한 냉각."
       },
       {
-        "name": "Beaujolais",
-        "climate": "온화한 대륙성",
-        "grapes": "Gamay",
-        "key": "북부 Cru는 화강암질 구릉이 많고 구조가 더 강함. 탄산침용/반탄산침용으로 밝은 과실과 낮은 탄닌 스타일도 흔함.",
-        "subregions": [
-          {
-            "place": "Beaujolais / Beaujolais-Villages",
-            "grapes": "Gamay",
-            "style": "가볍고 신선한 딸기·라즈베리, 낮은 탄닌.",
-            "label": "Beaujolais, Beaujolais-Villages"
-          },
-          {
-            "place": "Morgon",
-            "grapes": "Gamay",
-            "style": "Cru 중 비교적 구조적이고 숙성 가능한 스타일.",
-            "label": "Morgon"
-          },
-          {
-            "place": "Fleurie",
-            "grapes": "Gamay",
-            "style": "꽃향과 붉은 과실, 섬세하고 향기로운 스타일.",
-            "label": "Fleurie"
-          }
-        ]
+        "name": "Russian River Valley / Sonoma Coast",
+        "grapes": "Pinot Noir, Chardonnay",
+        "style": "높은 산도, 붉은 과실·시트러스, 섬세함.",
+        "why": "Pacific fog와 해양 공기."
       },
       {
-        "name": "Northern Rhône",
-        "climate": "대륙성",
-        "grapes": "Syrah / Viognier, Marsanne, Roussanne",
-        "key": "가파른 남향 사면과 Rhône 강. Syrah의 후추·검은 과실·훈연·올리브 특성이 핵심.",
-        "subregions": [
-          {
-            "place": "Côte-Rôtie",
-            "grapes": "Syrah (+ Viognier 허용)",
-            "style": "향기롭고 우아한 Syrah, 검은 과실·후추·훈연.",
-            "label": "Côte-Rôtie"
-          },
-          {
-            "place": "Condrieu",
-            "grapes": "Viognier",
-            "style": "낮~중 산도, 살구·복숭아·꽃, 풍부한 바디.",
-            "label": "Condrieu"
-          },
-          {
-            "place": "Hermitage",
-            "grapes": "Syrah / Marsanne, Roussanne",
-            "style": "강한 구조와 농축도, 장기 숙성 가능한 Syrah.",
-            "label": "Hermitage"
-          },
-          {
-            "place": "Crozes-Hermitage",
-            "grapes": "Syrah",
-            "style": "Hermitage보다 접근성 있고 과실 중심인 경우가 많음.",
-            "label": "Crozes-Hermitage"
-          }
-        ]
+        "name": "Alexander Valley",
+        "grapes": "Cabernet Sauvignon",
+        "style": "더 익고 풍부한 검은 과실.",
+        "why": "내륙으로 갈수록 따뜻."
       },
       {
-        "name": "Southern Rhône",
-        "climate": "지중해성",
-        "grapes": "Grenache, Syrah, Mourvèdre",
-        "key": "더운 여름·건조함·Mistral. Grenache 중심 GSM 블렌드와 큰 자갈이 유명.",
-        "subregions": [
-          {
-            "place": "Châteauneuf-du-Pape",
-            "grapes": "Grenache 중심 블렌드",
-            "style": "익은 붉은/검은 과실, 높은 알코올, 허브·향신료, 풍부한 바디.",
-            "label": "Châteauneuf-du-Pape"
-          },
-          {
-            "place": "Gigondas",
-            "grapes": "Grenache, Syrah, Mourvèdre",
-            "style": "농축되고 구조적인 남부 Rhône 레드.",
-            "label": "Gigondas"
-          }
-        ]
+        "name": "Dry Creek Valley / Lodi",
+        "grapes": "Zinfandel",
+        "style": "블랙베리·잼·향신료, 높은 알코올 가능.",
+        "why": "따뜻하고 건조한 조건."
       },
       {
-        "name": "Loire",
-        "climate": "서쪽 해양성 → 동쪽 대륙성 증가",
-        "grapes": "Melon, Chenin Blanc, Cabernet Franc, Sauvignon Blanc",
-        "key": "강을 따라 서→동으로 이동할수록 해양 영향이 감소.",
-        "subregions": [
-          {
-            "place": "Muscadet Sèvre et Maine",
-            "grapes": "Melon",
-            "style": "가볍고 높은 산도, 레몬·사과, sur lie로 질감 추가.",
-            "label": "Muscadet Sèvre et Maine, Sur Lie"
-          },
-          {
-            "place": "Vouvray",
-            "grapes": "Chenin Blanc",
-            "style": "드라이~스위트/스파클링, 높은 산도와 사과·모과·꿀.",
-            "label": "Vouvray"
-          },
-          {
-            "place": "Sancerre",
-            "grapes": "Sauvignon Blanc",
-            "style": "높은 산도, 시트러스·풋사과·허브/플린티 뉘앙스.",
-            "label": "Sancerre"
-          },
-          {
-            "place": "Pouilly-Fumé",
-            "grapes": "Sauvignon Blanc",
-            "style": "Sancerre와 유사하나 훈연/플린티 이미지가 자주 강조.",
-            "label": "Pouilly-Fumé"
-          },
-          {
-            "place": "Chinon",
-            "grapes": "Cabernet Franc",
-            "style": "붉은 과실, 허브/피망, 중간 바디와 높은 산도.",
-            "label": "Chinon"
-          }
-        ]
+        "name": "Santa Barbara / Monterey",
+        "grapes": "Pinot Noir, Chardonnay",
+        "style": "서늘하고 산도 높은 스타일.",
+        "why": "해안과 동서 방향 계곡으로 차가운 공기 유입."
       },
       {
-        "name": "Alsace",
-        "climate": "건조한 대륙성",
-        "grapes": "Riesling, Gewürztraminer, Pinot Gris, Muscat",
-        "key": "보주산맥 Rain Shadow로 프랑스에서 매우 건조한 편. 향기로운 품종과 긴 성장기.",
-        "subregions": [
-          {
-            "place": "Colmar 주변 / Alsace Grand Cru",
-            "grapes": "Riesling, Gewürztraminer, Pinot Gris",
-            "style": "향이 강하고 드라이~스위트. Grand Cru는 지정 포도밭·품종 규정 확인.",
-            "label": "Alsace, Alsace Grand Cru, Vendanges Tardives"
-          }
-        ]
+        "name": "Paso Robles",
+        "grapes": "Cabernet Sauvignon, Rhône varieties",
+        "style": "익은 검은 과실, 높은 알코올, 큰 일교차.",
+        "why": "낮은 따뜻하고 밤은 차가움."
       }
     ],
-    "dense": true,
-    "denseNote": "핵심국가 보강판: 산지 → 세부산지/도시 → 품종 → 예상 스타일 → 라벨 단서까지 확장"
+    "quiz": "Napa의 Los Carneros와 Oakville이 다른 품종으로 유명한 이유를 설명해보세요.",
+    "answer": "Los Carneros는 San Pablo Bay의 냉각을 강하게 받아 Pinot Noir와 Chardonnay에 적합하고, Oakville은 더 따뜻한 계곡 중심부라 Cabernet Sauvignon이 충분히 숙성합니다.",
+    "officialPlaces": [
+      "California",
+      "Napa County",
+      "Napa Valley",
+      "Rutherford",
+      "Oakville",
+      "Stags Leap District",
+      "Howell Mountain",
+      "Mount Veeder",
+      "Los Carneros",
+      "Saint Helena",
+      "Calistoga",
+      "Sonoma County",
+      "Russian River Valley",
+      "Alexander Valley",
+      "Dry Creek Valley",
+      "Sonoma Coast",
+      "Mendocino County",
+      "Santa Cruz Mountains",
+      "Monterey",
+      "San Luis Obispo County",
+      "Paso Robles",
+      "Santa Barbara County",
+      "Santa Maria Valley",
+      "Lodi",
+      "New York – Finger Lakes"
+    ],
+    "law": [
+      "AVA"
+    ],
+    "tasting": [
+      "Premium California Cabernet Sauvignon/Merlot",
+      "Zinfandel e.g. Dry Creek/Lodi",
+      "Premium California Chardonnay",
+      "Optional premium California Pinot Noir",
+      "White Zinfandel"
+    ],
+    "labelTip": "미국 AVA는 '원산지' 표시이지 품질 등급이 아닙니다. Napa Valley → sub-AVA(Oakville 등)로 갈수록 지리 범위가 좁아질 뿐, 자동으로 품질이 보장되지는 않습니다.",
+    "extraCards": [
+      {
+        "name": "Mendocino County",
+        "grapes": "Pinot Noir, Chardonnay, Zinfandel 등",
+        "style": "해안은 서늘, 내륙은 더 따뜻.",
+        "why": "태평양과 지형의 차이."
+      },
+      {
+        "name": "Santa Cruz Mountains",
+        "grapes": "Pinot Noir, Chardonnay, Cabernet Sauvignon",
+        "style": "고도와 해양 영향으로 산도·구조 유지.",
+        "why": "Bay Area 남쪽 산악 AVA."
+      },
+      {
+        "name": "Santa Maria Valley",
+        "grapes": "Pinot Noir, Chardonnay",
+        "style": "높은 산도, 섬세한 과실.",
+        "why": "동서 방향 계곡의 해양 냉각."
+      },
+      {
+        "name": "New York – Finger Lakes",
+        "grapes": "Riesling",
+        "style": "높은 산도, 라임·사과, 드라이~스위트.",
+        "why": "깊은 호수가 추위를 완화. 23포인트 유지 때문에 USA 보충으로 California 패널에 수록."
+      }
+    ],
+    "sparkling": [
+      {
+        "name": "Anderson Valley",
+        "grapes": "Chardonnay, Pinot Noir",
+        "style": "서늘한 기후 전통 방식 스파클링.",
+        "notes": "WSET USA sparkling 핵심 지명."
+      },
+      {
+        "name": "Los Carneros",
+        "grapes": "Chardonnay, Pinot Noir",
+        "style": "높은 산도와 전통 방식 스파클링.",
+        "notes": "Napa/Sonoma 남쪽의 Bay cooling."
+      }
+    ],
+    "syllabusCount": 25
   },
-  "germany": {
-    "name": "독일",
-    "en": "Germany",
-    "flag": "🇩🇪",
-    "group": "유럽",
-    "lat": "약 47°–55°N",
-    "mapCore": "높은 위도와 서늘한 대륙성 환경. 강과 남향 사면이 포도 숙성에 중요.",
-    "climate": [
-      "서늘한 대륙성"
-    ],
-    "currents": "직접적인 해류보다 높은 위도와 강 계곡 미기후가 핵심.",
-    "winds": "강의 열 반사·안개·사면 방향이 숙도 확보에 중요.",
-    "topography": "Mosel, Rhine 등 강 계곡의 가파른 남향 사면은 일조량을 늘리고 서늘한 기후에서 숙성을 도움.",
+  "washington": {
+    "n": 16,
+    "name": "워싱턴",
+    "en": "Washington State",
+    "country": "USA",
+    "flag": "🇺🇸",
+    "group": "미국",
+    "lat": "약 46°–47°N",
+    "core": "Cascade 산맥 동쪽의 건조한 내륙 와인 산지. 높은 위도지만 긴 여름 일조와 큰 일교차가 중요.",
+    "climate": "건조한 대륙성.",
+    "influences": "Cascade Rain Shadow, Columbia River Basin, 관개.",
     "grapes": [
+      "Cabernet Sauvignon",
+      "Merlot",
+      "Syrah",
       "Riesling",
-      "Spätburgunder (Pinot Noir)"
+      "Chardonnay"
     ],
-    "style": "높은 산도, 섬세한 향, 드라이부터 스위트까지 폭넓은 Riesling 스타일.",
-    "label": [
-      "Mosel",
-      "Rheingau",
-      "Pfalz",
-      "Nahe",
-      "Kabinett",
-      "Spätlese",
-      "Auslese",
-      "Trocken"
+    "reason": "Rain Shadow → 매우 건조·병해 적음, 관개 필요. 긴 낮 → 충분한 숙도, 차가운 밤 → 산도 유지.",
+    "labels": [
+      "Columbia Valley",
+      "Yakima Valley"
     ],
-    "chain": "높은 위도 → 숙성 위험 → 강·남향 사면이 열 확보 → Riesling의 높은 산도 유지 → 당도/숙도/Trocken 여부로 스타일 판단",
-    "prompt": "Mosel Riesling Spätlese 라벨을 보고 예상되는 산도와 과실 성숙도를 설명해보세요.",
-    "answer": "Mosel은 높은 위도의 서늘한 기후와 가파른 강변 사면이 특징입니다. Riesling은 높은 산도를 유지하며, Spätlese는 Kabinett보다 더 높은 포도 숙도를 의미합니다.",
     "regions": [
       {
-        "name": "Mosel",
-        "climate": "서늘한 대륙성",
-        "grapes": "Riesling",
-        "key": "가파른 강변 사면, 높은 산도, 섬세한 향."
+        "name": "Columbia Valley",
+        "grapes": "Cabernet Sauvignon, Merlot, Syrah, Riesling",
+        "style": "잘 익은 과실과 산도 공존, 레드·화이트 모두.",
+        "why": "큰 일교차와 건조함."
       },
       {
-        "name": "Rheingau",
-        "climate": "서늘한 대륙성",
-        "grapes": "Riesling, Spätburgunder",
-        "key": "라인강과 남향 사면의 영향."
-      },
-      {
-        "name": "Pfalz",
-        "climate": "독일 내 비교적 따뜻하고 건조",
-        "grapes": "Riesling, Spätburgunder",
-        "key": "보다 높은 숙도와 드라이한 스타일."
+        "name": "Yakima Valley",
+        "grapes": "Riesling, Chardonnay, Cabernet Sauvignon, Syrah",
+        "style": "다양한 고도와 긴 성장기.",
+        "why": "Columbia Valley 안의 핵심 AVA."
       }
-    ]
+    ],
+    "quiz": "워싱턴이 높은 위도인데도 Cabernet Sauvignon을 충분히 익힐 수 있는 이유는?",
+    "answer": "여름 낮 길이가 길고 일조가 강해 충분한 숙도를 얻을 수 있습니다. 동시에 건조한 대륙성 기후와 큰 일교차로 산도도 유지됩니다.",
+    "officialPlaces": [
+      "Columbia Valley",
+      "Yakima Valley"
+    ],
+    "law": [
+      "AVA"
+    ],
+    "tasting": [],
+    "labelTip": "Washington는 Cascade Rain Shadow를 먼저 떠올리세요. Columbia Valley가 큰 우산 AVA이고 Yakima Valley가 그 안의 핵심 지역 중 하나입니다.",
+    "syllabusCount": 2
+  },
+  "oregon": {
+    "n": 17,
+    "name": "오리건",
+    "en": "Oregon",
+    "country": "USA",
+    "flag": "🇺🇸",
+    "group": "미국",
+    "lat": "약 45°N",
+    "core": "Willamette Valley가 핵심. California보다 훨씬 서늘하며 Pinot Noir 중심.",
+    "climate": "서늘한 해양성 영향.",
+    "influences": "Pacific Ocean, Coast Range, Cascade Range, 긴 성장기와 가을 강우 위험.",
+    "grapes": [
+      "Pinot Noir",
+      "Chardonnay",
+      "Pinot Gris"
+    ],
+    "reason": "서늘하고 긴 성장기 → Pinot Noir가 천천히 익어 산도와 향을 유지. 빈티지에 따라 강우·숙도 위험.",
+    "labels": [
+      "Willamette Valley"
+    ],
+    "regions": [
+      {
+        "name": "Willamette Valley",
+        "grapes": "Pinot Noir",
+        "style": "붉은 체리·딸기·꽃, 높은 산도, 중간 탄닌.",
+        "why": "서늘한 기후와 긴 성장기."
+      }
+    ],
+    "quiz": "오리건 Pinot Noir와 캘리포니아 따뜻한 지역 Pinot Noir의 일반적 차이는?",
+    "answer": "오리건은 더 서늘해 산도가 높고 붉은 과실과 섬세한 스타일이 두드러지기 쉽습니다. 따뜻한 캘리포니아 지역은 더 익은 과실과 높은 알코올이 나타날 수 있습니다.",
+    "officialPlaces": [
+      "Willamette Valley"
+    ],
+    "law": [
+      "AVA"
+    ],
+    "tasting": [
+      "Optional Willamette Valley Pinot Noir"
+    ],
+    "labelTip": "Oregon 핵심은 Willamette Valley + Pinot Noir. AVA는 원산지 표시이며 품질 hierarchy가 아닙니다.",
+    "syllabusCount": 1
+  },
+  "argentina": {
+    "n": 18,
+    "name": "아르헨티나",
+    "en": "Argentina",
+    "country": "Argentina",
+    "flag": "🇦🇷",
+    "group": "신세계",
+    "lat": "주요 산지 약 24°–40°S",
+    "core": "Andes 동쪽의 고지대·건조 기후. 고도가 낮은 위도의 강한 햇빛을 보완하는 핵심 요소.",
+    "climate": "건조한 대륙성.",
+    "influences": "Andes Rain Shadow, 높은 고도, 눈 녹은 물 관개, 우박.",
+    "grapes": [
+      "Malbec",
+      "Cabernet Sauvignon",
+      "Bonarda",
+      "Torrontés",
+      "Chardonnay"
+    ],
+    "reason": "강한 태양 → 색·탄닌·풍미 숙성. 높은 고도 → 밤 기온↓·UV↑ → 산도 유지와 색 발달. 건조함 → 관개 필수.",
+    "labels": [
+      "Salta",
+      "Cafayate",
+      "San Juan",
+      "Mendoza",
+      "Uco Valley",
+      "Luján de Cuyo",
+      "Maipú",
+      "Patagonia"
+    ],
+    "regions": [
+      {
+        "name": "Salta – Cafayate",
+        "grapes": "Torrontés, Malbec",
+        "style": "향기로운 Torrontés, 강한 일조와 높은 산도.",
+        "why": "극단적인 고도."
+      },
+      {
+        "name": "Mendoza – Uco Valley",
+        "grapes": "Malbec, Cabernet Sauvignon",
+        "style": "농축된 검은 과실, 선명한 산도와 탄닌.",
+        "why": "높은 고도와 큰 일교차."
+      },
+      {
+        "name": "Mendoza – Luján de Cuyo / Maipú",
+        "grapes": "Malbec",
+        "style": "익은 자두·블랙베리, 중~높은 탄닌, 풍부한 바디.",
+        "why": "전통적 Mendoza 핵심 산지."
+      },
+      {
+        "name": "San Juan",
+        "grapes": "Syrah, Bonarda 등",
+        "style": "더 따뜻하고 숙도 높은 스타일.",
+        "why": "Mendoza보다 북쪽·따뜻."
+      },
+      {
+        "name": "Patagonia",
+        "grapes": "Pinot Noir, Malbec",
+        "style": "더 서늘하고 산도 선명.",
+        "why": "남쪽 위도와 강풍."
+      }
+    ],
+    "quiz": "Mendoza Malbec가 익은 과실과 높은 산도를 동시에 가질 수 있는 이유는?",
+    "answer": "낮에는 강한 일조로 과실과 색이 충분히 익고, 높은 고도 때문에 밤에는 기온이 크게 떨어져 산도를 유지하기 때문입니다.",
+    "officialPlaces": [
+      "Salta – Cafayate",
+      "San Juan",
+      "Mendoza – Uco Valley, Luján de Cuyo, Maipú",
+      "Patagonia"
+    ],
+    "law": [],
+    "tasting": [
+      "Mid-priced Malbec",
+      "Premium Torrontés e.g. Cafayate",
+      "Premium Malbec e.g. Uco Valley/Luján de Cuyo",
+      "Premium Cabernet Sauvignon or blend"
+    ],
+    "labelTip": "Argentina 라벨에서 Mendoza 다음에 Uco Valley / Luján de Cuyo / Maipú가 보이면 고도와 숙도 차이를 생각하세요. Salta/Cafayate는 극고도 Torrontés로 연결.",
+    "syllabusCount": 4
   },
   "austria": {
+    "n": 19,
     "name": "오스트리아",
     "en": "Austria",
+    "country": "Austria",
     "flag": "🇦🇹",
-    "group": "유럽",
-    "lat": "약 46°–49°N",
-    "mapCore": "대륙성 기후와 큰 일교차. 다뉴브강 주변 산지와 동부 평야가 중요.",
-    "climate": [
-      "대륙성"
-    ],
-    "currents": "해류 영향은 작고 내륙성 기후가 핵심.",
-    "winds": "동쪽의 따뜻한 공기와 북쪽·서쪽의 서늘한 영향이 만나는 위치.",
-    "topography": "Wachau 등 다뉴브강 주변의 가파른 사면과 테라스가 유명.",
+    "group": "중부유럽",
+    "lat": "약 47°–48°N",
+    "core": "동부에 포도밭이 집중. 다뉴브강 주변의 서늘한 지역과 Burgenland의 더 따뜻한 지역을 구분.",
+    "climate": "대륙성, 큰 일교차.",
+    "influences": "Danube, Alps, Pannonian plain의 따뜻한 공기, Neusiedlersee의 습도.",
     "grapes": [
       "Grüner Veltliner",
       "Riesling",
+      "Welschriesling",
+      "Blaufränkisch",
       "Zweigelt",
-      "Blaufränkisch"
+      "Saint Laurent"
     ],
-    "style": "드라이하고 높은 산도를 가진 화이트가 핵심.",
-    "label": [
+    "reason": "서늘한 밤+충분한 낮 일조 → Grüner/Riesling의 높은 산도와 향. Burgenland는 더 따뜻하고 호수 습도로 귀부 가능.",
+    "labels": [
+      "Niederösterreich",
       "Wachau",
-      "Kamptal",
-      "Kremstal",
+      "Weinviertel",
       "Burgenland",
-      "Grüner Veltliner"
+      "DAC"
     ],
-    "chain": "내륙 대륙성 → 큰 일교차 → 산도 유지 + 충분한 숙성 → 드라이하고 선명한 화이트",
-    "prompt": "Wachau의 고도와 사면이 화이트 와인 스타일에 어떤 도움을 주는지 설명해보세요.",
-    "answer": "Wachau는 다뉴브강을 따라 가파른 테라스와 다양한 고도를 갖습니다. 일조를 확보하면서도 밤에는 기온이 내려가 산도를 유지할 수 있어, 농축감과 신선함을 동시에 가진 화이트 생산에 유리합니다.",
     "regions": [
       {
         "name": "Wachau",
-        "climate": "대륙성",
         "grapes": "Grüner Veltliner, Riesling",
-        "key": "다뉴브강, 가파른 테라스, 높은 품질의 드라이 화이트."
+        "style": "드라이, 높은 산도, 농축된 시트러스·핵과류·후추.",
+        "why": "Danube의 가파른 테라스와 큰 일교차."
+      },
+      {
+        "name": "Weinviertel",
+        "grapes": "Grüner Veltliner",
+        "style": "신선한 산도, 시트러스·백후추.",
+        "why": "오스트리아의 대표 Grüner 산지."
       },
       {
         "name": "Burgenland",
-        "climate": "따뜻한 대륙성",
-        "grapes": "Blaufränkisch, Zweigelt",
-        "key": "Neusiedlersee 주변 귀부 와인 가능성까지 연결."
+        "grapes": "Blaufränkisch, Zweigelt, Welschriesling",
+        "style": "구조적인 레드와 귀부 스위트 와인 모두.",
+        "why": "더 따뜻한 대륙성 + Neusiedlersee 습도."
       }
-    ]
-  },
-  "hungary": {
-    "name": "헝가리",
-    "en": "Hungary",
-    "flag": "🇭🇺",
-    "group": "유럽",
-    "lat": "약 45°–49°N",
-    "mapCore": "내륙 대륙성. Tokaj에서는 강이 만드는 습도와 가을 안개가 귀부 발생에 중요.",
-    "climate": [
-      "대륙성"
     ],
-    "currents": "해류 영향은 거의 없음.",
-    "winds": "Tokaj의 Bodrog·Tisza 강 주변 안개가 Botrytis 형성에 기여.",
-    "topography": "화산성 구릉과 강의 조합.",
+    "quiz": "Wachau와 Burgenland의 기후·스타일 차이를 설명해보세요.",
+    "answer": "Wachau는 다뉴브강의 가파른 테라스와 큰 일교차로 드라이하고 높은 산도의 Grüner Veltliner/Riesling이 핵심입니다. Burgenland는 더 따뜻하며 Neusiedlersee의 습도로 레드와 귀부 스위트 와인이 중요합니다.",
+    "officialPlaces": [
+      "Niederösterreich – Wachau, Weinviertel",
+      "Burgenland"
+    ],
+    "law": [
+      "Qualitätswein",
+      "Prädikat",
+      "DAC"
+    ],
+    "tasting": [
+      "Grüner Veltliner"
+    ],
+    "labelTip": "DAC는 특정 지역의 대표 스타일/품종 규정을 나타냅니다. Wachau/Weinviertel/Burgenland를 먼저 읽고 Grüner Veltliner/Riesling/Blaufränkisch 등의 품종을 연결하세요.",
+    "extraCards": [
+      {
+        "name": "Niederösterreich",
+        "grapes": "Grüner Veltliner, Riesling",
+        "style": "드라이, 높은 산도, 시트러스·사과·후추.",
+        "why": "Danube 주변과 대륙성의 큰 일교차."
+      },
+      {
+        "name": "Wachau",
+        "grapes": "Grüner Veltliner, Riesling",
+        "style": "농축된 드라이 화이트, 높은 산도와 긴 숙성 잠재력.",
+        "why": "가파른 Danube 테라스와 고도."
+      },
+      {
+        "name": "Weinviertel",
+        "grapes": "Grüner Veltliner",
+        "style": "신선한 산도, 시트러스·백후추.",
+        "why": "Weinviertel DAC의 대표 품종."
+      },
+      {
+        "name": "Burgenland",
+        "grapes": "Blaufränkisch, Zweigelt, Welschriesling",
+        "style": "구조적 레드 + noble rot sweet wine.",
+        "why": "Pannonian warm air와 Neusiedlersee 습도."
+      }
+    ],
+    "deepDive": [
+      {
+        "name": "Ried",
+        "type": "Label term",
+        "note": "오스트리아 라벨에서 단일 포도밭(vineyard)을 뜻하는 용어로 자주 보입니다. WSET 공식 범위보다 한 단계 심화."
+      }
+    ],
+    "syllabusCount": 2
+  },
+  "tokaj": {
+    "n": 20,
+    "name": "토카이",
+    "en": "Tokaj",
+    "country": "Hungary",
+    "flag": "🇭🇺",
+    "group": "중부유럽",
+    "lat": "약 48°N",
+    "core": "헝가리 북동부. Bodrog·Tisza 강이 만드는 가을 아침 안개와 건조한 오후가 noble rot 형성에 이상적.",
+    "climate": "대륙성, 따뜻한 여름과 긴 가을.",
+    "influences": "두 강의 습도·안개, 화산성 구릉과 좋은 사면.",
     "grapes": [
       "Furmint",
       "Hárslevelű",
       "Sárga Muskotály"
     ],
-    "style": "Tokaji Aszú의 높은 산도·농축된 단맛·귀부 향이 핵심.",
-    "label": [
-      "Tokaj",
+    "reason": "아침 안개 → Botrytis 감염, 건조한 오후 → 포도 수분 증발 → 당·산·향 농축. Furmint의 높은 산도가 단맛과 균형.",
+    "labels": [
       "Tokaji",
       "Aszú",
-      "Furmint",
-      "Puttonyos"
+      "Eszencia",
+      "Furmint"
     ],
-    "chain": "강 주변 습도/안개 → Botrytis → 당·산·향 농축 → 높은 산도와 단맛이 공존",
-    "prompt": "Tokaji Aszú가 단순히 '따뜻해서 단 와인'이 아닌 이유를 설명해보세요.",
-    "answer": "Tokaji Aszú의 핵심은 귀부입니다. 가을 안개가 Botrytis를 돕고 이후 건조한 조건에서 포도 수분이 증발하며 당·산·향이 농축됩니다. Furmint의 높은 산도가 잔당과 균형을 이룹니다.",
     "regions": [
       {
-        "name": "Tokaj",
-        "climate": "대륙성 + 가을 안개",
-        "grapes": "Furmint, Hárslevelű",
-        "key": "Botrytis, Aszú, 높은 산도와 단맛의 균형."
-      }
-    ]
-  },
-  "italy": {
-    "name": "이탈리아",
-    "en": "Italy",
-    "flag": "🇮🇹",
-    "group": "유럽",
-    "lat": "약 36°–47°N",
-    "mapCore": "북부는 알프스·고도의 영향, 남부는 지중해성의 따뜻하고 건조한 조건이 뚜렷.",
-    "climate": [
-      "북부 대륙성/고도",
-      "중·남부 지중해성"
-    ],
-    "currents": "지중해가 반도 전반의 기온을 완화.",
-    "winds": "해륙풍과 산악 바람이 다양. 고도와 노출이 산도 유지에 중요.",
-    "topography": "알프스·아펜니노 산맥, 구릉, 화산 토양 등 지형 다양성이 큼.",
-    "grapes": [
-      "Nebbiolo",
-      "Sangiovese",
-      "Corvina",
-      "Garganega",
-      "Aglianico",
-      "Nero d'Avola"
-    ],
-    "style": "토착 품종과 지명 중심 라벨이 많아 지역-품종 연결 암기가 중요.",
-    "label": [
-      "Barolo",
-      "Barbaresco",
-      "Chianti Classico",
-      "Brunello di Montalcino",
-      "Valpolicella",
-      "Soave",
-      "Etna"
-    ],
-    "chain": "이탈리아 내 위치 확인 → 북부 고도/대륙성 vs 남부 지중해성 → 토착 품종 연결 → 스타일 예상",
-    "prompt": "Barolo 라벨만 보고 기후·품종·구조를 설명해보세요.",
-    "answer": "Barolo는 Piemonte의 구릉 산지에서 Nebbiolo로 생산됩니다. 알프스와 대륙성 환경의 영향을 받으며, 높은 산도와 높은 탄닌, 붉은 과실·꽃·타르 계열의 향과 긴 숙성 잠재력을 예상할 수 있습니다.",
-    "regions": [
-      {
-        "name": "Piemonte",
-        "climate": "대륙성 + 알프스 영향",
-        "grapes": "Nebbiolo, Barbera, Dolcetto, Moscato",
-        "key": "안개·구릉·고도. Nebbiolo는 늦게 익고 높은 산도·탄닌.",
-        "subregions": [
-          {
-            "place": "Barolo",
-            "grapes": "Nebbiolo",
-            "style": "높은 산도·탄닌, 장미·체리·타르·향신료, 긴 숙성 잠재력.",
-            "label": "Barolo DOCG"
-          },
-          {
-            "place": "Barbaresco",
-            "grapes": "Nebbiolo",
-            "style": "Barolo보다 약간 더 이른 접근성이 흔하지만 여전히 높은 산도·탄닌.",
-            "label": "Barbaresco DOCG"
-          },
-          {
-            "place": "Asti / Moscato d'Asti",
-            "grapes": "Moscato Bianco",
-            "style": "향기로운 꽃·포도·복숭아. Moscato d'Asti는 낮은 알코올과 가벼운 스파클.",
-            "label": "Moscato d'Asti DOCG, Asti DOCG"
-          },
-          {
-            "place": "Barbera d'Asti / d'Alba",
-            "grapes": "Barbera",
-            "style": "높은 산도, 낮~중 탄닌, 붉고 검은 과실.",
-            "label": "Barbera d'Asti, Barbera d'Alba"
-          }
-        ]
+        "name": "Tokaji Aszú",
+        "grapes": "Furmint 중심 + Hárslevelű 등",
+        "style": "높은 단맛·높은 산도, 살구·오렌지 껍질·꿀·사프란.",
+        "why": "noble rot 과실을 이용."
       },
       {
-        "name": "Veneto",
-        "climate": "대륙성~완화된 기후",
-        "grapes": "Corvina, Rondinella, Garganega, Glera",
-        "key": "알프스·아드리아해·Lake Garda의 완화 영향. 건조 포도(Appassimento) 스타일 중요.",
-        "subregions": [
-          {
-            "place": "Valpolicella",
-            "grapes": "Corvina 중심",
-            "style": "붉은 체리, 중간 산도·탄닌, 가벼움~중간 바디.",
-            "label": "Valpolicella DOC"
-          },
-          {
-            "place": "Amarone della Valpolicella",
-            "grapes": "Corvina 중심, 건조 포도",
-            "style": "건포도·말린 체리·높은 알코올·풍부한 바디·높은 농축도.",
-            "label": "Amarone della Valpolicella DOCG"
-          },
-          {
-            "place": "Soave",
-            "grapes": "Garganega",
-            "style": "레몬·배·아몬드, 중~높은 산도. Classico는 구릉지 중심.",
-            "label": "Soave, Soave Classico"
-          },
-          {
-            "place": "Prosecco / Conegliano-Valdobbiadene",
-            "grapes": "Glera",
-            "style": "탱크 방식, 사과·배·꽃, 가벼운 바디와 산뜻함.",
-            "label": "Prosecco DOC, Conegliano Valdobbiadene Prosecco Superiore DOCG"
-          }
-        ]
-      },
-      {
-        "name": "Trentino-Alto Adige / Friuli",
-        "climate": "북부 고도·대륙성 / 아드리아 완화",
-        "grapes": "Pinot Grigio, Pinot Bianco, Chardonnay, Sauvignon Blanc",
-        "key": "알프스 고도와 큰 일교차로 향·산도 유지.",
-        "subregions": [
-          {
-            "place": "Alto Adige",
-            "grapes": "Pinot Grigio, Pinot Bianco, Gewürztraminer",
-            "style": "높은 산도, 선명한 향, 드라이하고 정교한 화이트.",
-            "label": "Alto Adige DOC"
-          },
-          {
-            "place": "Friuli-Venezia Giulia",
-            "grapes": "Pinot Grigio, Sauvignon Blanc, Friulano",
-            "style": "향이 선명하고 농축된 드라이 화이트.",
-            "label": "Friuli, Collio, Colli Orientali"
-          }
-        ]
-      },
-      {
-        "name": "Tuscany",
-        "climate": "따뜻한 지중해성 + 고도",
-        "grapes": "Sangiovese, Cabernet Sauvignon, Merlot",
-        "key": "구릉과 고도 덕분에 따뜻한 기후에서도 산도 유지.",
-        "subregions": [
-          {
-            "place": "Chianti / Chianti Classico",
-            "grapes": "Sangiovese 중심",
-            "style": "체리·붉은 자두·허브, 높은 산도, 중~높은 탄닌.",
-            "label": "Chianti DOCG, Chianti Classico DOCG"
-          },
-          {
-            "place": "Brunello di Montalcino",
-            "grapes": "Sangiovese (Brunello)",
-            "style": "더 농축되고 높은 탄닌·산도, 숙성 잠재력 큼.",
-            "label": "Brunello di Montalcino DOCG"
-          },
-          {
-            "place": "Vino Nobile di Montepulciano",
-            "grapes": "Sangiovese (Prugnolo Gentile)",
-            "style": "체리·허브·가죽, 구조적이고 숙성 가능.",
-            "label": "Vino Nobile di Montepulciano DOCG"
-          },
-          {
-            "place": "Bolgheri",
-            "grapes": "Cabernet Sauvignon, Merlot 등",
-            "style": "익은 검은 과실, 오크, 구조적인 국제 품종 블렌드.",
-            "label": "Bolgheri DOC"
-          }
-        ]
-      },
-      {
-        "name": "Central & Southern Italy",
-        "climate": "따뜻한 지중해성",
-        "grapes": "Montepulciano, Aglianico, Primitivo, Nero d'Avola, Fiano, Greco",
-        "key": "강한 일조·건조함. 고도와 해풍이 산도 유지에 중요.",
-        "subregions": [
-          {
-            "place": "Montepulciano d'Abruzzo",
-            "grapes": "Montepulciano",
-            "style": "검은 체리·자두, 중~높은 탄닌, 풍부한 과실.",
-            "label": "Montepulciano d'Abruzzo DOC"
-          },
-          {
-            "place": "Taurasi / Campania",
-            "grapes": "Aglianico",
-            "style": "높은 산도·탄닌, 검은 과실·가죽·향신료, 장기 숙성.",
-            "label": "Taurasi DOCG"
-          },
-          {
-            "place": "Puglia / Primitivo di Manduria",
-            "grapes": "Primitivo",
-            "style": "익은 검은 과실, 높은 알코올, 부드럽고 풍부.",
-            "label": "Primitivo di Manduria"
-          },
-          {
-            "place": "Sicilia / Etna",
-            "grapes": "Nero d'Avola / Nerello Mascalese",
-            "style": "시칠리아 저지대는 더 익고 풍부, Etna는 고도·화산 토양으로 더 높은 산도와 섬세함.",
-            "label": "Sicilia DOC, Etna DOC"
-          }
-        ]
+        "name": "Eszencia",
+        "grapes": "귀부 포도의 자연 유출액",
+        "style": "극도로 높은 당도와 매우 낮은 알코올, 희귀.",
+        "why": "Aszú 베리에서 자연스럽게 나온 농축 즙."
       }
     ],
-    "dense": true,
-    "denseNote": "핵심국가 보강판: 산지 → 세부산지/도시 → 품종 → 예상 스타일 → 라벨 단서까지 확장"
-  },
-  "greece": {
-    "name": "그리스",
-    "en": "Greece",
-    "flag": "🇬🇷",
-    "group": "유럽",
-    "lat": "약 35°–41°N",
-    "mapCore": "따뜻한 지중해성 기후. 바람과 고도, 섬의 해양 영향이 과도한 열을 완화.",
-    "climate": [
-      "지중해성"
+    "quiz": "Tokaji Aszú가 단맛이 높아도 무겁게만 느껴지지 않는 이유는?",
+    "answer": "Furmint가 높은 산도를 유지하기 때문에 높은 잔당과 균형을 이루며, 귀부가 복합적인 향을 더합니다.",
+    "officialPlaces": [
+      "Tokaj – sweet wines only"
     ],
-    "currents": "에게해와 지중해의 해양 영향.",
-    "winds": "에게해의 강한 바람은 증산과 병해 압력에 큰 영향을 줌.",
-    "topography": "섬과 산악 지형이 많아 고도·노출·화산 토양 등 지역차가 큼.",
-    "grapes": [
-      "Assyrtiko",
-      "Agiorgitiko",
-      "Xinomavro"
+    "law": [
+      "Tokaji Aszú",
+      "Eszencia"
     ],
-    "style": "Assyrtiko는 따뜻하고 건조한 환경에서도 높은 산도를 유지하는 것으로 유명.",
-    "label": [
-      "Santorini",
-      "Assyrtiko",
-      "Nemea",
-      "Naoussa"
+    "tasting": [
+      "Tokaji Aszú"
     ],
-    "chain": "강한 일조·건조 → 완숙도↑ → 해풍/고도/품종 특성으로 산도 유지",
-    "prompt": "Santorini Assyrtiko가 더운 지역인데도 높은 산도를 가질 수 있는 이유를 설명해보세요.",
-    "answer": "Santorini는 따뜻하고 건조하지만 해양 영향, 강한 바람, 그리고 Assyrtiko 자체의 높은 산도 유지 능력이 결합됩니다.",
-    "regions": [
-      {
-        "name": "Santorini",
-        "climate": "건조한 지중해성",
-        "grapes": "Assyrtiko",
-        "key": "강풍, 낮은 강수, 화산성 토양, 높은 산도."
-      }
-    ]
-  },
-  "portugal": {
-    "name": "포르투갈",
-    "en": "Portugal",
-    "flag": "🇵🇹",
-    "group": "유럽",
-    "lat": "약 37°–42°N",
-    "mapCore": "서쪽은 대서양 영향이 강하고 내륙으로 갈수록 더 덥고 건조해짐.",
-    "climate": [
-      "해양성 → 내륙 대륙성/건조"
-    ],
-    "currents": "대서양의 차가운 해양 영향이 서부 해안의 기온을 낮춤.",
-    "winds": "대서양의 습한 공기와 해풍이 서부 지역에 영향.",
-    "topography": "Douro의 가파른 계곡과 내륙의 고온·건조 조건이 핵심.",
-    "grapes": [
-      "Touriga Nacional",
-      "Touriga Franca",
-      "Tinta Roriz",
-      "Alvarinho"
-    ],
-    "style": "Port와 Douro 레드, Vinho Verde의 가볍고 높은 산도 스타일을 대비해서 기억.",
-    "label": [
-      "Douro",
-      "Porto",
-      "Vinho Verde",
-      "Alvarinho"
-    ],
-    "chain": "대서양과의 거리 확인 → 서부는 서늘·습윤 / 내륙은 덥고 건조 → 품종과 스타일 차이 추론",
-    "prompt": "Douro와 Vinho Verde가 같은 포르투갈인데 스타일이 크게 다른 이유를 설명해보세요.",
-    "answer": "Vinho Verde는 대서양에 가까워 더 서늘하고 습해 높은 산도와 가벼운 스타일이 나타납니다. Douro는 더 내륙이라 훨씬 덥고 건조하며 농축된 레드와 Port에 적합합니다.",
-    "regions": [
-      {
-        "name": "Douro",
-        "climate": "더운 내륙성·건조",
-        "grapes": "Touriga Nacional 등",
-        "key": "가파른 계곡, 강한 일조, Port와 농축된 레드."
-      },
-      {
-        "name": "Vinho Verde",
-        "climate": "서늘한 해양성",
-        "grapes": "Alvarinho, Loureiro",
-        "key": "높은 산도, 가벼운 바디, 신선한 스타일."
-      }
-    ]
-  },
-  "spain": {
-    "name": "스페인",
-    "en": "Spain",
-    "flag": "🇪🇸",
-    "group": "유럽",
-    "lat": "약 36°–43°N",
-    "mapCore": "대서양·대륙성·지중해성이라는 세 가지 기후 축으로 이해하면 쉬움.",
-    "climate": [
-      "북서부 해양성",
-      "중부 대륙성",
-      "동·남부 지중해성"
-    ],
-    "currents": "대서양과 지중해의 영향이 지역별로 다름.",
-    "winds": "해풍과 지역풍이 고온을 완화. 내륙 고원은 일교차가 큼.",
-    "topography": "Meseta 고원, 산맥, 강 계곡, 높은 고도가 핵심.",
-    "grapes": [
-      "Tempranillo",
-      "Garnacha",
-      "Albariño",
-      "Verdejo",
-      "Monastrell"
-    ],
-    "style": "Rioja/Ribera del Duero의 Tempranillo, Rías Baixas의 Albariño를 연결.",
-    "label": [
-      "Rioja",
-      "Ribera del Duero",
-      "Rías Baixas",
-      "Priorat",
-      "Cava",
-      "Jerez"
-    ],
-    "chain": "위치 + 고도 확인 → 기후 유형 판별 → 대표 품종 → 숙도·산도·바디 추론",
-    "prompt": "Ribera del Duero가 비교적 낮은 위도인데도 산도를 유지할 수 있는 이유를 설명해보세요.",
-    "answer": "Ribera del Duero는 높은 고도에 있어 밤 기온이 크게 떨어지는 큰 일교차를 가집니다. 충분한 일조로 포도를 익히면서도 산도를 유지하는 데 도움이 됩니다.",
-    "regions": [
-      {
-        "name": "Rioja",
-        "climate": "대서양·대륙성·지중해 영향의 전이지대",
-        "grapes": "Tempranillo, Garnacha, Graciano / Viura",
-        "key": "서쪽 Rioja Alta/Alavesa는 더 서늘, 동쪽 Rioja Oriental은 더 따뜻. 숙성 등급과 오크 스타일을 함께 봄.",
-        "subregions": [
-          {
-            "place": "Rioja Alta",
-            "grapes": "Tempranillo 중심",
-            "style": "높은 산도와 균형 잡힌 붉은 과실, 전통 오크 숙성에 적합.",
-            "label": "Rioja, Crianza, Reserva, Gran Reserva"
-          },
-          {
-            "place": "Rioja Alavesa",
-            "grapes": "Tempranillo",
-            "style": "상대적으로 서늘하고 석회질 토양, 향과 산도가 선명한 스타일.",
-            "label": "Rioja Alavesa"
-          },
-          {
-            "place": "Rioja Oriental",
-            "grapes": "Garnacha 비중 증가",
-            "style": "더 따뜻하고 건조해 높은 숙도와 바디.",
-            "label": "Rioja Oriental"
-          }
-        ]
-      },
-      {
-        "name": "Ribera del Duero",
-        "climate": "대륙성 + 높은 고도",
-        "grapes": "Tempranillo (Tinto Fino/Tinta del País)",
-        "key": "낮의 강한 일조 + 차가운 밤 = 농축도와 산도의 균형.",
-        "subregions": [
-          {
-            "place": "Duero 고원 / 주요 마을권",
-            "grapes": "Tempranillo",
-            "style": "검은 과실, 높은 탄닌, 높은 산도, 오크 숙성, 장기 숙성.",
-            "label": "Ribera del Duero DO"
-          }
-        ]
-      },
-      {
-        "name": "Galicia",
-        "climate": "서늘하고 습한 해양성",
-        "grapes": "Albariño, Godello, Mencía",
-        "key": "대서양 강우와 병해 위험. 높은 산도와 향을 살리는 화이트가 핵심.",
-        "subregions": [
-          {
-            "place": "Rías Baixas",
-            "grapes": "Albariño",
-            "style": "높은 산도, 레몬·복숭아·살구, 때때로 약간의 염분감.",
-            "label": "Rías Baixas DO"
-          },
-          {
-            "place": "Valdeorras",
-            "grapes": "Godello",
-            "style": "시트러스·핵과류, 중간~높은 바디와 산도.",
-            "label": "Valdeorras DO"
-          },
-          {
-            "place": "Bierzo",
-            "grapes": "Mencía",
-            "style": "붉은 과실·꽃·허브, 중간 바디, 비교적 신선한 레드.",
-            "label": "Bierzo DO"
-          }
-        ]
-      },
-      {
-        "name": "Rueda & Castilla y León",
-        "climate": "대륙성 + 높은 고도",
-        "grapes": "Verdejo, Sauvignon Blanc",
-        "key": "강한 낮 일조와 차가운 밤. Verdejo는 허브·시트러스·약간의 쌉쌀함.",
-        "subregions": [
-          {
-            "place": "Rueda",
-            "grapes": "Verdejo",
-            "style": "시트러스·허브·복숭아, 높은 산도, 드라이.",
-            "label": "Rueda DO"
-          }
-        ]
-      },
-      {
-        "name": "Catalunya",
-        "climate": "지중해성 + 고도",
-        "grapes": "Garnacha, Cariñena, Macabeo, Xarel-lo, Parellada",
-        "key": "지중해의 따뜻함과 산악 고도가 공존.",
-        "subregions": [
-          {
-            "place": "Priorat",
-            "grapes": "Garnacha, Cariñena",
-            "style": "농축된 검은 과실, 높은 알코올, 높은 탄닌, 슬레이트(Llicorella) 토양.",
-            "label": "Priorat DOCa"
-          },
-          {
-            "place": "Penedès / Cava",
-            "grapes": "Macabeo, Xarel-lo, Parellada (+ Chardonnay, Pinot Noir)",
-            "style": "전통 방식 스파클링, 높은 산도와 숙성 효모 향.",
-            "label": "Cava DO"
-          }
-        ]
-      },
-      {
-        "name": "Jerez / Sherry",
-        "climate": "따뜻하고 건조, 대서양 영향",
-        "grapes": "Palomino, Pedro Ximénez, Moscatel",
-        "key": "Albariza 토양, Flor, Solera 시스템이 스타일을 결정.",
-        "subregions": [
-          {
-            "place": "Jerez de la Frontera",
-            "grapes": "Palomino",
-            "style": "Fino: 매우 드라이, 높은 산도 느낌, 아몬드·빵/효모, 낮은 산화 풍미.",
-            "label": "Fino, Manzanilla, Amontillado, Oloroso, PX"
-          },
-          {
-            "place": "Sanlúcar de Barrameda",
-            "grapes": "Palomino",
-            "style": "Manzanilla: 해안의 Flor가 두껍게 유지되며 가볍고 짭짤한 뉘앙스.",
-            "label": "Manzanilla"
-          }
-        ]
-      }
-    ],
-    "dense": true,
-    "denseNote": "핵심국가 보강판: 산지 → 세부산지/도시 → 품종 → 예상 스타일 → 라벨 단서까지 확장"
-  },
-  "switzerland": {
-    "name": "스위스",
-    "en": "Switzerland",
-    "flag": "🇨🇭",
-    "group": "유럽",
-    "lat": "약 46°–47°N",
-    "mapCore": "알프스와 호수의 영향을 받는 작은 산지 국가. 고도와 사면 방향이 매우 중요.",
-    "climate": [
-      "대륙성",
-      "고도 영향"
-    ],
-    "currents": "해류보다 알프스·호수의 영향이 핵심.",
-    "winds": "산악 바람과 계곡 미기후가 중요.",
-    "topography": "가파른 테라스와 호반 포도밭, 강한 고도 차이가 특징.",
-    "grapes": [
-      "Chasselas",
-      "Pinot Noir",
-      "Gamay",
-      "Merlot"
-    ],
-    "style": "국내 소비가 많고 지역성이 강함. 서늘하고 섬세한 스타일의 와인이 많음.",
-    "label": [
-      "Valais",
-      "Vaud",
-      "Geneva",
-      "Ticino",
-      "Chasselas"
-    ],
-    "chain": "알프스/호수 → 미기후 형성 → 고도와 일조 균형 → 섬세한 스타일 추론",
-    "prompt": "스위스 와인에서 호수와 고도가 중요한 이유를 설명해보세요.",
-    "answer": "호수는 온도를 완화하고 빛을 반사해 숙성을 돕습니다. 동시에 고도는 야간 기온을 낮춰 산도 유지에 도움을 줍니다.",
-    "regions": [
-      {
-        "name": "Valais",
-        "climate": "건조한 내륙성 + 고도",
-        "grapes": "Chasselas, Pinot Noir",
-        "key": "알프스 계곡, 일조량이 많고 비교적 건조."
-      },
-      {
-        "name": "Vaud",
-        "climate": "호수 영향",
-        "grapes": "Chasselas",
-        "key": "레만호 주변의 온도 완화 효과."
-      }
-    ]
-  },
-  "england": {
-    "name": "영국",
-    "en": "England",
-    "flag": "🇬🇧",
-    "group": "유럽",
-    "lat": "약 50°–52°N",
-    "mapCore": "매우 서늘한 해양성 기후지만 최근 스파클링 와인 생산으로 주목.",
-    "climate": [
-      "서늘한 해양성"
-    ],
-    "currents": "대서양과 북대서양 해류의 온화화 영향으로 극단적 한랭이 완화.",
-    "winds": "해양 바람이 강하고 병해 압력 및 빈티지 변동이 큼.",
-    "topography": "완만한 구릉과 석회질 토양 지역이 중요.",
-    "grapes": [
-      "Chardonnay",
-      "Pinot Noir",
-      "Pinot Meunier"
-    ],
-    "style": "샴페인 품종을 이용한 높은 산도의 스파클링 와인이 대표적.",
-    "label": [
-      "Sussex",
-      "Kent",
-      "Hampshire",
-      "English Sparkling Wine"
-    ],
-    "chain": "높은 위도 + 서늘한 해양성 → 완숙은 어렵지만 높은 산도 확보 → 스파클링 적합",
-    "prompt": "영국이 스파클링 와인에 적합한 이유를 설명해보세요.",
-    "answer": "영국은 매우 서늘한 해양성 기후로 산도가 잘 유지됩니다. 이는 스파클링 와인 베이스 와인에 이상적인 조건입니다.",
-    "regions": [
-      {
-        "name": "Sussex / Kent",
-        "climate": "서늘한 해양성",
-        "grapes": "Chardonnay, Pinot Noir, Pinot Meunier",
-        "key": "영국 스파클링의 중심지."
-      }
-    ]
-  },
-  "slovenia": {
-    "name": "슬로베니아",
-    "en": "Slovenia",
-    "flag": "🇸🇮",
-    "group": "유럽",
-    "lat": "약 45°–47°N",
-    "mapCore": "알프스, 아드리아해, 판노니아 평원의 영향이 만나는 교차지대.",
-    "climate": [
-      "대륙성",
-      "해양성",
-      "고도 영향"
-    ],
-    "currents": "아드리아해의 완화 영향이 서부 일부에 작용.",
-    "winds": "산악 바람과 해풍이 복합적으로 작용.",
-    "topography": "구릉과 테라스, 산악 지형이 많아 배수와 일조 확보가 좋음.",
-    "grapes": [
-      "Rebula",
-      "Sauvignon Blanc",
-      "Merlot",
-      "Refosco"
-    ],
-    "style": "동서남북의 영향이 섞여 화이트부터 오렌지 와인까지 다양.",
-    "label": [
-      "Brda",
-      "Vipava",
-      "Podravje"
-    ],
-    "chain": "위치상 교차지대 → 다양한 기후/스타일 공존",
-    "prompt": "슬로베니아 와인이 다양한 스타일을 보이는 이유는?",
-    "answer": "슬로베니아는 알프스·아드리아해·내륙 평원의 영향이 만나는 교차지대이기 때문에 다양한 품종과 스타일이 공존합니다.",
-    "regions": [
-      {
-        "name": "Brda",
-        "climate": "완화된 해양성 + 구릉",
-        "grapes": "Rebula, Merlot",
-        "key": "이탈리아 국경 인접, 고품질 화이트와 오렌지 와인."
-      }
-    ]
-  },
-  "croatia": {
-    "name": "크로아티아",
-    "en": "Croatia",
-    "flag": "🇭🇷",
-    "group": "유럽",
-    "lat": "약 42°–46°N",
-    "mapCore": "아드리아해 연안의 지중해성 산지와 내륙 대륙성 산지가 공존.",
-    "climate": [
-      "해안 지중해성",
-      "내륙 대륙성"
-    ],
-    "currents": "아드리아해가 해안 지역을 완화.",
-    "winds": "Bora 같은 지역풍이 건조하고 선선한 조건을 만들 수 있음.",
-    "topography": "해안의 섬과 가파른 사면, 내륙 구릉지.",
-    "grapes": [
-      "Plavac Mali",
-      "Graševina",
-      "Malvazija Istarska"
-    ],
-    "style": "해안은 햇빛이 풍부한 지중해 스타일, 내륙은 더 서늘하고 산도 높은 스타일.",
-    "label": [
-      "Dalmatia",
-      "Istria",
-      "Slavonia"
-    ],
-    "chain": "해안 vs 내륙 구분 → 기후 차이 → 품종과 스타일 차이 추론",
-    "prompt": "Dalmatia와 Slavonia의 와인 스타일이 다른 이유는?",
-    "answer": "Dalmatia는 아드리아해 연안의 따뜻한 지중해성 기후이며, Slavonia는 더 내륙의 대륙성 기후라 산도와 품종 구성이 달라집니다.",
-    "regions": [
-      {
-        "name": "Dalmatia",
-        "climate": "지중해성",
-        "grapes": "Plavac Mali",
-        "key": "섬, 햇빛, 강한 풍미의 레드."
-      },
-      {
-        "name": "Istria",
-        "climate": "완화된 해양성",
-        "grapes": "Malvazija Istarska",
-        "key": "향기로운 화이트와 올리브 오일 지역으로도 유명."
-      }
-    ]
-  },
-  "romania": {
-    "name": "루마니아",
-    "en": "Romania",
-    "flag": "🇷🇴",
-    "group": "유럽",
-    "lat": "약 43°–48°N",
-    "mapCore": "대륙성 기후와 흑해의 완화 영향이 함께 작용하는 동유럽 주요 와인 생산국.",
-    "climate": [
-      "대륙성"
-    ],
-    "currents": "흑해 인접 지역은 일부 온도 완화 혜택을 받음.",
-    "winds": "대륙성 바람과 분지 지형의 미기후가 중요.",
-    "topography": "카르파티아 산맥과 구릉지, 강 유역이 다양.",
-    "grapes": [
-      "Fetească Neagră",
-      "Fetească Albă",
-      "Merlot",
-      "Chardonnay"
-    ],
-    "style": "토착 품종과 국제 품종이 공존하며, 가격 대비 우수한 와인이 많음.",
-    "label": [
-      "Dealu Mare",
-      "Murfatlar",
-      "Transylvania"
-    ],
-    "chain": "대륙성 기본 + 흑해/고도 완화 → 토착 품종 연결",
-    "prompt": "루마니아 와인에서 토착 품종을 보는 이유는?",
-    "answer": "루마니아는 오랜 와인 역사와 다양한 기후대를 가져 Fetească 계열 같은 토착 품종 전통이 강하게 남아 있습니다.",
-    "regions": [
-      {
-        "name": "Dealu Mare",
-        "climate": "따뜻한 대륙성",
-        "grapes": "Fetească Neagră, Merlot",
-        "key": "레드 와인 중심."
-      },
-      {
-        "name": "Transylvania",
-        "climate": "서늘한 대륙성",
-        "grapes": "화이트 품종 중심",
-        "key": "좀 더 산도 높은 스타일."
-      }
-    ]
-  },
-  "moldova": {
-    "name": "몰도바",
-    "en": "Moldova",
-    "flag": "🇲🇩",
-    "group": "유럽",
-    "lat": "약 45°–48°N",
-    "mapCore": "작지만 와인 비중이 매우 큰 동유럽 생산국. 대륙성 기후와 흑해의 부분적 영향.",
-    "climate": [
-      "대륙성"
-    ],
-    "currents": "흑해 인접성으로 일부 완화 효과.",
-    "winds": "내륙 대륙성 바람이 우세.",
-    "topography": "완만한 구릉과 흑토, 석회질 토양이 분포.",
-    "grapes": [
-      "Fetească Albă",
-      "Fetească Neagră",
-      "Rara Neagră",
-      "Cabernet Sauvignon"
-    ],
-    "style": "스틸 와인과 전통 방식 스파클링 모두 생산.",
-    "label": [
-      "Codru",
-      "Ștefan Vodă",
-      "Valul lui Traian"
-    ],
-    "chain": "대륙성 기본 → 흑해 접근성/구릉지 → 토착 + 국제 품종 공존",
-    "prompt": "몰도바가 와인 산지로 유리한 이유를 설명해보세요.",
-    "answer": "몰도바는 대륙성 기후, 비교적 완만한 구릉, 비옥한 토양을 바탕으로 오래된 와인 전통을 유지해왔습니다.",
-    "regions": [
-      {
-        "name": "Codru",
-        "climate": "완화된 대륙성",
-        "grapes": "스파클링·화이트 중심",
-        "key": "수도 주변 핵심 산지."
-      }
-    ]
-  },
-  "georgia": {
-    "name": "조지아",
-    "en": "Georgia",
-    "flag": "🇬🇪",
-    "group": "중동/캅카스",
-    "lat": "약 41°–43°N",
-    "mapCore": "캅카스 산맥과 흑해 영향이 만나는 매우 오래된 와인 생산지.",
-    "climate": [
-      "대륙성",
-      "흑해 완화 영향"
-    ],
-    "currents": "흑해가 서부 지역 기온을 완화.",
-    "winds": "캅카스 산악 지형이 바람과 강수 분포를 바꿈.",
-    "topography": "계곡·구릉·산악 지형이 다양하며 Kakheti가 핵심.",
-    "grapes": [
-      "Saperavi",
-      "Rkatsiteli"
-    ],
-    "style": "크베브리(qvevri) 전통, 오렌지 와인, 토착 품종이 핵심.",
-    "label": [
-      "Kakheti",
-      "Kartli",
-      "Imereti",
-      "Qvevri"
-    ],
-    "chain": "오랜 전통 + 토착 품종 + 캅카스 지형 → 독특한 양조 스타일과 지역성",
-    "prompt": "조지아 와인을 설명할 때 품종 외에 꼭 언급할 수 있는 요소는?",
-    "answer": "조지아는 크베브리라는 전통적인 항아리 발효·숙성 방식과 오렌지 와인 전통을 함께 설명할 수 있습니다.",
-    "regions": [
-      {
-        "name": "Kakheti",
-        "climate": "대륙성",
-        "grapes": "Saperavi, Rkatsiteli",
-        "key": "조지아 최대 핵심 산지."
-      }
-    ]
-  },
-  "turkey": {
-    "name": "튀르키예",
-    "en": "Türkiye",
-    "flag": "🇹🇷",
-    "group": "중동/캅카스",
-    "lat": "약 36°–40°N",
-    "mapCore": "넓은 국토와 다양한 고도 덕분에 지중해성부터 대륙성까지 폭넓은 조건을 가짐.",
-    "climate": [
-      "지중해성",
-      "대륙성",
-      "고도 영향"
-    ],
-    "currents": "해안은 지중해와 에게해, 흑해의 완화 영향을 받음.",
-    "winds": "해풍과 고원성 대륙풍이 공존.",
-    "topography": "내륙 고원과 해안 산지의 차이가 크다.",
-    "grapes": [
-      "Kalecik Karası",
-      "Öküzgözü",
-      "Boğazkere",
-      "Narince"
-    ],
-    "style": "토착 품종 비중이 높고 지역차가 큼.",
-    "label": [
-      "Aegean",
-      "Central Anatolia",
-      "Cappadocia"
-    ],
-    "chain": "해안 vs 고원 내륙 구분 → 기후/고도 차이 → 토착 품종과 스타일 추론",
-    "prompt": "튀르키예 와인을 볼 때 먼저 봐야 할 지리 요소는?",
-    "answer": "해안 산지인지 내륙 고원 산지인지가 가장 중요합니다. 같은 나라 안에서도 기후 차이가 크기 때문입니다.",
-    "regions": [
-      {
-        "name": "Aegean",
-        "climate": "따뜻한 지중해성",
-        "grapes": "국제 품종 + 토착 품종",
-        "key": "상업적 와인 생산 비중이 큰 지역."
-      }
-    ]
-  },
-  "israel": {
-    "name": "이스라엘",
-    "en": "Israel",
-    "flag": "🇮🇱",
-    "group": "중동/캅카스",
-    "lat": "약 31°–33°N",
-    "mapCore": "따뜻하고 건조하지만 고도와 야간 기온 하강이 중요한 산지.",
-    "climate": [
-      "따뜻한 지중해성",
-      "건조"
-    ],
-    "currents": "지중해의 일부 완화 영향.",
-    "winds": "해풍과 고지대 밤 기온 하강이 품질 유지에 도움.",
-    "topography": "Galilee, Golan Heights, Judean Hills 등 고도가 중요한 산지.",
-    "grapes": [
-      "Cabernet Sauvignon",
-      "Merlot",
-      "Syrah",
-      "Chardonnay"
-    ],
-    "style": "건조한 기후 속에서도 고도 덕분에 균형 잡힌 국제 품종 와인 생산.",
-    "label": [
-      "Galilee",
-      "Golan Heights",
-      "Judean Hills"
-    ],
-    "chain": "더운 기후 → 고도와 야간 냉각 중요 → 산도 유지 여부로 스타일 차이",
-    "prompt": "이스라엘 와인에서 왜 고도가 중요한가요?",
-    "answer": "따뜻한 기후에서 지나친 열 축적을 줄이고 야간 기온을 낮춰 산도와 향을 유지하는 데 고도가 중요합니다.",
-    "regions": [
-      {
-        "name": "Galilee / Golan Heights",
-        "climate": "고도 영향이 있는 따뜻한 지중해성",
-        "grapes": "Cabernet Sauvignon, Chardonnay",
-        "key": "이스라엘 고품질 산지 중심."
-      }
-    ]
-  },
-  "lebanon": {
-    "name": "레바논",
-    "en": "Lebanon",
-    "flag": "🇱🇧",
-    "group": "중동/캅카스",
-    "lat": "약 33°–34°N",
-    "mapCore": "Bekaa Valley의 고도와 건조한 기후가 핵심인 역사 깊은 산지.",
-    "climate": [
-      "따뜻한 지중해성",
-      "건조"
-    ],
-    "currents": "해안은 지중해 영향을 받지만 주요 산지는 내륙 고지대.",
-    "winds": "건조한 공기와 고도 덕분에 병해 압력이 낮아질 수 있음.",
-    "topography": "Bekaa Valley는 고도가 높아 더운 위도 대비 산도 유지에 유리.",
-    "grapes": [
-      "Cabernet Sauvignon",
-      "Cinsault",
-      "Carignan",
-      "Syrah",
-      "Obeidi"
-    ],
-    "style": "풍부한 태양광, 건조한 조건, 고도에서 오는 균형이 특징.",
-    "label": [
-      "Bekaa Valley"
-    ],
-    "chain": "따뜻한 위도 + 고도 → 완숙도 확보 + 산도 보존",
-    "prompt": "Bekaa Valley가 왜 와인 생산에 유리한가요?",
-    "answer": "높은 고도와 건조한 조건 덕분에 더운 지역임에도 포도 품질을 안정적으로 확보할 수 있습니다.",
-    "regions": [
-      {
-        "name": "Bekaa Valley",
-        "climate": "따뜻하나 고도 영향",
-        "grapes": "Cinsault, Cabernet Sauvignon, Syrah",
-        "key": "레바논 핵심 산지."
-      }
-    ]
-  },
-  "usa": {
-    "name": "미국",
-    "en": "United States",
-    "flag": "🇺🇸",
-    "group": "아메리카",
-    "lat": "주요 서부 산지 약 32°–47°N",
-    "mapCore": "서부 와인 산지는 태평양, 차가운 해류, 산맥과 Rain Shadow로 이해.",
-    "climate": [
-      "California 다양",
-      "Oregon 서늘",
-      "Washington 건조한 대륙성"
-    ],
-    "currents": "California Current가 서해안을 따라 북쪽에서 남쪽으로 흐르며 해안을 냉각.",
-    "winds": "차가운 해양 공기와 안개가 해안 틈을 통해 유입.",
-    "topography": "Coast Ranges, Sierra Nevada, Cascade 등 산맥이 해양 영향과 강수량을 좌우.",
-    "grapes": [
-      "Cabernet Sauvignon",
-      "Chardonnay",
-      "Pinot Noir",
-      "Zinfandel",
-      "Syrah",
-      "Merlot"
-    ],
-    "style": "California의 따뜻한 지역부터 Oregon의 Pinot Noir, Washington의 건조한 내륙까지 차이가 큼.",
-    "label": [
-      "Napa Valley",
-      "Sonoma",
-      "Russian River Valley",
-      "Willamette Valley",
-      "Columbia Valley"
-    ],
-    "chain": "태평양과의 거리 + 산맥의 틈 + 고도 확인 → 해양 냉각/안개 여부 판단 → 품종과 숙도 추론",
-    "prompt": "Napa와 Sonoma Coast가 가까운데도 와인 스타일이 달라질 수 있는 이유를 설명해보세요.",
-    "answer": "차가운 California Current의 영향은 같지만 해양 공기가 내륙으로 들어가는 정도는 산맥과 지형에 따라 달라집니다. 해안 가까운 Sonoma Coast는 더 서늘하고, Napa 일부는 더 따뜻해 Cabernet Sauvignon의 높은 숙도를 얻기 쉽습니다.",
-    "regions": [
-      {
-        "name": "California – Napa Valley",
-        "climate": "따뜻한 지중해성, 해양 영향이 남쪽에서 유입",
-        "grapes": "Cabernet Sauvignon, Merlot, Chardonnay, Sauvignon Blanc",
-        "key": "San Pablo Bay에서 들어오는 차가운 공기·안개와 고도 차이로 AVA별 스타일 차이가 큼.",
-        "subregions": [
-          {
-            "place": "Carneros",
-            "grapes": "Pinot Noir, Chardonnay",
-            "style": "Bay 영향으로 서늘. 높은 산도, 스파클링과 서늘한 품종에 적합.",
-            "label": "Los Carneros / Carneros"
-          },
-          {
-            "place": "Oakville / Rutherford",
-            "grapes": "Cabernet Sauvignon",
-            "style": "익은 카시스·블랙체리, 구조적인 탄닌, 오크 숙성.",
-            "label": "Oakville AVA, Rutherford AVA"
-          },
-          {
-            "place": "Stags Leap District",
-            "grapes": "Cabernet Sauvignon",
-            "style": "잘 익은 과실과 비교적 세련된 탄닌의 균형.",
-            "label": "Stags Leap District AVA"
-          },
-          {
-            "place": "Howell Mountain / Mount Veeder",
-            "grapes": "Cabernet Sauvignon",
-            "style": "고도와 얇은 토양으로 더 구조적이고 강한 탄닌, 높은 농축도.",
-            "label": "Howell Mountain AVA, Mount Veeder AVA"
-          }
-        ]
-      },
-      {
-        "name": "California – Sonoma County",
-        "climate": "해양성 영향의 강도가 지역별로 크게 다름",
-        "grapes": "Pinot Noir, Chardonnay, Cabernet Sauvignon, Zinfandel, Sauvignon Blanc",
-        "key": "Pacific Ocean, 안개, 산맥의 틈이 핵심. 같은 Sonoma 안에서도 매우 다양한 기후.",
-        "subregions": [
-          {
-            "place": "Russian River Valley",
-            "grapes": "Pinot Noir, Chardonnay",
-            "style": "안개 영향으로 서늘. 높은 산도와 붉은 과실/시트러스.",
-            "label": "Russian River Valley AVA"
-          },
-          {
-            "place": "Sonoma Coast",
-            "grapes": "Pinot Noir, Chardonnay",
-            "style": "강한 해양 영향, 더 선명한 산도와 섬세한 과실.",
-            "label": "Sonoma Coast AVA"
-          },
-          {
-            "place": "Alexander Valley",
-            "grapes": "Cabernet Sauvignon",
-            "style": "더 따뜻한 내륙 조건, 익은 검은 과실과 풍부한 바디.",
-            "label": "Alexander Valley AVA"
-          },
-          {
-            "place": "Dry Creek Valley",
-            "grapes": "Zinfandel",
-            "style": "익은 블랙베리·향신료, 높은 알코올 가능.",
-            "label": "Dry Creek Valley AVA"
-          }
-        ]
-      },
-      {
-        "name": "California – Central Coast",
-        "climate": "태평양의 냉각 + 동서 방향 계곡",
-        "grapes": "Pinot Noir, Chardonnay, Syrah, Cabernet Sauvignon",
-        "key": "차가운 공기가 계곡을 통해 깊게 들어오며 서늘한 품종 산지가 형성.",
-        "subregions": [
-          {
-            "place": "Santa Barbara / Sta. Rita Hills",
-            "grapes": "Pinot Noir, Chardonnay",
-            "style": "서늘하고 바람이 강해 높은 산도, 선명한 과실.",
-            "label": "Sta. Rita Hills AVA"
-          },
-          {
-            "place": "Paso Robles",
-            "grapes": "Cabernet Sauvignon, Rhône varieties",
-            "style": "낮은 더 따뜻하지만 밤은 차가워 큰 일교차. 풍부하고 숙도 높은 레드.",
-            "label": "Paso Robles AVA"
-          }
-        ]
-      },
-      {
-        "name": "California – Other key areas",
-        "climate": "내륙은 더 따뜻하고 건조",
-        "grapes": "Zinfandel, Cabernet Sauvignon, Chardonnay 등",
-        "key": "Central Valley는 대량 생산, Sierra Foothills는 고도·오래된 Zinfandel로 유명.",
-        "subregions": [
-          {
-            "place": "Lodi",
-            "grapes": "Zinfandel",
-            "style": "익은 과실, 부드러운 탄닌, 풍부한 바디.",
-            "label": "Lodi AVA"
-          },
-          {
-            "place": "Sierra Foothills",
-            "grapes": "Zinfandel",
-            "style": "고도·오래된 포도나무, 농축된 과실과 향신료.",
-            "label": "Sierra Foothills AVA"
-          }
-        ]
-      },
-      {
-        "name": "Oregon – Willamette Valley",
-        "climate": "서늘한 해양성",
-        "grapes": "Pinot Noir, Chardonnay, Pinot Gris",
-        "key": "Cascade와 Coast Range 사이. 긴 성장기와 가을 강우 위험.",
-        "subregions": [
-          {
-            "place": "Dundee Hills",
-            "grapes": "Pinot Noir",
-            "style": "붉은 체리·딸기·꽃, 산도 선명, 섬세한 탄닌.",
-            "label": "Dundee Hills AVA"
-          },
-          {
-            "place": "Eola-Amity Hills",
-            "grapes": "Pinot Noir, Chardonnay",
-            "style": "Van Duzer Corridor를 통한 차가운 바람으로 더 선명한 산도.",
-            "label": "Eola-Amity Hills AVA"
-          }
-        ]
-      },
-      {
-        "name": "Washington State",
-        "climate": "건조한 대륙성, 큰 일교차",
-        "grapes": "Cabernet Sauvignon, Merlot, Syrah, Riesling, Chardonnay",
-        "key": "Cascade Rain Shadow 때문에 매우 건조하여 관개가 핵심. 긴 여름 일조와 차가운 밤.",
-        "subregions": [
-          {
-            "place": "Columbia Valley",
-            "grapes": "Cabernet Sauvignon, Merlot, Riesling",
-            "style": "잘 익은 과실 + 산도 유지, 건조한 기후로 병해 압력 낮음.",
-            "label": "Columbia Valley AVA"
-          },
-          {
-            "place": "Walla Walla Valley",
-            "grapes": "Cabernet Sauvignon, Syrah",
-            "style": "구조적이고 농축된 레드, Syrah도 중요.",
-            "label": "Walla Walla Valley AVA"
-          },
-          {
-            "place": "Yakima Valley",
-            "grapes": "Riesling, Chardonnay, Cabernet Sauvignon",
-            "style": "다양한 고도와 비교적 긴 성장기.",
-            "label": "Yakima Valley AVA"
-          }
-        ]
-      },
-      {
-        "name": "New York – Finger Lakes",
-        "climate": "서늘한 대륙성, 호수 완화",
-        "grapes": "Riesling, Chardonnay, Cabernet Franc",
-        "key": "깊은 호수가 겨울 추위를 완화하고 성장기를 연장.",
-        "subregions": [
-          {
-            "place": "Finger Lakes",
-            "grapes": "Riesling",
-            "style": "높은 산도, 라임·사과·꽃, 드라이~스위트.",
-            "label": "Finger Lakes AVA"
-          }
-        ]
-      }
-    ],
-    "dense": true,
-    "denseNote": "핵심국가 보강판: 산지 → 세부산지/도시 → 품종 → 예상 스타일 → 라벨 단서까지 확장"
+    "labelTip": "Tokaji Aszú는 귀부 포도의 농축과 Furmint의 높은 산도를 연결하세요. Eszencia는 극도로 농축된 귀부 포도 자연 유출액에서 만드는 매우 희귀한 스타일.",
+    "syllabusCount": 1
   },
   "canada": {
-    "name": "캐나다",
-    "en": "Canada",
+    "n": 21,
+    "name": "캐나다 (BC 중심)",
+    "en": "Canada – British Columbia",
+    "country": "Canada",
     "flag": "🇨🇦",
-    "group": "아메리카",
-    "lat": "주요 산지 약 43°–50°N",
-    "mapCore": "높은 위도와 큰 일교차. BC와 Ontario 중심.",
-    "climate": [
-      "서늘한 대륙성/반건조"
-    ],
-    "currents": "직접적인 해류보다 산맥·호수의 영향이 중요.",
-    "winds": "산악 지형과 호수·계곡의 국지 기후가 중요.",
-    "topography": "Okanagan Valley는 Rain Shadow로 예상보다 건조하고 일조가 충분.",
+    "group": "신세계",
+    "lat": "약 49°N",
+    "core": "원본 지도는 BC를 강조. WSET Level 3에서는 Okanagan Valley와 함께 Ontario의 Niagara Peninsula도 알아두면 좋다.",
+    "climate": "BC: 건조한 대륙성/반건조, Ontario: 서늘한 대륙성+호수 완화.",
+    "influences": "BC는 산맥 Rain Shadow와 Okanagan Lake, Ontario는 Great Lakes.",
     "grapes": [
-      "Pinot Noir",
+      "Vidal",
       "Riesling",
+      "Pinot Noir",
       "Chardonnay",
       "Merlot",
       "Cabernet Franc"
     ],
-    "style": "높은 위도에도 불구하고 계곡과 호수의 온도 완화, 긴 일조시간으로 다양한 품종 숙성 가능.",
-    "label": [
+    "reason": "높은 위도 → 추위 위험. 호수는 온도 완화, BC Rain Shadow는 건조함 제공. 겨울 추위는 Icewine 생산에도 활용.",
+    "labels": [
       "Okanagan Valley",
       "Niagara Peninsula",
+      "VQA",
       "Icewine"
     ],
-    "chain": "높은 위도 → 추위 위험 → 호수/계곡/산맥 미기후 확인 → 산도 높은 스타일",
-    "prompt": "Okanagan Valley가 캐나다임에도 포도 재배가 가능한 이유를 설명해보세요.",
-    "answer": "산맥의 Rain Shadow로 비교적 건조하고, 여름 긴 일조시간과 큰 일교차를 활용할 수 있습니다. 호수는 국지적으로 온도를 완화해 포도 재배를 돕습니다.",
     "regions": [
       {
-        "name": "Okanagan Valley",
-        "climate": "건조한 대륙성·큰 일교차",
-        "grapes": "Pinot Noir, Chardonnay, Merlot",
-        "key": "Rain Shadow, 호수, 높은 위도와 긴 일조."
+        "name": "Okanagan Valley (BC)",
+        "grapes": "Pinot Noir, Chardonnay, Merlot, Riesling 등",
+        "style": "큰 일교차, 신선한 산도부터 익은 레드까지 남북 차이 큼.",
+        "why": "Rain Shadow + 호수 + 긴 여름 일조."
       },
       {
-        "name": "Niagara Peninsula",
-        "climate": "호수 완화 효과가 있는 서늘한 기후",
-        "grapes": "Riesling, Chardonnay, Cabernet Franc",
-        "key": "Icewine와 서늘한 기후 품종."
+        "name": "Niagara Peninsula (Ontario)",
+        "grapes": "Riesling, Vidal, Chardonnay, Cabernet Franc",
+        "style": "서늘한 기후 화이트와 Icewine.",
+        "why": "Lake Ontario의 완화 효과와 겨울 동결."
       }
-    ]
-  },
-  "mexico": {
-    "name": "멕시코",
-    "en": "Mexico",
-    "flag": "🇲🇽",
-    "group": "아메리카",
-    "lat": "주요 산지 약 30°–32°N",
-    "mapCore": "낮은 위도지만 해양 영향과 고도로 포도 재배가 가능한 산지.",
-    "climate": [
-      "건조",
-      "해양 완화",
-      "고도 영향"
     ],
-    "currents": "Baja California는 태평양의 냉각 영향을 받음.",
-    "winds": "해풍이 고온을 완화.",
-    "topography": "Valle de Guadalupe 등은 해양과 사막성 기후가 만나는 지역.",
-    "grapes": [
-      "Cabernet Sauvignon",
-      "Tempranillo",
-      "Nebbiolo",
-      "Chenin Blanc"
+    "quiz": "Okanagan Valley가 높은 위도인데도 포도를 충분히 익힐 수 있는 이유는?",
+    "answer": "Rain Shadow로 비교적 건조하고 여름 낮이 길며, 호수가 온도를 완화합니다. 큰 일교차도 산도를 유지하는 데 도움을 줍니다.",
+    "officialPlaces": [
+      "Ontario – Niagara Peninsula",
+      "British Columbia – Okanagan Valley"
     ],
-    "style": "따뜻하고 건조하지만 해풍으로 균형을 얻는 레드 중심.",
-    "label": [
-      "Valle de Guadalupe",
-      "Baja California"
+    "law": [
+      "VQA"
     ],
-    "chain": "낮은 위도 → 과열 위험 → 해풍·고도 확인 → 품종과 구조 판단",
-    "prompt": "멕시코 와인에서 해풍이 중요한 이유는?",
-    "answer": "낮은 위도의 더운 조건에서 해풍은 포도밭을 식히고 산도 유지에 도움을 줍니다.",
-    "regions": [
-      {
-        "name": "Valle de Guadalupe",
-        "climate": "따뜻하고 건조, 해풍 영향",
-        "grapes": "Cabernet Sauvignon, Tempranillo",
-        "key": "멕시코 대표 산지."
-      }
-    ]
-  },
-  "chile": {
-    "name": "칠레",
-    "en": "Chile",
-    "flag": "🇨🇱",
-    "group": "아메리카",
-    "lat": "주요 산지 약 30°–38°S",
-    "mapCore": "서쪽 Humboldt Current와 동쪽 Andes 사이의 길고 좁은 국가.",
-    "climate": [
-      "지중해성 중심",
-      "해안 서늘",
-      "내륙 더 따뜻"
+    "tasting": [
+      "Optional Icewine"
     ],
-    "currents": "Humboldt Current가 태평양 연안을 냉각.",
-    "winds": "차가운 해양 공기와 안개가 해안 산맥의 틈을 통해 유입.",
-    "topography": "서쪽 Coast Range, 동쪽 Andes. 고도와 해안 거리로 기후가 달라짐.",
-    "grapes": [
-      "Cabernet Sauvignon",
-      "Carménère",
-      "Sauvignon Blanc",
-      "Chardonnay",
-      "Pinot Noir",
-      "Syrah"
-    ],
-    "style": "해안은 Sauvignon Blanc/Chardonnay/Pinot Noir, 따뜻한 내륙은 Cabernet Sauvignon/Carménère.",
-    "label": [
-      "Casablanca Valley",
-      "San Antonio",
-      "Maipo Valley",
-      "Colchagua Valley"
-    ],
-    "chain": "Humboldt Current → 해안 냉각 → 산맥 틈으로 찬 공기 유입 → 해안은 산도 높고 내륙은 숙도 높음",
-    "prompt": "Casablanca와 Maipo의 품종 선택이 다른 이유를 Humboldt Current와 지형으로 설명해보세요.",
-    "answer": "Casablanca는 태평양과 가까워 Humboldt Current 냉각 영향이 강해 Chardonnay, Sauvignon Blanc, Pinot Noir에 적합합니다. Maipo는 더 내륙이라 따뜻해 Cabernet Sauvignon 숙성에 유리합니다.",
-    "regions": [
-      {
-        "name": "Casablanca / San Antonio",
-        "climate": "서늘한 해양성 영향",
-        "grapes": "Sauvignon Blanc, Chardonnay, Pinot Noir",
-        "key": "Humboldt Current와 해안 안개."
-      },
-      {
-        "name": "Maipo",
-        "climate": "따뜻한 지중해성",
-        "grapes": "Cabernet Sauvignon",
-        "key": "내륙, Andes의 영향, 숙도 높은 레드."
-      },
-      {
-        "name": "Colchagua",
-        "climate": "따뜻한 지중해성",
-        "grapes": "Carménère, Cabernet Sauvignon, Syrah",
-        "key": "따뜻한 내륙 레드 산지."
-      }
-    ]
-  },
-  "argentina": {
-    "name": "아르헨티나",
-    "en": "Argentina",
-    "flag": "🇦🇷",
-    "group": "아메리카",
-    "lat": "주요 산지 약 28°–40°S",
-    "mapCore": "Andes 동쪽의 고지대·건조 기후. 고도가 강한 일조와 낮은 야간 기온을 동시에 만듦.",
-    "climate": [
-      "건조한 대륙성"
-    ],
-    "currents": "대서양 해류보다 Andes의 Rain Shadow와 고도가 훨씬 중요.",
-    "winds": "건조한 조건과 산악 바람. 우박이 중요한 위험 요소인 지역도 있음.",
-    "topography": "Mendoza, Salta 등 높은 고도. 눈 녹은 물을 이용한 관개가 핵심.",
-    "grapes": [
-      "Malbec",
-      "Cabernet Sauvignon",
-      "Torrontés"
-    ],
-    "style": "강한 일조 + 높은 고도 = 익은 과실과 산도 균형.",
-    "label": [
-      "Mendoza",
-      "Uco Valley",
-      "Luján de Cuyo",
-      "Salta",
-      "Cafayate"
-    ],
-    "chain": "Andes Rain Shadow → 매우 건조 → 관개 필요 + 높은 고도 → 큰 일교차 → 익은 과실과 산도 균형",
-    "prompt": "Mendoza Malbec가 높은 색과 풍미를 가지면서도 산도를 유지하는 이유를 설명해보세요.",
-    "answer": "Mendoza는 강한 일조를 받는 건조한 고지대입니다. 낮에는 충분한 열과 빛으로 Malbec의 색·탄닌·풍미가 발달하지만, 밤에는 기온이 크게 떨어져 산도 유지에 도움이 됩니다.",
-    "regions": [
-      {
-        "name": "Mendoza",
-        "climate": "건조한 대륙성",
-        "grapes": "Malbec, Cabernet Sauvignon",
-        "key": "Andes, 고도, 큰 일교차, 관개."
-      },
-      {
-        "name": "Salta / Cafayate",
-        "climate": "매우 높은 고도·건조",
-        "grapes": "Torrontés, Malbec",
-        "key": "극단적인 고도와 강한 일조."
-      }
-    ]
-  },
-  "uruguay": {
-    "name": "우루과이",
-    "en": "Uruguay",
-    "flag": "🇺🇾",
-    "group": "아메리카",
-    "lat": "약 30°–35°S",
-    "mapCore": "대서양과 Río de la Plata의 해양 영향이 있는 남미 산지.",
-    "climate": [
-      "완화된 해양성",
-      "온난 습윤"
-    ],
-    "currents": "대서양의 영향으로 극단적 열이 완화.",
-    "winds": "해풍이 습도와 온도를 조절.",
-    "topography": "완만한 지형이 많고 극단적 고도는 적다.",
-    "grapes": [
-      "Tannat",
-      "Albariño",
-      "Merlot"
-    ],
-    "style": "Tannat의 구조감이 대표적이지만 해양 영향으로 예상보다 신선한 스타일 가능.",
-    "label": [
-      "Canelones",
-      "Maldonado",
-      "Garzón"
-    ],
-    "chain": "대서양 인접 → 습도/온도 완화 → Tannat의 구조와 산도의 균형",
-    "prompt": "우루과이 Tannat를 아르헨티나 Malbec와 다르게 설명하려면?",
-    "answer": "우루과이 Tannat는 대서양의 해양 영향 속에서 더 구조적이고 탄닌감 있는 스타일로 설명할 수 있으며, 적절한 신선함도 함께 나타날 수 있습니다.",
-    "regions": [
-      {
-        "name": "Canelones",
-        "climate": "온난한 해양성 영향",
-        "grapes": "Tannat",
-        "key": "우루과이 생산의 중심."
-      }
-    ]
-  },
-  "brazil": {
-    "name": "브라질",
-    "en": "Brazil",
-    "flag": "🇧🇷",
-    "group": "아메리카",
-    "lat": "주요 산지 약 29°–31°S",
-    "mapCore": "열대 국가 이미지와 달리 남부 고도·위도 조건에서 와인을 생산.",
-    "climate": [
-      "온난 습윤",
-      "고도 영향"
-    ],
-    "currents": "직접적인 해류보다 남부 고지대와 계절성이 중요.",
-    "winds": "고지대 바람과 강수 관리가 중요.",
-    "topography": "Serra Gaúcha 등 구릉·고지대가 중심.",
-    "grapes": [
-      "Merlot",
-      "Moscato",
-      "Chardonnay",
-      "Cabernet Sauvignon"
-    ],
-    "style": "스파클링과 남부 서늘한 기후 와인이 점점 주목받음.",
-    "label": [
-      "Serra Gaúcha",
-      "Vale dos Vinhedos",
-      "Campanha"
-    ],
-    "chain": "남부 위도 + 고도 → 브라질 내 상대적 서늘함 확보",
-    "prompt": "브라질 와인을 설명할 때 흔한 오해는?",
-    "answer": "브라질 전체가 덥다고만 보는 것입니다. 실제 주요 산지는 남부의 더 서늘한 위도와 고도 조건을 활용합니다.",
-    "regions": [
-      {
-        "name": "Serra Gaúcha",
-        "climate": "온난 습윤",
-        "grapes": "Merlot, Chardonnay",
-        "key": "스파클링과 스틸 와인의 핵심 지역."
-      }
-    ]
-  },
-  "southafrica": {
-    "name": "남아프리카공화국",
-    "en": "South Africa",
-    "flag": "🇿🇦",
-    "group": "아프리카",
-    "lat": "주요 산지 약 32°–35°S",
-    "mapCore": "서쪽의 차가운 Benguela Current와 동쪽의 따뜻한 Agulhas Current가 대비됨.",
-    "climate": [
-      "지중해성 중심"
-    ],
-    "currents": "Benguela Current가 서해안을 냉각. 남동쪽은 더 따뜻한 Agulhas Current 영향.",
-    "winds": "Cape Doctor로 불리는 강한 남동풍은 여름 더위를 완화하고 포도밭을 건조시키는 역할.",
-    "topography": "산맥과 해안의 가까운 거리로 미기후가 다양.",
-    "grapes": [
-      "Chenin Blanc",
-      "Cabernet Sauvignon",
-      "Syrah",
-      "Pinotage",
-      "Sauvignon Blanc",
-      "Chardonnay"
-    ],
-    "style": "해안 가까운 지역은 더 신선한 스타일 가능.",
-    "label": [
-      "Stellenbosch",
-      "Swartland",
-      "Walker Bay",
-      "Constantia"
-    ],
-    "chain": "Benguela Current + 남동풍 → 서늘한 해안 영향 → 산지·고도에 따라 숙도 조절",
-    "prompt": "Stellenbosch가 따뜻한 위도에 있으면서도 균형 잡힌 Cabernet을 만들 수 있는 이유를 설명해보세요.",
-    "answer": "차가운 Benguela Current의 냉각 효과와 해풍, 다양한 산악 지형이 미기후를 만들어 포도가 충분히 익으면서도 산도를 유지할 수 있습니다.",
-    "regions": [
-      {
-        "name": "Stellenbosch",
-        "climate": "따뜻한 지중해성 + 해양 완화",
-        "grapes": "Cabernet Sauvignon, Chenin Blanc, Syrah",
-        "key": "산악 지형, 해풍, 고품질 레드."
-      },
-      {
-        "name": "Walker Bay",
-        "climate": "더 서늘한 해양성 영향",
-        "grapes": "Pinot Noir, Chardonnay",
-        "key": "해안 냉각으로 서늘한 품종에 적합."
-      }
-    ]
+    "labelTip": "Canada는 VQA + 지역명을 확인하세요. Icewine이면 포도가 vine에서 얼어 있는 상태로 수확/압착되어 당·산이 농축됩니다.",
+    "syllabusCount": 2
   },
   "australia": {
+    "n": 22,
     "name": "호주",
     "en": "Australia",
+    "country": "Australia",
     "flag": "🇦🇺",
     "group": "오세아니아",
-    "lat": "주요 산지 약 28°–43°S",
-    "mapCore": "매우 큰 국가라 '호주=더움'으로 외우면 안 됨. 남쪽 바다, 고도, 해안 거리 차이가 핵심.",
-    "climate": [
-      "따뜻한 지중해성",
-      "해양성",
-      "일부 서늘한 고지대"
-    ],
-    "currents": "남쪽 해안은 Southern Ocean의 차가운 영향. 동쪽은 East Australian Current의 영향도 존재.",
-    "winds": "해안 바람과 남쪽 바다의 차가운 공기가 남부 산지를 냉각.",
-    "topography": "Great Dividing Range와 고도, 해안 거리 차이로 기후가 크게 달라짐.",
+    "lat": "주요 산지 약 30°–43°S",
+    "core": "대륙 규모가 커서 '호주=더움'으로 외우면 틀리기 쉽다. 남쪽 바다, 해안 거리, 고도 차이를 먼저 본다.",
+    "climate": "따뜻한 지중해성부터 서늘한 해양성까지 매우 다양.",
+    "influences": "Southern Ocean, Indian Ocean, Great Dividing Range, 고도.",
     "grapes": [
       "Shiraz",
       "Cabernet Sauvignon",
-      "Chardonnay",
+      "Grenache",
       "Pinot Noir",
+      "Chardonnay",
+      "Semillon",
       "Riesling",
-      "Sémillon"
+      "Sauvignon Blanc"
     ],
-    "style": "Barossa의 풍부한 Shiraz부터 Tasmania의 서늘한 스파클링까지 스펙트럼이 큼.",
-    "label": [
+    "reason": "따뜻한 Barossa/McLaren Vale → 풍부한 Shiraz/Grenache. 해양성 Margaret River → Cabernet/Chardonnay. 고도·남쪽 Yarra/Tasmania → Pinot/Chardonnay.",
+    "labels": [
       "Barossa Valley",
+      "Eden Valley",
       "Clare Valley",
+      "Adelaide Hills",
+      "McLaren Vale",
       "Coonawarra",
-      "Margaret River",
       "Yarra Valley",
+      "Mornington Peninsula",
+      "Heathcote",
+      "Hunter Valley",
       "Tasmania",
-      "Hunter Valley"
+      "Margaret River",
+      "Great Southern",
+      "Riverland",
+      "Riverina",
+      "Murray-Darling"
     ],
-    "chain": "지역 위치 확인 → 남쪽 바다/해양 영향/고도 확인 → 따뜻한 내륙 vs 서늘한 해안 구분",
-    "prompt": "Barossa Valley와 Tasmania가 같은 호주인데 완전히 다른 스타일을 보이는 이유를 설명해보세요.",
-    "answer": "Barossa Valley는 따뜻하고 건조한 내륙성 조건으로 풍부한 Shiraz를 만들기 쉽습니다. Tasmania는 훨씬 남쪽에 있고 해양 영향이 강해 서늘하며 Pinot Noir, Chardonnay와 스파클링에 적합합니다.",
     "regions": [
       {
         "name": "Barossa Valley",
-        "climate": "따뜻하고 건조",
         "grapes": "Shiraz",
-        "key": "농축된 검은 과실, 높은 알코올, 풍부한 바디."
+        "style": "익은 검은 과실, 높은 알코올, 풍부한 바디, 오크.",
+        "why": "따뜻하고 건조한 South Australia."
       },
       {
-        "name": "Clare / Eden Valley",
-        "climate": "고도·일교차로 비교적 서늘",
+        "name": "Eden / Clare Valley",
         "grapes": "Riesling, Shiraz",
-        "key": "높은 산도를 가진 Riesling."
+        "style": "Riesling은 높은 산도·라임 향, Shiraz는 더 신선한 구조.",
+        "why": "고도와 큰 일교차."
+      },
+      {
+        "name": "Adelaide Hills",
+        "grapes": "Chardonnay, Pinot Noir, Sauvignon Blanc",
+        "style": "더 서늘하고 산도 선명.",
+        "why": "높은 고도."
+      },
+      {
+        "name": "McLaren Vale",
+        "grapes": "Shiraz, Grenache",
+        "style": "풍부한 과실과 높은 숙도, 해풍으로 균형.",
+        "why": "따뜻한 지중해성+바다."
       },
       {
         "name": "Coonawarra",
-        "climate": "남쪽 해양 영향",
         "grapes": "Cabernet Sauvignon",
-        "key": "Terra Rossa 토양과 Cabernet."
+        "style": "카시스·민트/유칼립투스, 구조적 탄닌.",
+        "why": "남쪽 해양 영향 + Terra Rossa."
       },
       {
-        "name": "Margaret River",
-        "climate": "해양성",
-        "grapes": "Cabernet Sauvignon, Chardonnay",
-        "key": "인도양·남쪽 바다의 완화."
-      },
-      {
-        "name": "Yarra Valley",
-        "climate": "서늘한 해양성",
+        "name": "Yarra Valley / Mornington Peninsula",
         "grapes": "Pinot Noir, Chardonnay",
-        "key": "고도와 남쪽 위치로 서늘."
+        "style": "높은 산도, 섬세한 붉은 과실·시트러스.",
+        "why": "남쪽 위도·고도·해양성."
+      },
+      {
+        "name": "Hunter Valley",
+        "grapes": "Semillon, Shiraz",
+        "style": "Semillon은 낮은 알코올·높은 산도, 병 숙성 시 토스트·꿀.",
+        "why": "덥고 습하지만 이른 수확과 독특한 양조."
       },
       {
         "name": "Tasmania",
-        "climate": "서늘한 해양성",
         "grapes": "Pinot Noir, Chardonnay",
-        "key": "스파클링, 높은 산도."
+        "style": "서늘한 스파클링·Pinot, 높은 산도.",
+        "why": "가장 남쪽의 강한 해양성."
+      },
+      {
+        "name": "Margaret River",
+        "grapes": "Cabernet Sauvignon, Chardonnay",
+        "style": "균형 좋은 Cabernet과 고품질 Chardonnay.",
+        "why": "Indian/Southern Ocean의 강한 해양 완화."
+      },
+      {
+        "name": "Riverland / Riverina / Murray-Darling",
+        "grapes": "다양",
+        "style": "대량 생산, 높은 수확량, 관개 중심.",
+        "why": "덥고 건조한 내륙."
       }
-    ]
+    ],
+    "quiz": "Barossa Valley와 Tasmania를 같은 호주 안에서 어떻게 대비할까요?",
+    "answer": "Barossa는 따뜻하고 건조해 풍부하고 높은 알코올의 Shiraz가 대표적입니다. Tasmania는 훨씬 남쪽의 서늘한 해양성이라 Pinot Noir, Chardonnay와 스파클링 와인에 적합합니다.",
+    "officialPlaces": [
+      "South Eastern Australia – Murray-Darling, Riverina, Riverland",
+      "South Australia – Barossa, Barossa Valley, Eden Valley, Clare Valley, Adelaide Hills, McLaren Vale, Coonawarra",
+      "Victoria – Yarra Valley, Geelong, Mornington Peninsula, Heathcote, Goulburn Valley",
+      "New South Wales – Hunter Valley",
+      "Tasmania",
+      "Western Australia – Margaret River, Great Southern"
+    ],
+    "law": [
+      "Zone",
+      "region",
+      "sub-region"
+    ],
+    "tasting": [
+      "Premium Barossa/McLaren Vale Shiraz",
+      "Coonawarra or Margaret River Cabernet",
+      "McLaren Vale Grenache/blend",
+      "Eden/Clare Riesling",
+      "Hunter Valley Semillon",
+      "Yarra/Mornington/Tasmania Chardonnay",
+      "Optional Pinot Noir"
+    ],
+    "labelTip": "Australia는 Zone → Region → Sub-region 구조를 확인하세요. 지역명이 넓을수록 일반화된 스타일, 좁을수록 해당 terroir 설명이 쉬워집니다.",
+    "extraCards": [
+      {
+        "name": "Geelong",
+        "grapes": "Pinot Noir, Chardonnay, Shiraz",
+        "style": "서늘~온화, 산도와 향이 선명.",
+        "why": "Victoria 남부 해양 영향."
+      },
+      {
+        "name": "Heathcote",
+        "grapes": "Shiraz",
+        "style": "농축된 검은 과실과 구조, 산도 유지.",
+        "why": "내륙이지만 고도·토양 영향."
+      },
+      {
+        "name": "Goulburn Valley",
+        "grapes": "Shiraz, Marsanne 등",
+        "style": "따뜻하고 익은 과실.",
+        "why": "Victoria 내륙."
+      },
+      {
+        "name": "Great Southern",
+        "grapes": "Riesling, Cabernet Sauvignon, Shiraz",
+        "style": "서늘하고 높은 산도, 정교한 레드/화이트.",
+        "why": "Western Australia 남부의 해양 영향."
+      }
+    ],
+    "sparkling": [
+      {
+        "name": "Tasmania",
+        "grapes": "Chardonnay, Pinot Noir",
+        "style": "매우 높은 산도, 정교한 전통 방식.",
+        "notes": "호주 premium sparkling 핵심."
+      },
+      {
+        "name": "Yarra Valley / Adelaide Hills",
+        "grapes": "Chardonnay, Pinot Noir",
+        "style": "서늘한 기후 premium sparkling.",
+        "notes": "고도/남쪽 위치."
+      }
+    ],
+    "fortified": [
+      {
+        "name": "Rutherglen Muscat",
+        "grapes": "Muscat",
+        "style": "매우 달고 농축, 건포도·캐러멜·토피, 산화적 숙성.",
+        "notes": "Victoria Rutherglen의 fortified Muscat."
+      }
+    ],
+    "syllabusCount": 6
   },
   "newzealand": {
+    "n": 23,
     "name": "뉴질랜드",
     "en": "New Zealand",
+    "country": "New Zealand",
     "flag": "🇳🇿",
     "group": "오세아니아",
     "lat": "약 34°–47°S",
-    "mapCore": "강한 해양성, 편서풍, 남극해의 영향. 긴 남북 거리 때문에 지역 차이가 큼.",
-    "climate": [
-      "해양성"
-    ],
-    "currents": "차가운 남쪽 바다와 태평양의 강한 해양 영향으로 극단적 고온이 제한됨.",
-    "winds": "강한 편서풍이 주요 기후 요소. 산맥의 동쪽에는 Rain Shadow가 생길 수 있음.",
-    "topography": "Southern Alps가 강수 분포를 바꾸고, 동쪽 주요 산지를 더 건조하게 만듦.",
+    "core": "길고 좁은 섬나라라 해양 영향이 매우 강하다. 산맥의 Rain Shadow로 동부 주요 산지가 상대적으로 건조.",
+    "climate": "서늘~온화한 해양성.",
+    "influences": "Pacific Ocean, Southern Alps, 강한 편서풍, 높은 일조량.",
     "grapes": [
       "Sauvignon Blanc",
       "Pinot Noir",
       "Chardonnay",
+      "Pinot Gris",
       "Riesling",
-      "Syrah"
+      "Syrah",
+      "Merlot",
+      "Cabernet Sauvignon"
     ],
-    "style": "Marlborough Sauvignon Blanc의 강한 향과 높은 산도, Central Otago Pinot Noir가 대표적.",
-    "label": [
-      "Marlborough",
-      "Central Otago",
+    "reason": "해양성 → 극단적 고온 억제. 산맥 동쪽 Rain Shadow → 건조하고 맑은 성장기. 긴 성장기 → 향 발달 + 높은 산도.",
+    "labels": [
+      "Gisborne",
       "Hawke's Bay",
-      "Martinborough"
+      "Martinborough",
+      "Marlborough",
+      "Nelson",
+      "Canterbury",
+      "Central Otago"
     ],
-    "chain": "해양성 + 편서풍 → 산맥 Rain Shadow → 동부 주요 산지의 건조한 성장기 → 높은 산도와 선명한 향",
-    "prompt": "Marlborough가 해양성 국가에 있으면서도 비교적 건조하고 향이 강한 Sauvignon Blanc을 만드는 이유를 설명해보세요.",
-    "answer": "Marlborough는 산맥의 Rain Shadow 영향으로 비교적 건조하고 일조량이 충분합니다. 서늘한 야간 기온은 산도를 유지하고 긴 성장기는 Sauvignon Blanc의 강한 향 성분 발달을 돕습니다.",
     "regions": [
       {
         "name": "Marlborough",
-        "climate": "서늘한 해양성 + 비교적 건조",
         "grapes": "Sauvignon Blanc",
-        "key": "강한 향, 높은 산도, Rain Shadow."
+        "style": "매우 선명한 향, 패션프루트·구스베리·허브, 높은 산도.",
+        "why": "강한 일조 + 서늘한 밤 + Rain Shadow."
       },
       {
         "name": "Central Otago",
-        "climate": "뉴질랜드 내 비교적 대륙성·건조",
         "grapes": "Pinot Noir",
-        "key": "남쪽 위도 + 내륙 + 큰 일교차."
+        "style": "익은 체리·자두, 높은 산도, 중간 탄닌.",
+        "why": "뉴질랜드에서 가장 대륙성·건조한 편 + 큰 일교차."
       },
       {
         "name": "Hawke's Bay",
-        "climate": "비교적 따뜻한 해양성",
-        "grapes": "Syrah, Chardonnay",
-        "key": "뉴질랜드 내 따뜻한 산지."
-      }
-    ]
-  },
-  "japan": {
-    "name": "일본",
-    "en": "Japan",
-    "flag": "🇯🇵",
-    "group": "오세아니아",
-    "lat": "주요 산지 약 34°–39°N",
-    "mapCore": "비가 많고 습하지만 산지·고도·지역 차이를 활용하는 동아시아 산지.",
-    "climate": [
-      "습윤한 해양성/몬순",
-      "일부 서늘한 고지대"
-    ],
-    "currents": "주변 해양이 크고 계절풍의 영향이 강함.",
-    "winds": "장마와 태풍, 계절풍이 중요한 재배 리스크.",
-    "topography": "분지와 고지대가 미기후 형성에 도움.",
-    "grapes": [
-      "Koshu",
-      "Muscat Bailey A",
-      "Chardonnay",
-      "Merlot"
-    ],
-    "style": "Koshu의 섬세한 화이트, Yamanashi와 Nagano 등의 산지 차이를 기억.",
-    "label": [
-      "Yamanashi",
-      "Nagano",
-      "Hokkaido",
-      "Koshu"
-    ],
-    "chain": "습윤·강우 위험 → 배수/수형/고도 중요 → 섬세한 스타일 추론",
-    "prompt": "일본 와인에서 기후적으로 가장 큰 리스크는 무엇인가요?",
-    "answer": "높은 강수와 습도, 장마와 태풍이 포도 재배에 큰 리스크가 됩니다.",
-    "regions": [
-      {
-        "name": "Yamanashi",
-        "climate": "내륙 분지성 + 습윤",
-        "grapes": "Koshu, Muscat Bailey A",
-        "key": "일본 대표 산지."
+        "grapes": "Syrah, Merlot/Cabernet blends, Chardonnay",
+        "style": "뉴질랜드 내 비교적 따뜻한 스타일.",
+        "why": "북섬 동부 Rain Shadow와 자갈 토양."
       },
       {
-        "name": "Hokkaido",
-        "climate": "더 서늘함",
-        "grapes": "Pinot Noir, Chardonnay",
-        "key": "일본 내 서늘한 기후 산지."
+        "name": "Martinborough",
+        "grapes": "Pinot Noir",
+        "style": "향기롭고 구조적인 Pinot Noir.",
+        "why": "건조한 동부와 큰 일교차."
+      },
+      {
+        "name": "Gisborne",
+        "grapes": "Chardonnay",
+        "style": "익은 과실과 비교적 풍부한 바디.",
+        "why": "북섬 동부의 따뜻하고 햇빛 많은 지역."
+      },
+      {
+        "name": "Nelson / Canterbury",
+        "grapes": "Sauvignon Blanc, Pinot Noir, Riesling 등",
+        "style": "서늘하고 산도 높은 다양한 스타일.",
+        "why": "남섬의 해양성·고도 차이."
       }
-    ]
+    ],
+    "quiz": "Marlborough Sauvignon Blanc의 강한 향과 높은 산도를 지리로 설명해보세요.",
+    "answer": "남섬의 서늘한 해양성 기후와 차가운 밤이 산도를 유지하고, Southern Alps의 Rain Shadow로 일조량과 건조한 성장기를 확보해 향 성분이 충분히 발달합니다.",
+    "officialPlaces": [
+      "North Island – Gisborne, Hawke’s Bay, Martinborough",
+      "South Island – Marlborough, Nelson, Canterbury, Central Otago"
+    ],
+    "law": [],
+    "tasting": [
+      "Central Otago/Martinborough/Marlborough Pinot Noir",
+      "Marlborough Sauvignon Blanc",
+      "Optional Hawke’s Bay Bordeaux blend/Syrah",
+      "Premium Chardonnay e.g. Marlborough/Gisborne",
+      "Oaked Sauvignon Blanc"
+    ],
+    "labelTip": "NZ는 North Island / South Island를 먼저 나누세요. Hawke’s Bay는 더 따뜻, Marlborough는 Sauvignon Blanc, Central Otago는 가장 대륙성에 가까운 Pinot Noir 핵심.",
+    "sparkling": [
+      {
+        "name": "Marlborough",
+        "grapes": "Chardonnay, Pinot Noir",
+        "style": "높은 산도와 선명한 과실의 premium sparkling.",
+        "notes": "WSET premium New Zealand sparkling 핵심 지역."
+      }
+    ],
+    "syllabusCount": 2
   }
 };
-
-const HOTSPOTS = [
+const POINTS = [
   {
-    "id": "france",
-    "x": 39.2,
-    "y": 30.2,
-    "label": "FR"
+    "id": "beaujolais",
+    "x": 42.2,
+    "y": 28.2
   },
   {
-    "id": "england",
-    "x": 37.0,
-    "y": 22.7,
-    "label": "UK"
+    "id": "burgundy",
+    "x": 41.2,
+    "y": 25.3
   },
   {
-    "id": "portugal",
-    "x": 32.2,
-    "y": 33.6,
-    "label": "PT"
-  },
-  {
-    "id": "spain",
-    "x": 35.2,
-    "y": 35.0,
-    "label": "ES"
+    "id": "bordeaux",
+    "x": 39.6,
+    "y": 29.2
   },
   {
     "id": "germany",
-    "x": 41.2,
-    "y": 24.5,
-    "label": "DE"
+    "x": 41.8,
+    "y": 23.3
   },
   {
-    "id": "switzerland",
-    "x": 40.5,
-    "y": 29.2,
-    "label": "CH"
+    "id": "rhone",
+    "x": 41.0,
+    "y": 32.5
   },
   {
-    "id": "austria",
-    "x": 46.0,
-    "y": 27.8,
-    "label": "AT"
+    "id": "alsace",
+    "x": 43.1,
+    "y": 34.8
   },
   {
-    "id": "hungary",
-    "x": 48.0,
-    "y": 28.8,
-    "label": "HU"
+    "id": "portugal",
+    "x": 32.3,
+    "y": 33.4
   },
   {
-    "id": "slovenia",
-    "x": 44.2,
-    "y": 30.8,
-    "label": "SI"
+    "id": "spain",
+    "x": 35.4,
+    "y": 35.3
   },
   {
-    "id": "croatia",
-    "x": 45.6,
-    "y": 32.6,
-    "label": "HR"
-  },
-  {
-    "id": "romania",
-    "x": 50.2,
-    "y": 29.6,
-    "label": "RO"
-  },
-  {
-    "id": "moldova",
-    "x": 51.4,
-    "y": 29.6,
-    "label": "MD"
-  },
-  {
-    "id": "italy",
-    "x": 42.4,
-    "y": 33.2,
-    "label": "IT"
+    "id": "southafrica",
+    "x": 41.5,
+    "y": 58.9
   },
   {
     "id": "greece",
-    "x": 45.0,
-    "y": 37.3,
-    "label": "GR"
+    "x": 45.2,
+    "y": 37.8
   },
   {
-    "id": "georgia",
-    "x": 54.3,
-    "y": 31.8,
-    "label": "GE"
-  },
-  {
-    "id": "turkey",
-    "x": 53.2,
-    "y": 35.4,
-    "label": "TR"
-  },
-  {
-    "id": "lebanon",
-    "x": 47.2,
-    "y": 38.0,
-    "label": "LB"
-  },
-  {
-    "id": "israel",
-    "x": 47.2,
-    "y": 39.4,
-    "label": "IL"
-  },
-  {
-    "id": "canada",
-    "x": 16.6,
-    "y": 22.2,
-    "label": "CA"
-  },
-  {
-    "id": "usa",
-    "x": 15.1,
-    "y": 30.5,
-    "label": "US"
-  },
-  {
-    "id": "mexico",
-    "x": 11.6,
-    "y": 39.6,
-    "label": "MX"
+    "id": "loire",
+    "x": 38.3,
+    "y": 27.4
   },
   {
     "id": "chile",
     "x": 20.0,
-    "y": 57.4,
-    "label": "CL"
+    "y": 57.3
+  },
+  {
+    "id": "northitaly",
+    "x": 48.0,
+    "y": 31.7
+  },
+  {
+    "id": "southitaly",
+    "x": 47.8,
+    "y": 35.2
+  },
+  {
+    "id": "california",
+    "x": 15.0,
+    "y": 31.6
+  },
+  {
+    "id": "washington",
+    "x": 14.8,
+    "y": 25.4
+  },
+  {
+    "id": "oregon",
+    "x": 14.2,
+    "y": 28.0
   },
   {
     "id": "argentina",
-    "x": 24.8,
-    "y": 61.2,
-    "label": "AR"
+    "x": 25.2,
+    "y": 61.0
   },
   {
-    "id": "uruguay",
-    "x": 27.0,
-    "y": 65.1,
-    "label": "UY"
+    "id": "austria",
+    "x": 49.2,
+    "y": 26.4
   },
   {
-    "id": "brazil",
-    "x": 28.6,
-    "y": 61.8,
-    "label": "BR"
+    "id": "tokaj",
+    "x": 50.7,
+    "y": 29.6
   },
   {
-    "id": "southafrica",
-    "x": 41.3,
-    "y": 59.6,
-    "label": "ZA"
+    "id": "canada",
+    "x": 16.7,
+    "y": 21.9
   },
   {
     "id": "australia",
-    "x": 61.0,
-    "y": 57.0,
-    "label": "AU"
+    "x": 61.2,
+    "y": 57.1
   },
   {
     "id": "newzealand",
-    "x": 69.6,
-    "y": 63.9,
-    "label": "NZ"
-  },
-  {
-    "id": "japan",
-    "x": 66.6,
-    "y": 30.3,
-    "label": "JP"
+    "x": 69.8,
+    "y": 63.7
   }
 ];

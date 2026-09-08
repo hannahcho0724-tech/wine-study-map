@@ -1,24 +1,20 @@
-WSET Wine Study Map V3 · Dense
-================================
+WSET Level 3 Wine Geography Map V5 COMPLETE
+================================================
 
-V3 핵심 변경
-- V2의 29개 국가 유지
-- France / Italy / Spain / USA를 정보 밀도 보강
-- 각 핵심국가에서:
-  국가 → 큰 산지 → 세부산지/도시/마을 → 대표 품종 → 예상 스타일 → 라벨 단서
-  로 내려가며 공부할 수 있도록 확장
+V5 핵심
+- 지도 포인트: 23개 유지
+- WSET Level 3 Award in Wines Specification (Issue 2, 2022)의 공식 named regions를 23개 패널 안에 전부 정리
+- 주요 품종 / 자연환경 / WHY→STYLE / 법·등급 용어 / 라벨 읽기 / 권장 시음 연결
+- Sparkling: Champagne, Crémant, Cava, Asti, Prosecco, Sekt, premium New World sparkling, Cap Classique
+- Fortified: Port, Sherry, Muscat de Beaumes-de-Venise, Rutherglen Muscat
+- DEEP DIVE: Burgundy 대표 Grand Cru, Germany 유명 vineyard label examples 등은 공식 범위와 별도 표시
 
-예시
-France → Bordeaux → Pauillac → Cabernet Sauvignon
-       → 검은 과실 / 높은 탄닌 / 오크 / 숙성 잠재력 → 'Pauillac' 라벨 단서
+23개 포인트 유지 때문에 지도에 별도 점이 없는 항목의 배치
+- South West France → Bordeaux 패널
+- Southern France → Rhône 패널
+- Champagne → Burgundy 패널의 Sparkling section
+- Finger Lakes → California/USA 패널
+- Niagara Peninsula → Canada 패널
 
-Italy → Tuscany → Brunello di Montalcino → Sangiovese
-Spain → Rioja → Rioja Alta → Tempranillo
-USA → California → Napa Valley → Oakville/Rutherford → Cabernet Sauvignon
-
-GitHub Pages 업로드
-- index.html
-- style.css
-- data.js
-- wine-map.png
-를 repository 최상단에 업로드하세요.
+GitHub Pages
+index.html / style.css / data.js / wine-map.png 파일을 repository root에 업로드.
