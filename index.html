@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WSET Interactive Wine Study Map V3 · Dense</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div>
+      <h1>WSET Level 3 · Wine Study Map V3 · Dense</h1>
+      <p>핵심국가 정보 밀도 보강 — France · Italy · Spain · USA는 산지 → 세부산지/도시 → 품종 → 스타일 → 라벨까지 깊게</p>
+      <div class="legend-mini">
+        <span class="legend-pill">총 29개 국가</span><span class="legend-pill">France · Italy · Spain · USA DENSE</span>
+        <span class="legend-pill">검색 가능</span>
+        <span class="legend-pill">랜덤 복습 가능</span>
+      </div>
+    </div>
+    <div class="hint">PC: 마우스오버 + 클릭<br>모바일: 핀 탭<br>핀이 겹치면 검색창을 함께 사용해요</div>
+  </header>
+
+  <section class="toolbar" aria-label="지도 검색 및 필터">
+    <input id="search" class="search" type="search" placeholder="나라 · 산지 · 품종 · 라벨 검색 (예: Riesling, Bordeaux, Malbec, Tokaj, Tannat)">
+    <div class="filter-row" id="filters">
+      <button class="filter active" data-group="전체" type="button">전체</button>
+      <button class="filter" data-group="유럽" type="button">유럽</button>
+      <button class="filter" data-group="아메리카" type="button">아메리카</button>
+      <button class="filter" data-group="아프리카" type="button">아프리카</button>
+      <button class="filter" data-group="오세아니아" type="button">오세아니아</button>
+      <button class="filter" data-group="중동/캅카스" type="button">중동/캅카스</button>
+    </div>
+    <button id="randomBtn" class="random" type="button">🎲 랜덤 산지 복습</button>
+  </section>
+
+  <main class="layout">
+    <section class="map-card">
+      <div class="map-head">
+        <strong>세계 와인지리 지도 + 핵심국가 Drill-down</strong>
+        <span>국가 핀 hover = 요약 · click = 상세 패널</span>
+      </div>
+      <div class="map-wrap" id="mapWrap">
+        <img src="wine-map.png" alt="WSET Level 3 세계 와인지리 암기 지도">
+        <div id="hotspotLayer"></div>
+        <div id="tooltip" class="tooltip" role="status"></div>
+      </div>
+      <div class="map-note">
+        V3에서는 France · Italy · Spain · USA의 정보 밀도를 크게 높였고, 기존 확장국가인, 공부 확장용으로 <b>영국·스위스·조지아·슬로베니아·크로아티아·루마니아·몰도바·이스라엘·레바논·멕시코·우루과이·브라질·일본</b>도 추가했습니다.
+      </div>
+    </section>
+
+    <aside class="detail" id="detail" aria-live="polite">
+      <div class="empty">지도에서 국가를 선택해보세요.<br><br><b>France</b> 또는 <b>Germany</b>부터 시작하면 WSET식 사고 흐름을 연습하기 좋아요.</div>
+    </aside>
+  </main>
+
+  <div class="footer">
+    <b>추천 공부 흐름</b><br>
+    ① 라벨에서 국가/산지명을 찾기 → ② 지도에서 위치와 바다/산맥/해류 확인 → ③ 기후 유형 추론 → ④ 세부산지/도시명으로 내려가기 → ⑤ 대표 품종 연결 → ⑥ 예상 산도·탄닌·과실 풍미·알코올 서술.<br>
+    <b>팁</b> 핀이 겹치는 유럽은 검색창에 국가명이나 산지명(예: Tokaj, Wachau, Kakheti, Rioja)을 치면 훨씬 보기 쉬워요.
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(() => {
+  const detail = document.getElementById('detail');
+  const layer = document.getElementById('hotspotLayer');
+  const tooltip = document.getElementById('tooltip');
+  const search = document.getElementById('search');
+  const filters = document.getElementById('filters');
+  const randomBtn = document.getElementById('randomBtn');
+
+  let activeId = 'france';
+  let activeGroup = '전체';
+
+  function esc(v){
+    return String(v ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  }
+
+  function searchableText(id){
+    const d = WINE_DATA[id];
+    return [
+      d.name,d.en,d.group,d.lat,d.mapCore,d.currents,d.winds,d.topography,d.style,d.chain,d.prompt,d.answer,
+      ...(d.climate||[]),...(d.grapes||[]),...(d.label||[]),
+      ...(d.regions||[]).flatMap(r=>[r.name,r.climate,r.grapes,r.key])
+    ].join(' ').toLowerCase();
+  }
+
+  function visibleIds(){
+    const q = search.value.trim().toLowerCase();
+    return HOTSPOTS.filter(h => {
+      const d = WINE_DATA[h.id];
+      const groupOK = activeGroup === '전체' || d.group === activeGroup;
+      const searchOK = !q || searchableText(h.id).includes(q);
+      return groupOK && searchOK;
+    }).map(h => h.id);
+  }
+
+  function renderHotspots(){
+    layer.innerHTML = '';
+    const visible = visibleIds();
+    HOTSPOTS.forEach(h => {
+      const d = WINE_DATA[h.id];
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'hotspot' + (h.id === activeId ? ' active' : '');
+      b.style.left = h.x + '%';
+      b.style.top = h.y + '%';
+      b.textContent = h.label;
+      b.dataset.id = h.id;
+      b.setAttribute('aria-label', d.name + ' ' + d.en);
+      b.hidden = !visible.includes(h.id);
+      b.addEventListener('mouseenter', () => showTooltip(b, d));
+      b.addEventListener('focus', () => showTooltip(b, d));
+      b.addEventListener('mouseleave', hideTooltip);
+      b.addEventListener('blur', hideTooltip);
+      b.addEventListener('click', () => selectCountry(h.id));
+      layer.appendChild(b);
+    });
+  }
+
+  function showTooltip(btn, d){
+    tooltip.innerHTML = '<b>' + esc(d.flag + ' ' + d.name) + '</b><br>' + esc(d.lat) + '<br>' + esc((d.climate||[]).join(' · '));
+    tooltip.style.display = 'block';
+    tooltip.style.left = parseFloat(btn.style.left) + '%';
+    tooltip.style.top = parseFloat(btn.style.top) + '%';
+  }
+  function hideTooltip(){ tooltip.style.display = 'none'; }
+
+  function renderDetail(id){
+    const d = WINE_DATA[id];
+    const regions = (d.regions||[]).map((r,i)=>{
+      const subs = (r.subregions||[]).map(s=>`
+        <div class="subcard">
+          <div class="place">${esc(s.place)}</div>
+          <div class="submeta">
+            <div><b>품종</b><br>${esc(s.grapes)}</div>
+            <div><b>라벨 단서</b><br>${esc(s.label)}</div>
+          </div>
+          <div class="substyle"><b>예상 스타일:</b> ${esc(s.style)}</div>
+        </div>
+      `).join('');
+      return `
+        <details ${i===0 ? 'open' : ''}>
+          <summary>${esc(r.name)}</summary>
+          <div class="region-body">
+            <div class="mini"><b>기후:</b> ${esc(r.climate)}</div>
+            <div class="mini"><b>주요 품종:</b> ${esc(r.grapes)}</div>
+            <div>${esc(r.key)}</div>
+            ${subs ? `<div class="subgrid">${subs}</div>` : ''}
+          </div>
+        </details>
+      `;
+    }).join('');
+
+    detail.innerHTML = `
+      <div class="detail-inner">
+        <div class="country-title">
+          <div>
+            <h2>${esc(d.name)}</h2>
+            <div class="en">${esc(d.en)} · ${esc(d.lat)}</div>
+            <span class="badge">${esc(d.group)}</span>
+            ${(d.climate||[]).map(c=>`<span class="badge">${esc(c)}</span>`).join('')}
+            ${d.dense ? `<div class="dense-note">${esc(d.denseNote)}</div>` : ''}
+          </div>
+          <div class="flag" aria-hidden="true">${esc(d.flag)}</div>
+        </div>
+
+        <section class="section">
+          <h3>① 지도에서 먼저 기억할 핵심</h3>
+          <div class="core">${esc(d.mapCore)}</div>
+        </section>
+
+        <section class="section">
+          <h3>② 자연환경을 원인으로 보기</h3>
+          <div class="fact-grid">
+            <div class="fact"><b>해류 / 바다</b><span>${esc(d.currents)}</span></div>
+            <div class="fact"><b>바람</b><span>${esc(d.winds)}</span></div>
+            <div class="fact"><b>지형 / 고도</b><span>${esc(d.topography)}</span></div>
+            <div class="fact"><b>전체 스타일</b><span>${esc(d.style)}</span></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h3>③ 주요 품종</h3>
+          <div class="tags">${(d.grapes||[]).map(g=>`<span class="tag">${esc(g)}</span>`).join('')}</div>
+        </section>
+
+        <section class="section">
+          <h3>④ WSET식 Reasoning Chain</h3>
+          <div class="chain">${esc(d.chain)}</div>
+        </section>
+
+        <section class="section">
+          <h3>⑤ 주요 산지</h3>
+          ${regions}
+        </section>
+
+        <section class="section">
+          <h3>⑥ 라벨에서 찾을 단서</h3>
+          <div class="tags">${(d.label||[]).map(l=>`<span class="tag">${esc(l)}</span>`).join('')}</div>
+        </section>
+
+        <section class="section">
+          <h3>⑦ 말로 설명해보기</h3>
+          <div class="study-card">
+            <b>QUESTION</b><br>${esc(d.prompt)}
+            <button class="reveal" id="revealBtn" type="button">예시 답안 보기</button>
+            <div class="answer" id="answerBox">${esc(d.answer)}</div>
+          </div>
+        </section>
+      </div>
+    `;
+
+    const reveal = document.getElementById('revealBtn');
+    const answer = document.getElementById('answerBox');
+    reveal.addEventListener('click', () => {
+      answer.classList.toggle('show');
+      reveal.textContent = answer.classList.contains('show') ? '예시 답안 숨기기' : '예시 답안 보기';
+    });
+  }
+
+  function selectCountry(id){
+    activeId = id;
+    renderHotspots();
+    renderDetail(id);
+    if (window.innerWidth < 1050) detail.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  search.addEventListener('input', () => {
+    renderHotspots();
+    const ids = visibleIds();
+    if (ids.length && !ids.includes(activeId)) selectCountry(ids[0]);
+  });
+
+  filters.addEventListener('click', e => {
+    const b = e.target.closest('.filter');
+    if (!b) return;
+    activeGroup = b.dataset.group;
+    filters.querySelectorAll('.filter').forEach(x => x.classList.toggle('active', x === b));
+    renderHotspots();
+    const ids = visibleIds();
+    if (ids.length && !ids.includes(activeId)) selectCountry(ids[0]);
+  });
+
+  randomBtn.addEventListener('click', () => {
+    const ids = visibleIds();
+    if (!ids.length) return;
+    const id = ids[Math.floor(Math.random()*ids.length)];
+    selectCountry(id);
+  });
+
+  renderHotspots();
+  renderDetail(activeId);
+})();
+</script>
+</body>
+</html>
